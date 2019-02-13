@@ -1,0 +1,39 @@
+<div id="welcome">
+  <div class="container">
+    <h1>Notification!</h1>
+    <hr/>
+  </div>
+
+  <template id="election-result-table-template">
+    <div class="container">
+        <div class="col-md-6">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>PU</th>
+              <th>Zone</th>
+              <th>LG</th>
+              <th>Ward</th>
+              <th>Party</th>
+              <th>Vote</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="electionresult in electionresults">
+              <td>{{electionresult.pollingUnit}}</td>
+              <td>{{electionresult.senatorialZone}}</td>
+              <td>{{electionresult.localGovernment}}</td>
+              <td>{{electionresult.ward}}</td>
+              <td>{{electionresult.party}}</td>
+              <td>{{electionresult.vote}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </template>
+
+  <router-view></router-view>
+
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
