@@ -1,37 +1,67 @@
 <div id="welcome">
-  <div class="container">
-    <h1>Notification!</h1>
-    <hr/>
-  </div>
 
   <template id="election-result-table-template">
-    <div class="container">
+    <div class="container" style="margin-top: 30px;">
+        <div class="row">
         <div class="col-md-6">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>PU</th>
-              <th>Zone</th>
-              <th>LG</th>
-              <th>Ward</th>
-              <th>Party</th>
-              <th>Vote</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="electionresult in electionresults">
-              <td>{{electionresult.pollingUnit}}</td>
-              <td>{{electionresult.senatorialZone}}</td>
-              <td>{{electionresult.localGovernment}}</td>
-              <td>{{electionresult.ward}}</td>
-              <td>{{electionresult.party}}</td>
-              <td>{{electionresult.vote}}</td>
-            </tr>
-          </tbody>
-        </table>
+          <h1 class="lead">Election Result</h1>
+          <table class="table table-striped" style="font-size: 12px;">
+            <thead>
+              <tr>
+                <th>PU</th>
+                <th>Zone</th>
+                <th>LG</th>
+                <th>Ward</th>
+                <th>Party</th>
+                <th>Vote</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="electionresult in electionresults.slice().reverse()">
+                <td>{{electionresult.pollingUnit}}</td>
+                <td>{{electionresult.senatorialZone}}</td>
+                <td>{{electionresult.localGovernment}}</td>
+                <td>{{electionresult.ward}}</td>
+                <td>{{electionresult.party}}</td>
+                <td>{{electionresult.vote}}</td>
+                <td>{{electionresult.timeAgo}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+      <div class="col-md-6">
+          <h1 class="lead">Incidence</h1>
+          <table class="table table-striped" style="font-size: 12px;">
+            <thead>
+              <tr>
+                <th>PU</th>
+                <th>Zone</th>
+                <th>LG</th>
+                <th>Ward</th>
+                <th>incidence</th>
+                <th>Description</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="incidencereport in incidencereports.slice().reverse()">
+                <td>{{incidencereport.pollingUnit}}</td>
+                <td>{{incidencereport.senatorialZone}}</td>
+                <td>{{incidencereport.localGovernment}}</td>
+                <td>{{incidencereport.ward}}</td>
+                <td>{{incidencereport.incidenceCode}}</td>
+                <td>{{incidencereport.description}}</td>
+                <td>{{incidencereport.timeAgo}}</td>
+              </tr>
+            </tbody>
+          </table>
       </div>
     </div>
+    </div>
   </template>
+  
 
   <router-view></router-view>
 

@@ -10,7 +10,13 @@
 
 module.exports.policies = {
 
-  // '*': 'is-logged-in',
+  'dashboard/view-welcome': 'is-logged-in',
+  'account/update-billing-card': 'is-logged-in',
+  'account/update-password': 'is-logged-in',
+  'account/update-profile': 'is-logged-in',
+  'account/view-account-overview': 'is-logged-in',
+  'account/view-edit-password': 'is-logged-in',
+  'account/view-edit-profile': 'is-logged-in',
   
   'SMSController': {
     'callback': 'phone-is-authorize'
