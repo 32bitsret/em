@@ -48,7 +48,7 @@ parasails.registerPage('welcome', {
     fillElectionResult: function(body){
       if(body && body.length){
         this.electionresults = body.map(function (currentValue, index, array) {
-          return Object.assign({}, currentValue, {timeAgo: moment(currentValue.createdAt).fromNow()});
+          return Object.assign({}, currentValue, {timeAgo: moment(currentValue.updatedAt).fromNow()});
         });
       }
     },
@@ -56,7 +56,7 @@ parasails.registerPage('welcome', {
     fillIncidenceResult: function(body){
       if(body && body.length){
         this.incidencereports = body.map(function (currentValue, index, array) {
-          return Object.assign({}, currentValue, {timeAgo: moment(currentValue.createdAt).fromNow()});
+          return Object.assign({}, currentValue, {timeAgo: moment(currentValue.updatedAt).fromNow()});
         });
       }
     },

@@ -13,7 +13,8 @@ module.exports = async function (req, res, proceed) {
 
   console.log({phone, sms});
 
-  let smsTokens = sms.replace(/\s+/g, '').split(',');
+  let smsTokens = sms.replace(/\s+/g, ' ').split(',');
+  smsTokens = smsTokens.map((item, index) => item.trim());
 
   let pollingUnit = await sails.models.pollingunit.findOne({
         phone: "2348161730129", 
@@ -41,12 +42,13 @@ module.exports = async function (req, res, proceed) {
     }else if(smsTokens[0] == 2 || smsTokens[0] === 'incidence' || smsTokens[0] === 'i'){
 
         req.smsBody = req.smsBody || {};
-        let code = smsTokens[1]; 
+        let codePu = smsTokens[1]; 
         req.smsBody.pu = null;
-        if(code.split(',').length === 2){
-            code = code.split(',')[0];
-            req.smsBody.pu = code.split(',')[1];
+        if(codePu.split(':').length === 2){
+            var code = codePu.split(':')[0];
+            req.smsBody.pu = codePu.split(':')[1];
         }
+        console.log("PU", req.smsBody.pu, code);
         let incidence = await sails.models.incidencetype.findOne({
             incidenceCode: code, 
         });
@@ -60,7 +62,7 @@ module.exports = async function (req, res, proceed) {
             return res.send("incidence 404");
         }
         let text = '';
-        for(let i = 3; i < smsTokens.length; i++){
+        for(let i = 2; i < smsTokens.length; i++){
             text += ' ' + smsTokens[i];
         }
         req.incidence = _.omit(incidence, ['id', 'createdAt', 'updatedAt']);
