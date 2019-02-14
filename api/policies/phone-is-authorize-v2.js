@@ -1,3 +1,4 @@
+"use strict";
 /**
  * phone-is-authorize
  *
@@ -7,16 +8,12 @@
 const sendSMS = require("../lib/sendSMS");
 
 module.exports = async function (req, res, proceed) {
-  let sms = req.body.message;
-  let phone = req.body.phoneNumber;
-  if(!sms){
-    return res.send("No data, available");
-  }
-  let smsTokens = sms.replace(/\s+/g, ' ').split(' ');
-  // [0] => Keyword, 
-  // [1] => command 1 or r or result || 2 or i or incidence
-  // [2] => party (PDP, APC etc) || category, 
-  // [3] Votes (party) or incidence text (incidence)
+  let phone = req.body.results[0]["from"];
+  let sms = req.body.results[0]["text"]; // || cleanText
+
+  console.log({phone, sms});
+
+  let smsTokens = sms.replace(/\s+/g, '').split(',');
 
   let pollingUnit = await sails.models.pollingunit.findOne({
         phone: "2348161730129", 
@@ -24,20 +21,27 @@ module.exports = async function (req, res, proceed) {
   });
   if (pollingUnit) {
     req.pollingUnit = _.omit(pollingUnit, ['id', 'createdAt', 'updatedAt', 'accountEnabled']);
-    if(smsTokens[1] === 1 || smsTokens[1] === 'result' || smsTokens[1] === 'r'){
-        console.log({smsTokens});
+    console.log({smsTokens}, smsTokens[0] == 1, smsTokens[0] === 'result', smsTokens[0] === 'r');
+    if(smsTokens[0] == 1 || smsTokens[0] === 'result' || smsTokens[0] === 'r'){
+        
         req.smsBody = req.smsBody || {};
         req.smsBody.command = 'result';
-        req.smsBody.party = smsTokens[2].toUpperCase();
-        req.smsBody.vote = smsTokens[3];
-        req.smsBody.pu = smsTokens[4] || null;
-        console.log("PU", req.smsBody.pu)
+        let results = [];
+        for(let i = 1; i < smsTokens.length; i++){
+            let tmp = smsTokens[i].split('-');
+            if(tmp.length === 2){
+                results.push({party: tmp[0].toUpperCase(), vote: tmp[1]});
+            }else if(tmp.length === 1){
+                req.smsBody.pu = tmp[0] || null;
+            }
+        }
+        console.log("PU", req.smsBody.pu, results);
         req.smsBody.raw = JSON.stringify(sms);
-    }else if(smsTokens[1] === 2 || smsTokens[1] === 'incidence' || smsTokens[1] === 'i'){
+        req.smsBody.results = results;
+    }else if(smsTokens[0] == 2 || smsTokens[0] === 'incidence' || smsTokens[0] === 'i'){
 
-        console.log({smsTokens});
         req.smsBody = req.smsBody || {};
-        let code = smsTokens[2]; 
+        let code = smsTokens[1]; 
         req.smsBody.pu = null;
         if(code.split(',').length === 2){
             code = code.split(',')[0];

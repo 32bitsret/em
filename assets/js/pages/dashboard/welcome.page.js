@@ -46,23 +46,37 @@ parasails.registerPage('welcome', {
   methods: {
 
     fillElectionResult: function(body){
-      this.electionresults = body.map(function (currentValue, index, array) {
-        return Object.assign({}, currentValue, {timeAgo: moment(currentValue.createdAt).fromNow()});
-      })
+      if(body && body.length){
+        this.electionresults = body.map(function (currentValue, index, array) {
+          return Object.assign({}, currentValue, {timeAgo: moment(currentValue.createdAt).fromNow()});
+        });
+      }
     },
 
     fillIncidenceResult: function(body){
-      this.incidencereports = body.map(function (currentValue, index, array) {
-        return Object.assign({}, currentValue, {timeAgo: moment(currentValue.createdAt).fromNow()});
-      })
+      if(body && body.length){
+        this.incidencereports = body.map(function (currentValue, index, array) {
+          return Object.assign({}, currentValue, {timeAgo: moment(currentValue.createdAt).fromNow()});
+        });
+      }
+    },
+
+    probeElectionResult: function(){
+      io.socket.get('/ElectionResult', this.fillElectionResult);
+    },
+
+    probeIncidence: function(){
+      io.socket.get('/IncidenceReport', this.fillIncidenceResult);
     },
 
     getElectionResult: async function(){
       io.socket.get('/ElectionResult', this.fillElectionResult);
+      setInterval(this.probeElectionResult, 1000);
     },
 
     getIncidenceResult: async function(){
       io.socket.get('/IncidenceReport', this.fillIncidenceResult);
+      setInterval(this.probeIncidence, 1000);
     },
 
   }

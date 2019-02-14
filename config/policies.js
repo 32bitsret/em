@@ -19,7 +19,8 @@ module.exports.policies = {
   'account/view-edit-profile': 'is-logged-in',
   
   'SMSController': {
-    'callback': 'phone-is-authorize'
+    'callback': 'phone-is-authorize',
+    'callbackV2': 'phone-is-authorize-v2'
   },
 
   // Bypass the `is-logged-in` policy for:

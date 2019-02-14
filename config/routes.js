@@ -69,5 +69,6 @@ module.exports.routes = {
   'PUT   /api/IncidenceType':  'IncidenceTypeController.put',
 
   'POST /api/sms': 'SMSController.callback',
+  'POST /api/smsV2': 'SMSController.callbackV2',
 
 };
