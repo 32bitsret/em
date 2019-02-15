@@ -42,7 +42,7 @@ module.exports.http = {
       'router',
       'www',
       'favicon',
-      '$custom'
+      'serverStat'
     ],
 
 
@@ -80,13 +80,11 @@ module.exports.http = {
       };
     })(),
 
-  },
+    serverStat: function (req, res) {
+      serveStatic('assets', {
+        'index': false,
+      })(req, res);
+    }
 
-  customMiddleware: function (req, res) {
-    console.log("we here");
-    var serve = serveStatic('assets', {
-      'index': false,
-    })
-    serve(req, res)
-  }
+  },
 };
