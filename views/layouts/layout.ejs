@@ -66,13 +66,23 @@
           <% } else { %>
           <!-- LOGGED-OUT NAVIGATION -->
           <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/faq">FAQ</a> -->
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Log in</a>
+          <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Log in</a> -->
           <!-- Only in desktop nav -->
-          <div class="form-inline d-none ml-2 d-md-block" >
+          <!-- <div class="form-inline d-none ml-2 d-md-block" >
             <a class="btn btn-outline-info" href="/signup">Sign up</a>
-          </div>
+          </div> -->
+          <form method="GET" action="" class="form-inline"> 
+          <select name="la" class="form-control" >
+              <% if (localGovernments) { %>
+              <% localGovernments.forEach(function(la){ %>
+                <option value=""><%= la.localGovernment %></option>
+              <% }); %>
+            <% } %>
+          </select>
+          <button class="btn btn-outline-info" style="margin-left:6px;">GO</button>
+          </form>
           <!-- Only in mobile nav -->
-          <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup">Sign up</a>
+          <!-- <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup">Sign up</a> -->
           <% } %>
         </div>
       </header>
