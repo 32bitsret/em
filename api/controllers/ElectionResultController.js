@@ -27,7 +27,8 @@ module.exports = {
                     }
                   }
                 }
-              ])
+              ]);
+              console.log({totalVotes});
             ballot.push({party: parties[i].party, totalVotes});
         }
         console.log({results: ballot});
