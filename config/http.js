@@ -9,6 +9,8 @@
  * https://sailsjs.com/config/http
  */
 
+var express = require('express');
+
 module.exports.http = {
 
   /****************************************************************************
