@@ -10,7 +10,7 @@
 
 module.exports.policies = {
 
-  'dashboard/view-welcome': 'is-logged-in',
+  // 'dashboard/view-welcome': 'is-logged-in',
   'account/update-billing-card': 'is-logged-in',
   'account/update-password': 'is-logged-in',
   'account/update-profile': 'is-logged-in',
