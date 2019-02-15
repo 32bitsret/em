@@ -90,22 +90,41 @@ parasails.registerPage('welcome', {
     },
 
     getElectionResult: async function(){
-      io.socket.get('/ElectionResult', this.fillElectionResult);
+      let endpoint = '/ElectionResult';
+      if(selectedLocalGovernment !== 'default'){
+        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        if(selectedWard !== 'default'){
+          endpoint += '&' + selectedWard;
+        }
+      } 
+      console.log({getElectionResult: endpoint});
+      io.socket.get(endpoint, this.fillElectionResult);
       // setInterval(this.probeElectionResult, 1000);
     },
 
     getResultSummary: async function(){
-      io.socket.get('/api/query1', this.fillResultSummary);
+      let endpoint = '/api/query1';
+      if(selectedLocalGovernment !== 'default'){
+        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        if(selectedWard !== 'default'){
+          endpoint += '&' + selectedWard;
+        }
+      }
+      console.log({getResultSummary: endpoint});
+      io.socket.get(endpoint, this.fillResultSummary);
       // setInterval(this.probeResultSummary, 1000);
     },
 
-    getElectionResult: async function(){
-      io.socket.get('/ElectionResult', this.fillElectionResult);
-      // setInterval(this.probeElectionResult, 1000);
-    },
-
     getIncidenceResult: async function(){
-      io.socket.get('/IncidenceReport', this.fillIncidenceResult);
+      let endpoint = '/IncidenceReport';
+      if(selectedLocalGovernment !== 'default'){
+        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        if(selectedWard !== 'default'){
+          endpoint += '&' + selectedWard;
+        }
+      }
+      console.log({getIncidenceResult: endpoint});
+      io.socket.get(endpoint, this.fillIncidenceResult);
       // setInterval(this.probeIncidence, 1000);
     },
 
