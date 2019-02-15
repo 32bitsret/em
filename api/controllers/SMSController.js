@@ -21,7 +21,7 @@ module.exports = {
             
           if(controlLevel === 'WARD'){
               console.log({controlLevel});
-            let warderPhone = pollingUnit.phone;
+            var warderPhone = pollingUnit.phone;
             console.log({"chck": body.pu});
             pollingUnit = await sails.models.pollingunit.findOne({
                 pollingUnit: body.pu || "Unknown PU",
