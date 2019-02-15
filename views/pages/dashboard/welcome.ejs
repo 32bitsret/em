@@ -3,7 +3,7 @@
   <template id="election-result-table-template">
     <div class="xcontainer">
       <div class="row" style="margin: 0px">
-        <span v-for="resultSummary in result">
+        <span v-for="result in resultSummary">
           {{result.party}} - {{result.totalVotes}}
         </span>
       </div>
