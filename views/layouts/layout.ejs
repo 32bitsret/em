@@ -100,7 +100,7 @@
                   <option value="default"><%= selectedWard %></option>
                 <% } %>
               <% pollingUnits.forEach(function(item){ %>
-                <option value="<%= item.pollingUnit %>"><%= item.pollingUnit %></option>
+                <option value="<%= item.pollingUnit %>"><%= item.pollingUnitName + "(" +item.pollingUnit + ")" %></option>
               <% }); %>
               </select>
             <% } %>
