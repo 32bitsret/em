@@ -41,7 +41,7 @@ module.exports.http = {
       'router',
       'www',
       'favicon',
-      '$custom',
+      '$custom'
     ],
 
 
@@ -77,7 +77,7 @@ module.exports.http = {
           return next();
         });
       };
-    })(),  
+    })(),
 
   },
 
