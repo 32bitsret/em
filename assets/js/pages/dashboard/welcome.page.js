@@ -71,12 +71,12 @@ parasails.registerPage('welcome', {
 
     getElectionResult: async function(){
       io.socket.get('/ElectionResult', this.fillElectionResult);
-      setInterval(this.probeElectionResult, 1000);
+      // setInterval(this.probeElectionResult, 1000);
     },
 
     getIncidenceResult: async function(){
       io.socket.get('/IncidenceReport', this.fillIncidenceResult);
-      setInterval(this.probeIncidence, 1000);
+      // setInterval(this.probeIncidence, 1000);
     },
 
   }
