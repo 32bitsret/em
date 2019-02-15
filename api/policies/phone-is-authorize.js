@@ -19,7 +19,7 @@ module.exports = async function (req, res, proceed) {
   // [3] Votes (party) or incidence text (incidence)
 
   let pollingUnit = await sails.models.pollingunit.findOne({
-        phone: "2348161730129", 
+        phone,//: "2348161730129", 
         accountEnabled: true
   });
   if (pollingUnit) {

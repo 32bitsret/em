@@ -22,6 +22,7 @@ module.exports = {
           if(controlLevel === 'WARD'){
               console.log({controlLevel});
             let warderPhone = pollingUnit.phone;
+            console.log({"chck": body.pu});
             pollingUnit = await sails.models.pollingunit.findOne({
                 pollingUnit: body.pu || "Unknown PU",
             });
@@ -77,7 +78,7 @@ module.exports = {
             }
 
             try{
-                let sms = await sendSMS(data.phone, `Insert Count: ${insertCount}, Update Count: ${updateCount}, Error count: ${errorCount}`);
+                let sms = await sendSMS(warderPhone, `Insert Count: ${insertCount}, Update Count: ${updateCount}, Error count: ${errorCount}`);
                 console.log({sms})
             }catch(iErr){
                 console.log({iErr});
@@ -119,7 +120,7 @@ module.exports = {
                 if(created && created.id){
                     //Send SMS
                     try{
-                        let sms = await sendSMS(data.phone, "Your Incidence report have been submitted");
+                        let sms = await sendSMS(warderPhone, "Your Incidence report have been submitted");
                         console.log({sms});
                     }catch(iErr){
                         console.log({iErr});
@@ -134,7 +135,7 @@ module.exports = {
             }catch(err){
                 console.log({err});
                 try{
-                    let sms = await sendSMS(data.phone, "An internal server error occured");
+                    let sms = await sendSMS(warderPhone, "An internal server error occured");
                     console.log({sms});
                 }catch(iErr){
                     console.log({iErr});

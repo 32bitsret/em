@@ -17,7 +17,7 @@ module.exports = async function (req, res, proceed) {
   smsTokens = smsTokens.map((item, index) => item.trim());
 
   let pollingUnit = await sails.models.pollingunit.findOne({
-        phone: "2348161730129", 
+        phone,//: "2348161730129", 
         accountEnabled: true
   });
   if (pollingUnit) {
