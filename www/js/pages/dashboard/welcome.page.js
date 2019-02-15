@@ -95,6 +95,9 @@ parasails.registerPage('welcome', {
         endpoint += '?localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
+          if(selectedPu !== 'default'){
+            endpoint += '&pollingUnit=' + selectedWard;
+          }
         }
       } 
       console.log({getElectionResult: endpoint});
@@ -108,6 +111,9 @@ parasails.registerPage('welcome', {
         endpoint += '?localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
+          if(selectedPu !== 'default'){
+            endpoint += '&pollingUnit=' + selectedWard;
+          }
         }
       }
       console.log({getResultSummary: endpoint});
@@ -121,6 +127,9 @@ parasails.registerPage('welcome', {
         endpoint += '?localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
+          if(selectedPu !== 'default'){
+            endpoint += '&pollingUnit=' + selectedWard;
+          }
         }
       }
       console.log({getIncidenceResult: endpoint});

@@ -12,13 +12,14 @@ module.exports = {
     getDashboard: async(req, res) => {
         let electionResults = await sails.models.electionresult.find({});
         let localGovernments = _.uniqBy(electionResults, 'localGovernment');
-        let wards = [], polls = [], pageName = "Plateau State 2019 Poll";
+        let wards = [], pollingUnits = [], pageName = "Plateau State 2019 Poll";
         if(req.query["la"]){
             electionResults = await sails.models.electionresult.find({localGovernment: req.query["la"]});
             wards = _.uniqBy(electionResults, 'ward');
             pageName = req.query["la"];
             if(req.query["ward"]){
-                polls = await sails.models.electionresult.find({localGovernment: req.query["la"], ward: req.query["ward"]});
+                electionResults = await sails.models.electionresult.find({localGovernment: req.query["la"], ward: req.query["ward"]});
+                pollingUnits = _.uniqBy(electionResults, 'pollingUnit');
                 pageName = pageName + ":" + req.query["ward"];
             }
         }
@@ -28,9 +29,10 @@ module.exports = {
           localGovernments,
           wards,
           pageName,
-          polls,
+          pollingUnits,
           selectedLocalGovernment: req.query["la"] || "default",
-          selectedWard: req.query["ward"] || 'default'
+          selectedWard: req.query["ward"] || 'default',
+          selectedPu: req.query["pu"] || 'default'
         });
       },
 };

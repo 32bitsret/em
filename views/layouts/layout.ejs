@@ -75,6 +75,7 @@
           <script>
           var selectedLocalGovernment = "<%= selectedLocalGovernment %>";
           var selectedWard = "<%= selectedWard %>";
+          var selectedPu = "<%= selectedPu %>";
           </script>
           <select name="la" class="form-control" >
             <% if (selectedLocalGovernment === "default" ) { %>
@@ -93,6 +94,16 @@
               <option value="<%= item.ward %>"><%= item.ward %></option>
             <% }); %>
             </select>
+            <% if (pollingUnits && pollingUnits.length) { %>
+              <select name="pu" class="form-control" style="margin-left:6px;">
+                <% if (selectedPu === "default" ) { %>
+                  <option value="default"><%= selectedWard %></option>
+                <% } %>
+              <% pollingUnits.forEach(function(item){ %>
+                <option value="<%= item.pollingUnit %>"><%= item.pollingUnit %></option>
+              <% }); %>
+              </select>
+            <% } %>
           <% } %>
           <button class="btn btn-outline-info" style="margin-left:6px;">GO</button>
           </form>
