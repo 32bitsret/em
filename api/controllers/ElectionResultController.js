@@ -23,7 +23,7 @@ module.exports = {
                 { "$group": {
                     _id: null,
                     total: {
-                      $sum: "$amount"
+                      $sum: "$vote"
                     }
                   }
                 }
