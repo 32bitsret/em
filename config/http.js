@@ -39,7 +39,7 @@ module.exports.http = {
       'router',
       'www',
       'favicon',
-      '$custom',
+      'customMiddleware',
     ],
 
 
