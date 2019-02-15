@@ -15,17 +15,31 @@ module.exports = {
         console.log({totalVotes: electionresult.length});
         console.log({totalParties: parties.length});
         let ballot = [];
+        var db = sails.getDatastore().manager;
         for(let i = 0; i < parties.length; i++){
-            var totalVotes = await sails.models.electionresult.sum('vote', {party: parties[i].party});
-            ballot.push({party: parties[i].party, totalVote});
+            var totalVotes = await db.collection('electionresult').aggregate([
+                { "$match": { party: parties[i].party } },
+                { "$sort": {"party": -1}},
+                { "$group": {
+                    _id: null,
+                    total: {
+                      $sum: "$amount"
+                    }
+                  }
+                }
+              ])
+            ballot.push({party: parties[i].party, totalVotes});
         }
         console.log({results: ballot});
         res.send(ballot);
     },
 
     query2: async(req, res) => {
-
-
+        var db = sails.getDatastore().manager;
+        var totalVotes = await db.collection('electionresult').aggregate([
+            { "$match": { party: parties[i].party } },
+            { "$sort": {"party": -1}}
+          ])
     },
 
     query3: async(req, res) => {
