@@ -31,8 +31,8 @@ module.exports = {
             ballot.push({party: parties[i].party, totalVotes: totalVotes[0]["total"]});
         }
         console.log({results: ballot});
-        // res.send(ballot);
-        res.send([{party: 'APC', totalVotes: 87000}, {party: 'PDP', totalVotes: 4999}, {party: 'SDP', totalVotes: 599}])
+        res.send(ballot);
+        // res.send([{party: 'APC', totalVotes: 87000}, {party: 'PDP', totalVotes: 4999}, {party: 'SDP', totalVotes: 599}])
     },
 
     query2: async(req, res) => {
