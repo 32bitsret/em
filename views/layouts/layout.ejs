@@ -76,12 +76,15 @@
           var selectedLocalGovernment = "<%= selectedLocalGovernment %>";
           </script>
           <select name="la" class="form-control" >
-              <% if (localGovernments) { %>
-              <% localGovernments.forEach(function(la){ %>
-                <option value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
-              <% }); %>
-            <% } %>
+            <% localGovernments.forEach(function(la){ %>
+              <option value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
+            <% }); %>
           </select>
+          <% if (wards && wards.length) { %>
+            <% wards.forEach(function(item){ %>
+              <option value="<%= item.ward %>"><%= item.ward %></option>
+            <% }); %>
+          <% } %>
           <button class="btn btn-outline-info" style="margin-left:6px;">GO</button>
           </form>
           <!-- Only in mobile nav -->
