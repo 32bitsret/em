@@ -14,6 +14,7 @@ module.exports = {
         v = _.uniqBy(electionresult, 'party');
         console.log(electionresult.length);
         console.log(v.length);
+        res.send(v);
     },
 
     query2: async(req, res) => {
