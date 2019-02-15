@@ -21,6 +21,9 @@ module.exports = {
                 electionResults = await sails.models.electionresult.find({localGovernment: req.query["la"], ward: req.query["ward"]});
                 pollingUnits = _.uniqBy(electionResults, 'pollingUnit');
                 pageName = pageName + ":" + req.query["ward"];
+                if(req.query["pu"]){
+                    pageName = pageName + ":" + req.query["ward"] + ":" + req.query["pu"];
+                }
             }
         }
         return res.view('pages/dashboard/welcome', {
