@@ -11,10 +11,16 @@ module.exports = {
   
     query1: async(req, res) => {
         let electionresult = await sails.models.electionresult.find({});
-        v = _.uniqBy(electionresult, 'party');
-        console.log(electionresult.length);
-        console.log(v.length);
-        res.send(v);
+        let parties = _.uniqBy(electionresult, 'party');
+        console.log({totalVotes: electionresult.length});
+        console.log({totalParties: parties.length});
+        let ballot = [];
+        for(let i = 0; i < parties.length; i++){
+            var totalVotes = await sails.models.electionresult.sum('vote', {party: parties[i].party});
+            ballot.push({party: parties[i].party, totalVote});
+        }
+        console.log({results: ballot});
+        res.send(ballot);
     },
 
     query2: async(req, res) => {
