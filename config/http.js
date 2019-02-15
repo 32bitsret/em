@@ -41,7 +41,7 @@ module.exports.http = {
       'router',
       'www',
       'favicon',
-      'customMiddleware',
+      '$custom',
     ],
 
 
@@ -77,15 +77,13 @@ module.exports.http = {
           return next();
         });
       };
-    })(),
-
-    customMiddleware: function (app) {
-      // this code will be executed only once during the application startup
-      app.use(express.static('assets'));
-    }
-  
-  
+    })(),  
 
   },
+
+  customMiddleware: function (app) {
+    // this code will be executed only once during the application startup
+    app.use(express.static('assets'));
+  }
 
 };
