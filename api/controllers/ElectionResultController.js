@@ -19,7 +19,6 @@ module.exports = {
         for(let i = 0; i < parties.length; i++){
             var totalVotes = await db.collection('electionresult').aggregate([
                 { "$match": { party: parties[i].party } },
-                { "$sort": {"party": -1}},
                 { "$group": {
                     _id: null,
                     total: {
@@ -29,8 +28,7 @@ module.exports = {
                 }
               ]);
               totalVotes = await totalVotes.toArray();
-              console.log({totalVotes: totalVotes});
-            ballot.push({party: parties[i].party, totalVotes: totalVotes});
+            ballot.push({party: parties[i].party, totalVotes: totalVotes[0]["total"]});
         }
         console.log({results: ballot});
         res.send(ballot);
