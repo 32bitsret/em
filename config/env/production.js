@@ -109,6 +109,23 @@ module.exports = {
       id: { type: 'string', columnName: '_id' },
     },
 
+    attributes: {
+      createdAt: { type: 'number', autoCreatedAt: true, },
+      updatedAt: { type: 'number', autoUpdatedAt: true, },
+      // id: { type: 'number', autoIncrement: true, },
+      //--------------------------------------------------------------------------
+      //  /\   Using MongoDB?
+      //  ||   Replace `id` above with this instead:
+      //
+      // ```
+      id: { type: 'string', columnName: '_id' },
+      // ```
+      //
+      // Plus, don't forget to configure MongoDB as your default datastore:
+      // https://sailsjs.com/docs/tutorials/using-mongo-db
+      //--------------------------------------------------------------------------
+    },
+
   },
 
 
@@ -228,7 +245,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cookie: {
-      // secure: true,
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     },
 
@@ -333,7 +350,7 @@ module.exports = {
     * (https://sailsjs.com/config/http)                                        *
     *                                                                          *
     ***************************************************************************/
-    // trustProxy: true,
+    trustProxy: true,
 
   },
 
