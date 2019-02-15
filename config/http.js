@@ -81,9 +81,9 @@ module.exports.http = {
     })(),
 
     serverStat: function (req, res) {
-      serveStatic('assets', {
+      serveStatic('www', {
         'index': false,
-      })(req, res);
+      })(req, res, next(req, res));
     }
 
   },
