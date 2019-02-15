@@ -28,8 +28,9 @@ module.exports = {
                   }
                 }
               ]);
-              console.log({totalVotes: totalVotes.toArray()});
-            ballot.push({party: parties[i].party, totalVotes: totalVotes.toArray()});
+              totalVotes = await totalVotes.toArray();
+              console.log({totalVotes: totalVotes});
+            ballot.push({party: parties[i].party, totalVotes: totalVotes});
         }
         console.log({results: ballot});
         res.send(ballot);
