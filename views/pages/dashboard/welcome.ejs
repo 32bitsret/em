@@ -1,12 +1,22 @@
 <div id="welcome">
-
   <template id="election-result-table-template">
     <div class="xcontainer">
-      <div class="row" style="margin: 0px">
-        <span v-for="result in resultSummary">
-          {{result.party}} - {{result.totalVotes}}
-        </span>
-      </div>
+        <div class="sectiontitle">
+            <h2>Election Monitoring System</h2>
+            <span class="headerLine"></span>
+        </div>
+        <div id="projectFacts" class="sectionClass">
+          <div class="fullWidth eight columns">
+            <div class="projectFactsWrap ">
+              <div v-for="result in resultSummary" class="item wow fadeInUpBig animated animated" data-number="12" style="visibility: visible;">
+                  <i class="fa fa-briefcase"></i>
+                  <p id="number1" class="number">{{result.totalVotes}}</p>
+                  <span></span>
+                  <p>{{result.party}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       <div class="row" style="margin: 0px;">
         <div class="col-md-6">
           <p><u>SMS Result Format To <em><b>07065644515</b></em></u><br/><em><b>1, APC-550, PDP-250, SDP-209, ANPP-89, 31/01/01/001</b></em><br/>
