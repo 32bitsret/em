@@ -96,7 +96,7 @@ parasails.registerPage('welcome', {
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
           if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedWard;
+            endpoint += '&pollingUnit=' + selectedPu;
           }
         }
       } 
@@ -112,7 +112,7 @@ parasails.registerPage('welcome', {
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
           if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedWard;
+            endpoint += '&pollingUnit=' + selectedPu;
           }
         }
       }
@@ -128,7 +128,7 @@ parasails.registerPage('welcome', {
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
           if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedWard;
+            endpoint += '&pollingUnit=' + selectedPu;
           }
         }
       }
