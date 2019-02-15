@@ -2,6 +2,11 @@
 
   <template id="election-result-table-template">
     <div class="xcontainer">
+      <div class="row" style="margin: 0px">
+        <span v-for="resultSummary in result">
+          {{result.party}} - {{result.totalVotes}}
+        </span>
+      </div>
       <div class="row" style="margin: 0px;">
         <div class="col-md-6">
           <p><u>SMS Result Format To <em><b>07065644515</b></em></u><br/><em><b>1, APC-550, PDP-250, SDP-209, ANPP-89, 31/01/01/001</b></em><br/>
