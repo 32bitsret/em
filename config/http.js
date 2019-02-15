@@ -80,10 +80,10 @@ module.exports.http = {
       };
     })(),
 
-    serverStat: function (req, res, next) {
+    serverStat: function (req, res) {
       serveStatic('www', {
         'index': false,
-      })(req, res, next(req, res));
+      })(req, res);
     }
 
   },
