@@ -28,8 +28,8 @@ module.exports = {
                   }
                 }
               ]);
-              console.log({totalVotes});
-            ballot.push({party: parties[i].party, totalVotes});
+              console.log({totalVotes: totalVotes.toArray()});
+            ballot.push({party: parties[i].party, totalVotes: totalVotes.toArray()});
         }
         console.log({results: ballot});
         res.send(ballot);
