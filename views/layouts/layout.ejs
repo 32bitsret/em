@@ -75,7 +75,7 @@
           <select name="la" class="form-control" >
               <% if (localGovernments) { %>
               <% localGovernments.forEach(function(la){ %>
-                <option value=""><%= la.localGovernment %></option>
+                <option value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
               <% }); %>
             <% } %>
           </select>
