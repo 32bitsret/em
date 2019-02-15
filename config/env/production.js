@@ -31,6 +31,23 @@ module.exports = {
   **************************************************************************/
   datastores: {
 
+    attributes: {
+      createdAt: { type: 'number', autoCreatedAt: true, },
+      updatedAt: { type: 'number', autoUpdatedAt: true, },
+      // id: { type: 'number', autoIncrement: true, },
+      //--------------------------------------------------------------------------
+      //  /\   Using MongoDB?
+      //  ||   Replace `id` above with this instead:
+      //
+      // ```
+      id: { type: 'string', columnName: '_id' },
+      // ```
+      //
+      // Plus, don't forget to configure MongoDB as your default datastore:
+      // https://sailsjs.com/docs/tutorials/using-mongo-db
+      //--------------------------------------------------------------------------
+    },
+
     /***************************************************************************
     *                                                                          *
     * Configure your default production database.                              *
@@ -50,7 +67,7 @@ module.exports = {
       // adapter: 'sails-mysql',
       // url: 'mysql://user:password@host:port/database',
       adapter: 'sails-mongo',
-      url: process.env.MONGODB_URI
+      url: process.env.MONGODB_URI,
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.
@@ -72,7 +89,7 @@ module.exports = {
       * https://sailsjs.com/config/datastores                                     *
       *                                                                           *
       ****************************************************************************/
-      // ssl: true,
+      ssl: true,
 
     },
 
