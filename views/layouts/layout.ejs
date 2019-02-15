@@ -74,16 +74,22 @@
           <form method="GET" action="" class="form-inline">
           <script>
           var selectedLocalGovernment = "<%= selectedLocalGovernment %>";
+          var selectedWard = "<%= selectedWard %>";
           </script>
           <select name="la" class="form-control" >
+            <% if (selectedLocalGovernment === "default" ) { %>
+              <option value="default">Plateau State 2019 Poll</option>
+            <% } %>
             <% localGovernments.forEach(function(la){ %>
               <option value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
             <% }); %>
           </select>
           <% if (wards && wards.length) { %>
+            <select name="ward" class="form-control" ></select>
             <% wards.forEach(function(item){ %>
               <option value="<%= item.ward %>"><%= item.ward %></option>
             <% }); %>
+            </select>
           <% } %>
           <button class="btn btn-outline-info" style="margin-left:6px;">GO</button>
           </form>
