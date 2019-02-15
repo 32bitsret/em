@@ -86,7 +86,6 @@ module.exports.http = {
     console.log("we here");
     var serve = serveStatic('assets', {
       'index': false,
-      'setHeaders': setHeaders
     })
     serve(req, res)
   }
