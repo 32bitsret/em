@@ -30,7 +30,7 @@ module.exports.http = {
     ***************************************************************************/
 
     order: [
-          'smsBodyParser',
+      'rawBodyParser',
       'cookieParser',
       'session',
       'bodyParser',
@@ -56,18 +56,23 @@ module.exports.http = {
     //   return middlewareFn;
     // })(),
 
-    smsBodyParser: (function (){
-      console.log('Initializing `smsBodyParser` (HTTP middleware)...');
-      return function (req,res,next) {
-        // let data = '';
-        // req.setEncoding('utf8');
-        // req.on('data', function(chunk) {
-        //   data += chunk;
-        // })
-        // req.on('end', function() {
-        //   req.smsRawBody = data;
+    rawBodyParser: (function (){
+      console.log('Initializing `rawBodyParser` (HTTP middleware)...');
+      return function (req, res, next) {
+        if(!req.query['raw']){
+          next();
+          return;
+        }
+        console.log("Processing by rawBodyParser");
+        let data = '';
+        req.setEncoding('utf8');
+        req.on('data', function(chunk) {
+          data += chunk;
+        });
+        req.on('end', function() {
+          req.rawBody = data;
           return next();
-        // });
+        });
       };
     })(),
 

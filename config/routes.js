@@ -62,11 +62,8 @@ module.exports.routes = {
   'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
 
-  'POST /api/PollingUnit': 'PollingUnitController.post',
-  'POST /api/IncidenceType': 'IncidenceTypeController.post',
-
-  'PUT   /api/PollingUnit':   'PollingUnitController.put',
-  'PUT   /api/IncidenceType':  'IncidenceTypeController.put',
+  'POST /api/ImportPollingUnit': 'PollingUnitController.import',
+  'POST /api/ImportIncidenceType': 'IncidenceTypeController.import',
 
   'POST /api/sms': 'SMSController.callback',
   'POST /api/smsV2': 'SMSController.callbackV2',

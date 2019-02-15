@@ -23,7 +23,13 @@ module.exports = {
     pollingUnit: {
       type: 'string',
       required: true,
+      unique: true,
       description: 'Polling Unit and could be numeric',
+    },
+
+    pollingUnitName: {
+      type: 'string',
+      description: 'Polling Unit Name',
     },
 
     accountEnabled: {

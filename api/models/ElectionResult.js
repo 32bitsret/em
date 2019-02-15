@@ -41,6 +41,11 @@ module.exports = {
     description: 'Polling Unit and could be numeric',
   },
 
+  pollingUnitName: {
+    type: 'string',
+    description: 'Polling Unit Name',
+  },
+
   state: {
       type: 'string',
       description: 'State of Operation and could be numeric',
