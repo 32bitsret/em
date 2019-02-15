@@ -85,7 +85,10 @@
             <% }); %>
           </select>
           <% if (wards && wards.length) { %>
-            <select name="ward" class="form-control" ></select>
+            <select name="ward" class="form-control" style="margin-left:6px;">
+              <% if (selectedWard === "default" ) { %>
+                <option value="default"><%= selectedLocalGovernment %></option>
+              <% } %>
             <% wards.forEach(function(item){ %>
               <option value="<%= item.ward %>"><%= item.ward %></option>
             <% }); %>
