@@ -2,12 +2,32 @@
 
   <template id="election-result-table-template">
     <div class="xcontainer">
-      <div class="row" style="margin: 0px">
-        <span v-for="result in resultSummary">
-          {{result.party}} - {{result.totalVotes}}
-        </span>
-      </div>
-      <div class="row" style="margin: 0px;">
+        <section class="statistics text-center">
+            <div class="data">
+              <div class="container">
+                <h2>2019 Poll</h2>
+                <div class="row">
+                  
+                  <div v-for="result in resultSummary" class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="stats">
+                        <center>
+                        <img v-if="result.party === 'PDP'" src="/images/parties/pdp.jpg"/>
+                        <img v-else-if="result.party === 'SDP'" src="/images/parties/sdp.png"/>
+                        <img v-else-if="result.party === 'APC'" src="/images/parties/apc.jpg"/>
+                        <img v-else src="/images/parties/default.png"/>
+                      <p>{{result.totalVotes}}</p>
+                      <span>{{result.party}}</span>
+                    </center>
+                    </div>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+            </div>
+          </section>
+
+      <div class="row" style="margin: 0px; padding-top: 25px;">
         <div class="col-md-6">
           <p><u>SMS Result Format To <em><b>07065644515</b></em></u><br/><em><b>1, APC-550, PDP-250, SDP-209, ANPP-89, 31/01/01/001</b></em><br/>
           <h1 class="lead">Election Result Notification</h1>
