@@ -26,7 +26,7 @@ module.exports = {
   },
 
   raw: {
-    type: 'text',
+    type: 'string',
   },
 
   phone: {
