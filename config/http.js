@@ -10,6 +10,7 @@
  */
 
 var express = require('express');
+var serveStatic = require('serve-static')
 
 module.exports.http = {
 
@@ -81,10 +82,12 @@ module.exports.http = {
 
   },
 
-  customMiddleware: function (app) {
-    // this code will be executed only once during the application startup
-    app.use(express.static('assets'));
-    app.use(express.static('www'));
+  customMiddleware: function (req, res) {
+    console.log("we here");
+    var serve = serveStatic('assets', {
+      'index': false,
+      'setHeaders': setHeaders
+    })
+    serve(req, res)
   }
-
 };
