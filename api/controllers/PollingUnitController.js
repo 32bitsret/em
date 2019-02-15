@@ -67,6 +67,7 @@ module.exports = {
             errorCount++;
         }
       }//endfor
+      console.log({errorMessage});
       res.send(`Insert Count: ${insertCount}, Update Count: ${updateCount}, Error count: ${errorCount}`)
     });
   }
