@@ -19,7 +19,7 @@
                         <img v-else-if="result.party === 'ANN'" src="/images/parties/ann.jpg"/>
                         <img v-else-if="result.party === 'AD'" src="/images/parties/ad.jpg"/>
                         <img v-else src="/images/parties/default.png"/>
-                        <p>{{result.totalVotes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</p>
+                        <p>{{result.totalVotes ? result.totalVotes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0}}</p>
                         <span>{{result.party}}</span>
                       </center>
                     </div>
@@ -70,7 +70,7 @@
                 <td>{{electionresult.localGovernment}}</td>
                 <td>{{electionresult.ward}}</td>
                 <td>{{electionresult.party}}</td>
-                <td>{{electionresult.vote || electionresult.vote.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
+                <td>{{electionresult.vote.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
                 <td>{{electionresult.timeAgo}}</td>
               </tr>
             </tbody>
