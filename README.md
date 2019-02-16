@@ -22,3 +22,9 @@ data type in postman must be set to raw
 {SN}, {INCIDENCE CODE}, {INCIDENCE DESCRIPTION}
 
 ``` 
+
+## Deploy
+```sh
+npm install -g grunt-cli
+grunt build && git add . && git commit -m "debug" && git push heroku master && heroku logs --tail
+```
