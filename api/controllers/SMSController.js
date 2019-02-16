@@ -135,7 +135,7 @@ module.exports = {
           console.log({data});
           try{
                 let created = await sails.models.incidencereport.create(data).fetch();
-                sails.models.incidencereport.publishCreate(created);
+                // sails.models.incidencereport.publishCreate(created);
                 if(created && created.id){
                     //Send SMS
                     try{
@@ -225,7 +225,7 @@ module.exports = {
                 }
                 let created = await sails.models.electionresult.findOne(_.omit(data, ['vote', 'raw']));
                 if(!created){
-                    created = await sails.models.electionresult.create(data);
+                    created = await sails.models.electionresult.create(data).fetch();
                     // sails.models.electionresult.publishCreate(created);
                 }else{
                     //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
@@ -288,7 +288,7 @@ module.exports = {
           console.log({data});
           try{
                 let created = await sails.models.incidencereport.create(data).fetch();
-                sails.models.incidencereport.publishCreate(created);
+                // sails.models.incidencereport.publishCreate(created);
                 if(created && created.id){
                     //Send SMS
                     try{
