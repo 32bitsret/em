@@ -115,10 +115,11 @@ module.exports = {
             let warderPhone = pollingUnit.phone;
             pollingUnit = await sails.models.pollingunit.findOne({
                 pollingUnit: body.pu || 'Unknown PU',
+                phone: warderPhone
             });
             if (!pollingUnit) {
                 try{
-                    let sms = await sendSMS(warderPhone, "Polling unit not found");
+                    let sms = await sendSMS(warderPhone, "Polling unit not found or assigned to your phone");
                     console.log({sms})
                 }catch(iErr){
                     console.log({iErr});
@@ -268,10 +269,11 @@ module.exports = {
             let warderPhone = pollingUnit.phone;
             pollingUnit = await sails.models.pollingunit.findOne({
                 pollingUnit: body.pu,
+                phone: warderPhone
             });
             if (!pollingUnit) {
                 try{
-                    let sms = await sendSMS(warderPhone, "Polling unit not found");
+                    let sms = await sendSMS(warderPhone, "Polling unit not found or assigned to your phone");
                     console.log({sms})
                 }catch(iErr){
                     console.log({iErr});
