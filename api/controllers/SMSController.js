@@ -8,8 +8,9 @@
 
 const _ = require('lodash');
 const sendSMS = require("../lib/sendSMS");
+const AppConfig = require("../lib/AppConfig");
 
-let controlLevel = 'WARD';
+let controlLevel = AppConfig.controlLevel;
 
 module.exports = {
   
@@ -60,6 +61,9 @@ module.exports = {
                 console.log({query:  _.omit(data[i], ['vote', 'raw']), insertIf: data[i]});
                 try{
                     let updated = false;
+                    if(AppConfig.strictParty && AppConfig.parties.indexOf(data[i].party) < 0){
+                        throw new Error(`stictParty is set, ${data[i].party} is not allowed in parties config`);
+                    }
                     let created = await sails.models.electionresult.findOne(_.omit(data[i], ['vote', 'raw']));
                     if(!created){
                         created = await sails.models.electionresult.create(data[i]);
