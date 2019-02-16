@@ -70,7 +70,7 @@
                 <td>{{electionresult.localGovernment}}</td>
                 <td>{{electionresult.ward}}</td>
                 <td>{{electionresult.party}}</td>
-                <td>{{electionresult.vote.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
+                <td>{{electionresult.vote || electionresult.vote.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
                 <td>{{electionresult.timeAgo}}</td>
               </tr>
             </tbody>
