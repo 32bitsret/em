@@ -71,7 +71,7 @@
           <!-- <div class="form-inline d-none ml-2 d-md-block" >
             <a class="btn btn-outline-info" href="/signup">Sign up</a>
           </div> -->
-          <form method="GET" action="" class="form-inline">
+          <form id="levelFilter" method="GET" class="form-inline">
           <script>
           var selectedLocalGovernment = "<%= selectedLocalGovernment %>";
           var selectedWard = "<%= selectedWard %>";
@@ -216,6 +216,26 @@
           
         });
       }
+
+      $('#levelFilter').onSubmit(function(evt){
+        if($("#laSelect")){
+          if($("#laSelect").val() === 'default'){
+            evt.preventDefault();
+          }
+        }
+
+        if($("#wardSelect")){
+          if($("#wardSelect").val() === 'default'){
+            evt.preventDefault();
+          }
+        }
+
+        if($("#puSelect")){
+          if($("#puSelect").val() === 'default'){
+            evt.preventDefault();
+          }
+        }
+      });
 
     });
     (function(){
