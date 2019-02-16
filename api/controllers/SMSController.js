@@ -67,13 +67,13 @@ module.exports = {
                     let created = await sails.models.electionresult.findOne(_.omit(data[i], ['vote', 'raw']));
                     if(!created){
                         created = await sails.models.electionresult.create(data[i]);
-                        sails.models.electionresult.publishCreate(created);
+                        // sails.models.electionresult.publishCreate(created);
                         insertCount++;
                     }else{
                         //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
                         updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {oldVote: created.vote, updatedAt: Date.now(), vote: data[i].vote, raw: data[i].raw})).fetch();
                         console.log({updated});
-                        sails.models.electionresult.publishCreate(updated);
+                        // sails.models.electionresult.publishCreate(updated);
                         updateCount++;
                     }
                 }catch(err){
@@ -202,12 +202,12 @@ module.exports = {
                 let created = await sails.models.electionresult.findOne(_.omit(data, ['vote', 'raw']));
                 if(!created){
                     created = await sails.models.electionresult.create(data);
-                    sails.models.electionresult.publishCreate(created);
+                    // sails.models.electionresult.publishCreate(created);
                 }else{
                     //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
                     updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {oldVote: created.vote, updatedAt: Date.now(), vote: data.vote, raw: data.raw})).fetch();
                     console.log({updated});
-                    sails.models.electionresult.publishCreate(updated);
+                    // sails.models.electionresult.publishCreate(updated);
                 }
                 if(created && created.id){
                     try{
