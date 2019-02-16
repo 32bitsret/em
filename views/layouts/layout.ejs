@@ -79,7 +79,7 @@
           </script>
           <select id="laSelect" name="la" class="form-control" >
             <% if (selectedLocalGovernment === "default" ) { %>
-              <option value="default">Plateau State 2019 Poll</option>
+              <option value="default"><%= AppConfig.state + " " + AppConfig.electionYear %>  Poll</option>
             <% } %>
             <% localGovernments.forEach(function(la){ %>
               <option value="<%= la.localGovernment %>"><%= la.localGovernment %></option>

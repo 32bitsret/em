@@ -36,6 +36,7 @@ module.exports = {
           localGovernments,
           wards,
           pageName,
+          AppConfig,
           pollingUnits,
           controlLevel,
           selectedLocalGovernment: req.query["la"] || "default",
