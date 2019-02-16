@@ -235,7 +235,7 @@ module.exports = {
                 }
                 if(created && created.id){
                     try{
-                        let sms = await sendSMS(data.phone, (updated ? "Your Election Result has been updated" : "Your Election Result has been submitted"));
+                        let sms = await sendSMS(data.phone, (updated ? "Your Election result has been updated" : "Your Election result has been submitted"));
                         console.log({sms})
                     }catch(iErr){
                         console.log({iErr});
