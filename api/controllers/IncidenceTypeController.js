@@ -24,8 +24,8 @@ module.exports = {
               res.send({err});
               return;
             }
-            if(incidenceTypes.length && incidenceTypes[0].length != 3){
-                res.send("invalid excel sheet. 3 columns expected" + req.params);
+            if(incidenceTypes.length && incidenceTypes[0].length != 4){
+                res.send("invalid excel sheet. 4 columns expected" + req.params);
                 return;
             }
             if(!_.isInteger(incidenceTypes[0][SN])){
