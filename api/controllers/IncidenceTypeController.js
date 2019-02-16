@@ -12,6 +12,7 @@ const SN = 0;
 const INCIDENCE_CODE = 1;
 const INCIDENCE_DESCRIPTION = 2;
 const PRIORITY_LEVEL = 3;
+const _ = require("lodash");
 
 module.exports = {
     import: async(req, res) => {

@@ -7,6 +7,7 @@
  */
 
 const csvParser = require("csv-parse");
+const _ = require("lodash");
 
 const SN = 0;
 const STATE = 1;
