@@ -24,12 +24,24 @@ module.exports = {
               console.log({controlLevel});
             var warderPhone = pollingUnit.phone;
             console.log({"chck": body.pu});
-            pollingUnit = await sails.models.pollingunit.findOne({
-                pollingUnit: body.pu || "Unknown PU",
-            });
+            try{
+                pollingUnit = await sails.models.pollingunit.findOne({
+                    pollingUnit: body.pu || "Unknown PU",
+                    phone: warderPhone,
+                });
+            }catch(err){
+                try{
+                    let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone");
+                    console.log({sms})
+                }catch(iErr){
+                    console.log({iErr});
+                }
+                res.badRequest();
+                return;
+            }
             if (!pollingUnit) {
                 try{
-                    let sms = await sendSMS(warderPhone, "Polling unit not found");
+                    let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone");
                     console.log({sms})
                 }catch(iErr){
                     console.log({iErr});
@@ -173,12 +185,24 @@ module.exports = {
           if(controlLevel === 'WARD'){
               console.log({controlLevel});
             let warderPhone = pollingUnit.phone;
+            try{
             pollingUnit = await sails.models.pollingunit.findOne({
                 pollingUnit: body.pu || 'Unknown PU',
+                phone: warderPhone
             });
+            }catch(err){
+                try{
+                    let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone");
+                    console.log({sms})
+                }catch(iErr){
+                    console.log({iErr});
+                }
+                res.badRequest();
+                return;
+            }
             if (!pollingUnit) {
                 try{
-                    let sms = await sendSMS(warderPhone, "Polling unit not found");
+                    let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone");
                     console.log({sms})
                 }catch(iErr){
                     console.log({iErr});

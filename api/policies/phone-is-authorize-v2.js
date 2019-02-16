@@ -6,6 +6,7 @@
  *
  */
 const sendSMS = require("../lib/sendSMS");
+const AppConfig = require("../lib/AppConfig");
 
 module.exports = async function (req, res, proceed) {
   let phone = req.body.results[0]["from"];
@@ -16,10 +17,43 @@ module.exports = async function (req, res, proceed) {
   let smsTokens = sms.replace(/\s+/g, ' ').split(',');
   smsTokens = smsTokens.map((item, index) => item.trim());
 
-  let pollingUnit = await sails.models.pollingunit.findOne({
-        phone,//: "2348161730129", 
-        accountEnabled: true
-  });
+  var pollingUnit;
+  if(AppConfig.controlLevel === 'WARD'){
+    try{
+        pollingUnit = await sails.models.pollingunit.find({
+                phone, 
+                accountEnabled: true
+        });
+        if(pollingUnit.length){
+            pollingUnit = pollingUnit[0];
+        }
+    }catch(err){
+        try{
+            let sms = await sendSMS(phone, "An Error Occured");
+            console.log({sms});
+        }catch(iErr){
+            console.log({iErr});
+        }
+        return res.send(err.message);
+    }
+  }else{
+    try{
+        pollingUnit = await sails.models.pollingunit.findOne({
+            phone, 
+            accountEnabled: true
+        });
+    }catch(err){
+        try{
+            let sms = await sendSMS(phone, "An Error Occured");
+            console.log({sms});
+        }catch(iErr){
+            console.log({iErr});
+        }
+        console.log("Check configuration. One phone number is allowed per polling unit");
+        return res.send(err.message);
+    }
+  }
+
   if (pollingUnit) {
     req.pollingUnit = _.omit(pollingUnit, ['id', 'createdAt', 'updatedAt', 'accountEnabled']);
     console.log({smsTokens}, smsTokens[0] == 1, smsTokens[0] === 'result', smsTokens[0] === 'r');
