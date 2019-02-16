@@ -193,6 +193,9 @@ module.exports = {
           try{
                 console.log({query:  _.omit(data, ['vote', 'raw']), insertIf: data});
                 let updated = false;
+                if(AppConfig.strictParty && AppConfig.parties.indexOf(data[i].party) < 0){
+                    throw new Error(`stictParty is set, ${data[i].party} is not allowed in parties config`);
+                }
                 let created = await sails.models.electionresult.findOne(_.omit(data, ['vote', 'raw']));
                 if(!created){
                     created = await sails.models.electionresult.create(data);
@@ -218,7 +221,7 @@ module.exports = {
             }catch(err){
                 console.log({err});
                 try{
-                    let sms = await sendSMS(data.phone, "An internal server error occured");
+                    let sms = await sendSMS(data.phone, "We could not submit result for the party");
                     console.log({sms});
                 }catch(iErr){
                     console.log({iErr});

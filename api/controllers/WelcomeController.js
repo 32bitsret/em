@@ -7,6 +7,10 @@
 
  const _ = require('lodash');
 
+ const AppConfig = require("../lib/AppConfig");
+
+let controlLevel = AppConfig.controlLevel;
+
 module.exports = {
   
     getDashboard: async(req, res) => {
@@ -33,6 +37,7 @@ module.exports = {
           wards,
           pageName,
           pollingUnits,
+          controlLevel,
           selectedLocalGovernment: req.query["la"] || "default",
           selectedWard: req.query["ward"] || 'default',
           selectedPu: req.query["pu"] || 'default'
