@@ -220,8 +220,8 @@ module.exports = {
           try{
                 console.log({query:  _.omit(data, ['vote', 'raw']), insertIf: data});
                 let updated = false;
-                if(AppConfig.strictParty && AppConfig.parties.indexOf(data[i].party) < 0){
-                    throw new Error(`stictParty is set, ${data[i].party} is not allowed in parties config`);
+                if(AppConfig.strictParty && AppConfig.parties.indexOf(data.party) < 0){
+                    throw new Error(`stictParty is set, ${data.party} is not allowed in parties config`);
                 }
                 let created = await sails.models.electionresult.findOne(_.omit(data, ['vote', 'raw']));
                 if(!created){
