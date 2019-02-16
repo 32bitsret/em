@@ -66,7 +66,7 @@ module.exports = {
                         insertCount++;
                     }else{
                         //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
-                        updated = await sails.models.electionresult.update(_.omit(created, ['updatedAt'])).set(Object.assign({}, created, {vote: data[i].vote, raw: data[i].raw})).fetch();
+                        updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {updatedAt: Date.now(), vote: data[i].vote, raw: data[i].raw})).fetch();
                         console.log({updated});
                         updateCount++;
                     }
@@ -194,7 +194,7 @@ module.exports = {
                     created = await sails.models.electionresult.create(data);
                 }else{
                     //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
-                    updated = await sails.models.electionresult.update(_.omit(created, ['updatedAt'])).set(Object.assign({}, created, {vote: data.vote, raw: data.raw})).fetch();
+                    updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {updatedAt: Date.now(), vote: data.vote, raw: data.raw})).fetch();
                     console.log({updated});
                 }
                 if(created && created.id){
