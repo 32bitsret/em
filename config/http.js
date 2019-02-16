@@ -32,18 +32,18 @@ module.exports.http = {
     *                                                                          *
     ***************************************************************************/
 
-    order: [
-      'rawBodyParser',
-      'cookieParser',
-      'session',
-      'bodyParser',
-      'compress',
-      'poweredBy',
-      'router',
-      'www',
-      'favicon',
-      'serverStat'
-    ],
+    // order: [
+    //   'rawBodyParser',
+    //   'cookieParser',
+    //   'session',
+    //   'bodyParser',
+    //   'compress',
+    //   'poweredBy',
+    //   'router',
+    //   'www',
+    //   'favicon',
+    //   'serverStat'
+    // ],
 
 
     /***************************************************************************
@@ -80,11 +80,11 @@ module.exports.http = {
       };
     })(),
 
-    serverStat: function (req, res, next) {
-      serveStatic('www', {
-        'index': false,
-      })(req, res, next);
-    }
+    // serverStat: function (req, res, next) {
+    //   serveStatic('www', {
+    //     'index': false,
+    //   })(req, res, next);
+    // }
 
   },
 };
