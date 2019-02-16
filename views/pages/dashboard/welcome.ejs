@@ -44,6 +44,18 @@
                 <br/><span style="font-size: 10px;">Where 1 = Send result; PARTY1-VOTE, PARTY2-VOTE,PARTYN-VOTE = Parties and votes</span>
               </p>
           <% } %>
+
+          <% if (controlLevel === "WARD" ) { %>
+            <p>
+              <u>SMS Result Format To <em><b>7447</b></em></u><br/><em><b>Check 1 APC 550 31/01/01/001</b></em>
+              <br/><span style="font-size: 10px;">Check is compulsory; 1 = Send result; APC as party followed by votes then Polling Unit 31/01/01/001</span>
+            </p>
+            <% } else { %>
+              <p>
+                  <u>SMS Result Format To <em><b>7447</b></em></u><br/><em><b>Check 1 APC 550</b></em>
+                  <br/><span style="font-size: 10px;">Check is compulsory; 1 = Send result; APC as party followed by votes</span>
+                </p>
+            <% } %>
           <h1 class="lead">Election Result Notification</h1>
           <table class="table table-striped" style="font-size: 10px;">
             <thead>
@@ -78,14 +90,24 @@
       </div>
       <div class="col-md-6">
         <% if (controlLevel === "WARD" ) { %>
-        <p><u>SMS Incidence Format To <em><b>07065644515</b></em></u><br/><em><b>2, 002:31/01/01/001, followed by your text</b></em>
-          <br/><span style="font-size: 10px;">Where 2 = Send Incidence; 002 = Incidence Code; 31/01/01/001 = Polling Unit, Then your comment</span>
+        <p><u>SMS Incidence Format To <em><b>07065644515</b></em></u><br/><em><b>2, 201:31/01/01/001, followed by your text</b></em>
+          <br/><span style="font-size: 10px;">Where 2 = Send Incidence; 201 = Incidence Code; 31/01/01/001 = Polling Unit, Then your comment</span>
         </p>
         <% } else { %>
-          <p><u>SMS Incidence Format To <em><b>07065644515</b></em></u><br/><em><b>2, 002, followed by your text</b></em>
-            <br/><span style="font-size: 10px;">Where 2 = Send Incidence; 002 = Incidence Code; Then your comment</span>
+          <p><u>SMS Incidence Format To <em><b>07065644515</b></em></u><br/><em><b>2, 201, followed by your text</b></em>
+            <br/><span style="font-size: 10px;">Where 2 = Send Incidence; 201 = Incidence Code; Then your comment</span>
           </p>
         <% } %>
+
+        <% if (controlLevel === "WARD" ) { %>
+          <p><u>SMS Incidence Format To <em><b>7447</b></em></u><br/><em><b>Check 2 201:31/01/01/001 your text follows</b></em>
+            <br/><span style="font-size: 10px;">Where 2 = Send Incidence; 201 = Incidence Code; 31/01/01/001 = Polling Unit,  Your comment e.g <i>"Someone tampered with ballot box"</i></span>
+          </p>
+          <% } else { %>
+            <p><u>SMS Incidence Format To <em><b>7447</b></em></u><br/><em><b>Check 2 201 your text follows</b></em>
+              <br/><span style="font-size: 10px;">Where 2 = Send Incidence; 201 = Incidence Code; Your comment e.g <i>"Someone tampered with ballot box"</i></span>
+            </p>
+          <% } %>
           <h1 class="lead">Incidence Reports</h1>
           <table class="table table-striped" style="font-size: 10px;">
             <thead>
