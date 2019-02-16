@@ -73,6 +73,7 @@ parasails.registerPage('welcome', {
 
     fillResultSummary: function(body){
       if(body && body.length){
+        console.log({fillResultSummary: body});
         this.resultSummary = body;
       }
     },

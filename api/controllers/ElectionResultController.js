@@ -39,7 +39,7 @@ module.exports = {
                 }
               ]);
             totalVotes = await totalVotes.toArray();
-            ballot.push({party: parties[i].party, totalVotes: totalVotes[0]["total"]});
+            ballot.push({party: parties[i].party, totalVotes: (totalVotes[0] ? totalVotes[0]["total"] : 0)});
         }
         console.log({results: ballot});
         let sortedBallot = _.orderBy(ballot, ['totalVotes'], ['desc']);
