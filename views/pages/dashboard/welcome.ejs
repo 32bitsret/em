@@ -10,14 +10,14 @@
                   
                   <div v-for="result in resultSummary" class="col-md-3 col-sm-6 col-xs-12">
                     <div class="stats">
-                        <center>
+                      <center>
                         <img v-if="result.party === 'PDP'" src="/images/parties/pdp.jpg"/>
                         <img v-else-if="result.party === 'SDP'" src="/images/parties/sdp.png"/>
                         <img v-else-if="result.party === 'APC'" src="/images/parties/apc.jpg"/>
                         <img v-else src="/images/parties/default.png"/>
                         <p>{{result.totalVotes}}</p>
                         <span>{{result.party}}</span>
-                    </center>
+                      </center>
                     </div>
                   </div>
                   
