@@ -36,6 +36,7 @@
             <thead>
               <tr>
                 <th>PU</th>
+                <th>Sender</th>
                 <th>Zone</th>
                 <th>LG</th>
                 <th>Ward</th>
@@ -47,6 +48,7 @@
             <tbody>
               <tr v-for="electionresult in electionresults.slice().reverse()">
                 <td>{{electionresult.pollingUnit}}</td>
+                <td>{{electionresult.phoneUserName}}</td>
                 <td>{{electionresult.senatorialZone}}</td>
                 <td>{{electionresult.localGovernment}}</td>
                 <td>{{electionresult.ward}}</td>
@@ -65,6 +67,7 @@
             <thead>
               <tr>
                 <th>PU</th>
+                <th>Sender</th>
                 <th>Zone</th>
                 <th>LG</th>
                 <th>Ward</th>
@@ -76,6 +79,7 @@
             <tbody>
               <tr v-for="incidencereport in incidencereports.slice().reverse()">
                 <td>{{incidencereport.pollingUnit}}</td>
+                <td>{{incidencereport.phoneUserName}}</td>
                 <td>{{incidencereport.senatorialZone}}</td>
                 <td>{{incidencereport.localGovernment}}</td>
                 <td>{{incidencereport.ward}}</td>
