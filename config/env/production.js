@@ -256,9 +256,17 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    onlyAllowOrigins: [
-      process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
-    ],
+    // onlyAllowOrigins: [
+    //   process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
+    // ],
+
+    beforeConnect: function(handshake, proceed) {
+
+      // Send back `true` to allow the socket to connect.
+      // (Or send back `false` to reject the attempt.)
+      return proceed(undefined, true);
+    
+    },
 
 
     /***************************************************************************
