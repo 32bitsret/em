@@ -71,7 +71,7 @@ module.exports = async function (req, res, proceed) {
         req.smsBody = req.smsBody || {};
         let code = smsTokens[2]; 
         req.smsBody.pu = null;
-        if(code.split(',').length === 2){
+        if(code.split(':').length === 2){
             code = code.split(',')[0];
             req.smsBody.pu = code.split(',')[1];
         }
