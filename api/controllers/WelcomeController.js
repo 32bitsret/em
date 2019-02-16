@@ -26,7 +26,7 @@ module.exports = {
                 pollingUnits = _.uniqBy(electionResults, 'pollingUnit');
                 pageName = pageName + ":" + req.query["ward"];
                 if(req.query["pu"]){
-                    pageName = pageName + ":" + req.query["ward"] + ":" + req.query["pu"];
+                    pageName = pageName + ":" + req.query["pu"];
                 }
             }
         }
