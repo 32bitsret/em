@@ -16,7 +16,7 @@ module.exports = {
     getDashboard: async(req, res) => {
         let electionResults = await sails.models.electionresult.find({});
         let localGovernments = _.uniqBy(electionResults, 'localGovernment');
-        let wards = [], pollingUnits = [], pageName = "Plateau State 2019 Poll";
+        let wards = [], pollingUnits = [], pageName = `${AppConfig.state} ${AppConfig.electionYear} Poll`;
         if(req.query["la"]){
             electionResults = await sails.models.electionresult.find({localGovernment: req.query["la"]});
             wards = _.uniqBy(electionResults, 'ward');
