@@ -30,6 +30,8 @@ module.exports = {
                 }
             }
         }
+        sails.models.electionresult.subscribe(req.socket);
+        sails.models.incidencereport.subscribe(req.socket);
         return res.view('pages/dashboard/welcome', {
           description: 'Display the welcome page for authenticated users.',
           friendlyName: 'View welcome page',

@@ -73,7 +73,6 @@ parasails.registerPage('welcome', {
 
     fillResultSummary: function(body){
       if(body && body.length){
-        console.log({fillResultSummary: body});
         this.resultSummary = body;
       }
     },
@@ -104,7 +103,7 @@ parasails.registerPage('welcome', {
       console.log({getElectionResult: endpoint});
       io.socket.get(endpoint, this.fillElectionResult);
       // setInterval(this.probeElectionResult, 1000);
-      io.socket.on('electionresult', function gotHelloMessage (data) {
+      io.socket.on('electionresult', function (data) {
         console.log('ElectionResult alert!', data);
       });
     },
@@ -126,7 +125,7 @@ parasails.registerPage('welcome', {
     },
 
     getIncidenceResult: async function(){
-      let endpoint = '/IncidenceReport';
+      let endpoint = '/incidencereport';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '?localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
@@ -139,6 +138,9 @@ parasails.registerPage('welcome', {
       console.log({getIncidenceResult: endpoint});
       io.socket.get(endpoint, this.fillIncidenceResult);
       // setInterval(this.probeIncidence, 1000);
+      io.socket.on('incidencereport', function (data) {
+        console.log('IncidenceReport alert!', data);
+      });
     },
 
   }
