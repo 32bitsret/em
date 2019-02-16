@@ -69,12 +69,13 @@ module.exports = async function (req, res, proceed) {
 
         console.log({smsTokens});
         req.smsBody = req.smsBody || {};
-        let code = smsTokens[2]; 
+        let codePu = smsTokens[2]; 
         req.smsBody.pu = null;
-        if(code.split(':').length === 2){
-            code = code.split(',')[0];
-            req.smsBody.pu = code.split(',')[1];
+        if(codePu.split(':').length === 2){
+            var code = codePu.split(':')[0];
+            req.smsBody.pu = codePu.split(':')[1];
         }
+        console.log("PU", req.smsBody.pu, code);
         let incidence = await sails.models.incidencetype.findOne({
             incidenceCode: code, 
         });
