@@ -91,7 +91,7 @@ parasails.registerPage('welcome', {
     },
 
     getElectionResult: async function(){
-      let endpoint = '/ElectionResult';
+      let endpoint = '/electionresult';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '?localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
@@ -104,6 +104,9 @@ parasails.registerPage('welcome', {
       console.log({getElectionResult: endpoint});
       io.socket.get(endpoint, this.fillElectionResult);
       // setInterval(this.probeElectionResult, 1000);
+      io.socket.on('electionresult', function gotHelloMessage (data) {
+        console.log('ElectionResult alert!', data);
+      });
     },
 
     getResultSummary: async function(){
