@@ -28,7 +28,7 @@ module.exports = {
                 res.send("invalid excel sheet. 4 columns expected" + req.params);
                 return;
             }
-            if(!_.isNumber(incidenceTypes[0][SN])){
+            if(!_.isNumber(parseInt(incidenceTypes[0][SN]))){
                 res.send("Column 1 row 1 must be a number. If you have headers, remove them before importing");
                 return;
             }
