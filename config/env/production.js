@@ -257,8 +257,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     onlyAllowOrigins: [
-      // process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
-      '*'
+      process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
     ],
 
 
