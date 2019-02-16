@@ -56,7 +56,7 @@ module.exports = async function (req, res, proceed) {
   }
   if (pollingUnit) {
     req.pollingUnit = _.omit(pollingUnit, ['id', 'createdAt', 'updatedAt', 'accountEnabled']);
-    if(smsTokens[1] === 1 || smsTokens[1] === 'result' || smsTokens[1] === 'r'){
+    if(smsTokens[1] == 1 || smsTokens[1] === 'result' || smsTokens[1] === 'r'){
         console.log({smsTokens});
         req.smsBody = req.smsBody || {};
         req.smsBody.command = 'result';
@@ -65,7 +65,7 @@ module.exports = async function (req, res, proceed) {
         req.smsBody.pu = smsTokens[4] || null;
         console.log("PU", req.smsBody.pu)
         req.smsBody.raw = JSON.stringify(sms);
-    }else if(smsTokens[1] === 2 || smsTokens[1] === 'incidence' || smsTokens[1] === 'i'){
+    }else if(smsTokens[1] == 2 || smsTokens[1] === 'incidence' || smsTokens[1] === 'i'){
 
         console.log({smsTokens});
         req.smsBody = req.smsBody || {};
