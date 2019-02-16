@@ -38,6 +38,7 @@
                 <th>PU</th>
                 <th>PU Name</th>
                 <th>Sender</th>
+                <th>Phone</th>
                 <!-- <th>Zone</th> -->
                 <th>LG</th>
                 <th>Ward</th>
@@ -51,6 +52,7 @@
                 <td>{{electionresult.pollingUnit}}</td>
                 <td>{{electionresult.pollingUnitName}}</td>
                 <td>{{electionresult.phoneUserName}}</td>
+                <td>{{'0' + electionresult.phone.substr(3)}}</td>
                 <!-- <td>{{electionresult.senatorialZone}}</td> -->
                 <td>{{electionresult.localGovernment}}</td>
                 <td>{{electionresult.ward}}</td>
@@ -71,6 +73,7 @@
                 <th>PU</th>
                 <th>PU Name</th>
                 <th>Sender</th>
+                <th>Phone</th>
                 <!-- <th>Zone</th> -->
                 <th>LG</th>
                 <th>Ward</th>
@@ -84,6 +87,7 @@
                 <td>{{incidencereport.pollingUnit}}</td>
                 <td>{{incidencereport.pollingUnitName}}</td>
                 <td>{{incidencereport.phoneUserName}}</td>
+                <td>{{'0' + incidencereport.phone.substr(3)}}</td>
                 <!-- <td>{{incidencereport.senatorialZone}}</td> -->
                 <td>{{incidencereport.localGovernment}}</td>
                 <td>{{incidencereport.ward}}</td>
