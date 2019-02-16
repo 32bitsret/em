@@ -78,7 +78,7 @@ module.exports = {
                     }
                     let created = await sails.models.electionresult.findOne(_.omit(data[i], ['vote', 'raw']));
                     if(!created){
-                        created = await sails.models.electionresult.create(data[i]);
+                        created = await sails.models.electionresult.create(data[i]).fetch();
                         // sails.models.electionresult.publishCreate(created);
                         insertCount++;
                     }else{
