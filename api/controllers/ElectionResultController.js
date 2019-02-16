@@ -42,7 +42,7 @@ module.exports = {
             ballot.push({party: parties[i].party, totalVotes: totalVotes[0]["total"]});
         }
         console.log({results: ballot});
-        let sortedBallot = _.orderBy(ballot, ['votes'], ['desc']);
+        let sortedBallot = _.orderBy(ballot, ['totalVotes'], ['desc']);
         console.log({sortedBallot});
         let firstFourParty = []
         for(let i = 0; (i < 4 && i < sortedBallot.length); i++){
