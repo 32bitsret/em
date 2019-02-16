@@ -47,8 +47,6 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     default: {
-      // adapter: 'sails-mysql',
-      // url: 'mysql://user:password@host:port/database',
       adapter: 'sails-mongo',
       url: process.env.MONGODB_URI,
       //--------------------------------------------------------------------------
@@ -120,7 +118,7 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   blueprints: {
-    shortcuts: true,
+    shortcuts: false,
   },
 
 
@@ -149,11 +147,11 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    // cors: {
-    //   allowOrigins: [
-    //     process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
-    //   ]
-    // },
+    cors: {
+      // allowOrigins: [
+      //   'https://example.com',
+      // ]
+    },
 
   },
 
@@ -186,9 +184,8 @@ module.exports = {
     * > (For a full list, see https://sailsjs.com/plugins/sessions)            *
     *                                                                          *
     ***************************************************************************/
-    adapter: '@sailshq/connect-redis',
+    // adapter: '@sailshq/connect-redis',
     // url: 'redis://user:password@localhost:6379/databasenumber',
-    url: process.env.REDIS_URL,
     //--------------------------------------------------------------------------
     // /\   OR, to avoid checking it in to version control, you might opt to
     // ||   set sensitive credentials like this using an environment variable.
@@ -224,12 +221,9 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cookie: {
-      secure: true,
+      // secure: true,
       maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     },
-
-    // adapter: 'connect-mongo',
-		// url: process.env.MONGODB_URI
 
   },
 
@@ -256,17 +250,10 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    // onlyAllowOrigins: [
-    //   process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
-    // ],
-
-    beforeConnect: function(handshake, proceed) {
-
-      // Send back `true` to allow the socket to connect.
-      // (Or send back `false` to reject the attempt.)
-      return proceed(undefined, true);
-    
-    },
+    onlyAllowOrigins: [
+      'https://mighty-waters-53866.herokuapp.com',
+      'http://mighty-waters-53866.herokuapp.com',
+    ],
 
 
     /***************************************************************************
@@ -335,7 +322,7 @@ module.exports = {
     * (https://sailsjs.com/config/http)                                        *
     *                                                                          *
     ***************************************************************************/
-    trustProxy: true,
+    // trustProxy: true,
 
   },
 
@@ -384,8 +371,8 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
-    internalEmailAddress: 'dretnan@logicaladdress.com',
+    baseUrl: process.env.APP_URL,
+    internalEmailAddress: 'sales@logicaladdress.com',
 
     // mailgunDomain: 'mg.example.com',
     // mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',
