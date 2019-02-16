@@ -150,9 +150,9 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cors: {
-      // allowOrigins: [
-      //   'https://example.com',
-      // ]
+      allowOrigins: [
+        process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
+      ]
     },
 
   },
@@ -257,9 +257,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     onlyAllowOrigins: [
-      'https://mighty-waters-53866.herokuapp.com',
-      'http://4d782767.ngrok.io',
-      'https://4d782767.ngrok.io'
+      process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
     ],
 
 
@@ -378,8 +376,8 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: process.env.APP_URL || 'https://example.com',
-    internalEmailAddress: 'support@example.com',
+    baseUrl: process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
+    internalEmailAddress: 'dretnan@logicaladdress.com',
 
     // mailgunDomain: 'mg.example.com',
     // mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',
