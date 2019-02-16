@@ -36,10 +36,10 @@ module.exports = {
         return;
       }
 
-      if(!_.isNumber(pollingUnitMappings[0][SN])){
-        res.send("Column 1 row 1 must be a number. If you have headers, remove them before importing");
-        return;
-      }
+      // if(!_.isNumber(pollingUnitMappings[0][SN])){
+      //   res.send("Column 1 row 1 must be a number. If you have headers, remove them before importing");
+      //   return;
+      // }
 
       let results = [], errorCount = 0, updateCount = 0, insertCount = 0, errorMessage = [];
       for(let i = 0; i < pollingUnitMappings.length; i++){
