@@ -149,11 +149,11 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    cors: {
-      allowOrigins: [
-        process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
-      ]
-    },
+    // cors: {
+    //   allowOrigins: [
+    //     process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
+    //   ]
+    // },
 
   },
 
@@ -256,9 +256,9 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    onlyAllowOrigins: [
-      process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
-    ],
+    // onlyAllowOrigins: [
+    //   process.env.APP_URL || 'https://mighty-waters-53866.herokuapp.com',
+    // ],
 
 
     /***************************************************************************

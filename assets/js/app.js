@@ -1,1 +1,1 @@
-io.sails.transports = ["polling", "websocket"];
+// io.sails.transports = ["polling", "websocket"];
