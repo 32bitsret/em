@@ -20,7 +20,6 @@ parasails.registerPage('welcome', {
     _.extend(this, SAILS_LOCALS);
   },
   mounted: async function() {
-    io.sails.transports = ["polling", "websocket"];
     await this.getElectionResult();
     await this.getIncidenceResult();
     await this.getResultSummary();
