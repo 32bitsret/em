@@ -23,6 +23,11 @@ module.exports = {
         type: 'string',
     },
 
+    priorityLevel: {
+      type: 'number',
+      defaultsTo: 0,
+    },
+
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

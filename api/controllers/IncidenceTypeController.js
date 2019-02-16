@@ -11,6 +11,7 @@ const csvParser = require("csv-parse");
 const SN = 0;
 const INCIDENCE_CODE = 1;
 const INCIDENCE_DESCRIPTION = 2;
+const PRIORITY_LEVEL = 3;
 
 module.exports = {
     import: async(req, res) => {
@@ -38,6 +39,7 @@ module.exports = {
                 var data = {
                   incidenceCode: incidenceTypes[i][INCIDENCE_CODE].trim().toUpperCase(),
                   description: incidenceTypes[i][INCIDENCE_DESCRIPTION].trim().toUpperCase(),
+                  priorityLevel: incidenceTypes[i][PRIORITY_LEVEL].trim(),
                 };
                 if(!created){
                     created = await sails.models.incidencetype.create(data);
