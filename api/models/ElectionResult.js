@@ -25,6 +25,10 @@ module.exports = {
       required: true,
   },
 
+  oldVote: {
+    type: 'number',
+  },
+
   raw: {
     type: 'string',
   },
