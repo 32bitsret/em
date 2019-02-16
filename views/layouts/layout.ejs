@@ -217,7 +217,7 @@
         });
       }
 
-      $('#levelFilter').onSubmit(function(evt){
+      $('#levelFilter').submit(function(evt){
         if($("#laSelect")){
           if($("#laSelect").val() === 'default'){
             evt.preventDefault();
