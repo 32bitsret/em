@@ -17,6 +17,10 @@ module.exports = {
       type: 'string',
     },
 
+    priorityLevel: {
+      type: 'number',
+    },
+
   description: {
       type: 'string',
   },
