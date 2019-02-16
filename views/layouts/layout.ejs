@@ -91,7 +91,7 @@
                 <option value="default"><%= selectedLocalGovernment %></option>
               <% } %>
             <% wards.forEach(function(item){ %>
-              <option value="<%= item.ward %>"><%= item.ward %></option>
+              <option <% if (selectedWard === item.ward ) { %>selected<% } %> value="<%= item.ward %>"><%= item.ward %></option>
             <% }); %>
             </select>
             <% if (pollingUnits && pollingUnits.length) { %>
@@ -100,7 +100,7 @@
                   <option value="default"><%= selectedWard %></option>
                 <% } %>
               <% pollingUnits.forEach(function(item){ %>
-                <option value="<%= item.pollingUnit %>"><%= item.pollingUnitName + "(" +item.pollingUnit + ")" %></option>
+                <option <% if (selectedPu === item.pollingUnit ) { %>selected<% } %> value="<%= item.pollingUnit %>"><%= item.pollingUnitName + "(" +item.pollingUnit + ")" %></option>
               <% }); %>
               </select>
             <% } %>
