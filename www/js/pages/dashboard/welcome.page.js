@@ -23,6 +23,9 @@ parasails.registerPage('welcome', {
     await this.getElectionResult();
     await this.getIncidenceResult();
     await this.getResultSummary();
+    io.socket.on('message', function (data){
+      console.log({data});
+    });
   },
 
   //  ╦  ╦╦╦═╗╔╦╗╦ ╦╔═╗╦    ╔═╗╔═╗╔═╗╔═╗╔═╗

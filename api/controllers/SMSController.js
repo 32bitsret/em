@@ -80,7 +80,8 @@ module.exports = {
                     if(!created){
                         created = await sails.models.electionresult.create(data[i]).fetch();
                         try{
-                            sails.models.electionresult.publish(created);
+                            // sails.models.electionresult.publish(created);
+                            sails.sockets.broadcast('reload', {type: 'electionresult'});
                         }catch(err){
                             console.log({errorCatcher: err});
                         }
@@ -90,11 +91,11 @@ module.exports = {
                         updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {oldVote: created.vote, updatedAt: Date.now(), vote: data[i].vote, raw: data[i].raw})).fetch();
                         console.log({updated});
                         try{
-                            sails.models.electionresult.publish(updated);
+                            // sails.models.electionresult.publish(updated);
+                            sails.sockets.broadcast('reload', {type: 'electionresult'});
                         }catch(err){
                             console.log({errorCatcher: err});
                         }
-                        // sails.models.electionresult.publishCreate(updated);
                         updateCount++;
                     }
                 }catch(err){
@@ -146,11 +147,11 @@ module.exports = {
           try{
                 let created = await sails.models.incidencereport.create(data).fetch();
                 try{
-                    sails.models.incidencereport.publish(created);
+                    // sails.models.incidencereport.publish(created);
+                    sails.sockets.broadcast('reload', {type: 'incidencereport'});
                 }catch(err){
                     console.log({errorCatcher: err});
-                }
-                // sails.models.incidencereport.publishCreate(created);
+                };
                 if(created && created.id){
                     //Send SMS
                     try{
@@ -242,21 +243,21 @@ module.exports = {
                 if(!created){
                     created = await sails.models.electionresult.create(data).fetch();
                     try{
-                        sails.models.electionresult.publish(created);
+                        // sails.models.electionresult.publish(created);
+                        sails.sockets.broadcast('reload', {type: 'electionresult'});
                     }catch(err){
                         console.log({errorCatcher: err});
                     }
-                    // sails.models.electionresult.publishCreate(created);
                 }else{
                     //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
                     updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {oldVote: created.vote, updatedAt: Date.now(), vote: data.vote, raw: data.raw})).fetch();
                     console.log({updated});
                     try{
-                        sails.models.electionresult.publish(updated);
+                        // sails.models.electionresult.publish(updated);
+                        sails.sockets.broadcast('reload', {type: 'electionresult'});
                     }catch(err){
                         console.log({errorCatcher: err});
                     }
-                    // sails.models.electionresult.publishCreate(updated);
                 }
                 if(created && created.id){
                     try{
@@ -315,11 +316,11 @@ module.exports = {
           try{
                 let created = await sails.models.incidencereport.create(data).fetch();
                 try{
-                    sails.models.incidencereport.publish(created);
+                    // sails.models.incidencereport.publish(created);
+                    sails.sockets.broadcast('reload', {type: 'incidencereport'});
                 }catch(err){
                     console.log({errorCatcher: err});
                 }
-                // sails.models.incidencereport.publishCreate(created);
                 if(created && created.id){
                     //Send SMS
                     try{
