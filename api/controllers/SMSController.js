@@ -79,12 +79,21 @@ module.exports = {
                     let created = await sails.models.electionresult.findOne(_.omit(data[i], ['vote', 'raw']));
                     if(!created){
                         created = await sails.models.electionresult.create(data[i]).fetch();
-                        // sails.models.electionresult.publishCreate(created);
+                        try{
+                            sails.models.electionresult.publish(created);
+                        }catch(err){
+                            console.log({errorCatcher: err});
+                        }
                         insertCount++;
                     }else{
                         //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
                         updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {oldVote: created.vote, updatedAt: Date.now(), vote: data[i].vote, raw: data[i].raw})).fetch();
                         console.log({updated});
+                        try{
+                            sails.models.electionresult.publish(updated);
+                        }catch(err){
+                            console.log({errorCatcher: err});
+                        }
                         // sails.models.electionresult.publishCreate(updated);
                         updateCount++;
                     }
