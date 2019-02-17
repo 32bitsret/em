@@ -31,7 +31,6 @@ parasails.registerPage('welcome', {
       }else if(data.type === 'incidencereport'){
         self.getResultSummary();
       }
-      console.log({data});
     });
   },
 
