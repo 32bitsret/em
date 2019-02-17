@@ -200,6 +200,11 @@
 
     <script>
     $( document ).ready(function() {
+
+      io.socket.get('/dataChange', function(res) {
+          console.log({res});
+      });
+
       if($("#laSelect")){
         $("#laSelect").change(function(evt){
           $("#wardSelect").remove();

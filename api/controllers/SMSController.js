@@ -13,6 +13,16 @@ const AppConfig = require("../lib/AppConfig");
 let controlLevel = AppConfig.controlLevel;
 
 module.exports = {
+
+    subscribeToDataChanges: function(req, res) {
+        if (!req.isSocket) {
+            return res.badRequest('Only a client socket can subscribe to reload.  But you look like an HTTP request to me.');
+        }
+        var socket = sails.sockets.parseSocket(req);
+        sails.sockets.join(socket, 'reload');
+        console.log('Subscribed socket', sails.sockets.getId(socket), 'to', 'reload');
+        return res.ok();
+    },
   
     callbackV2: async(req, res) => {
         let pollingUnit = req.pollingUnit;
