@@ -53,6 +53,7 @@ module.exports.datastores = {
 
     adapter: 'sails-mongo',
     url: process.env.MONGODB_URI || 'mongodb://localhost/foobar',
+    ssl: false,
 
   },
 
