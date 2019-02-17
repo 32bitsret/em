@@ -202,7 +202,7 @@
     $( document ).ready(function() {
 
       io.socket.get('/dataChange', function(res) {
-          console.log({res});
+          console.log("subscribing to data changes", res);
       });
 
       if($("#laSelect")){
