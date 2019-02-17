@@ -25,10 +25,10 @@ parasails.registerPage('welcome', {
     await this.getResultSummary();
     io.socket.on('message', function async(data){
       if(data.type === 'electionresult'){
-        await this.getElectionResult();
-        await this.getResultSummary();
+        this.getElectionResult();
+        this.getResultSummary();
       }else if(data.type === 'incidencereport'){
-        await this.getResultSummary();
+        this.getResultSummary();
       }
       console.log({data});
     });
