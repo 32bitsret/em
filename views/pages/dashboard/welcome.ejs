@@ -33,7 +33,6 @@
 
       <div class="row" style="margin: 0px; padding-top: 25px;">
         <div class="col-md-6">
-          <div class="row">
           <% if (controlLevel === "WARD" ) { %>
           <p>
             <u>SMS Result Format To <em><b>07065644515</b></em></u><br/><em><b>1, APC-550, PDP-250, SDP-209, ANPP-89, 31/01/01/001</b></em>
@@ -57,7 +56,6 @@
                   <br/><span style="font-size: 10px;">Check is compulsory; 1 = Send result; APC as party followed by votes</span>
                 </p>
             <% } %>
-          </div>
           <h1 class="lead">Election Result Notification</h1>
           <table class="table table-striped" style="font-size: 10px;">
             <thead>
@@ -91,7 +89,6 @@
           </table>
       </div>
       <div class="col-md-6">
-          <div class="row">
         <% if (controlLevel === "WARD" ) { %>
         <p><u>SMS Incidence Format To <em><b>07065644515</b></em></u><br/><em><b>2, 201:31/01/01/001, followed by your text</b></em>
           <br/><span style="font-size: 10px;">Where 2 = Send Incidence; 201 = Incidence Code; 31/01/01/001 = Polling Unit, Then your comment</span>
@@ -111,7 +108,6 @@
               <br/><span style="font-size: 10px;">2 = Send Incidence; 201 = Incidence Code; Comment<i>"Someone tampered with ballot box"</i></span>
             </p>
           <% } %>
-          </div>
           <h1 class="lead">Incidence Reports</h1>
           <table class="table table-striped" style="font-size: 10px;">
             <thead>
