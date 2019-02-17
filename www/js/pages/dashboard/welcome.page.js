@@ -23,12 +23,13 @@ parasails.registerPage('welcome', {
     await this.getElectionResult();
     await this.getIncidenceResult();
     await this.getResultSummary();
-    io.socket.on('message', function async(data){
+    let self = this;
+    io.socket.on('message', function (data){
       if(data.type === 'electionresult'){
-        this.getElectionResult();
-        this.getResultSummary();
+        self.getElectionResult();
+        self.getResultSummary();
       }else if(data.type === 'incidencereport'){
-        this.getResultSummary();
+        self.getResultSummary();
       }
       console.log({data});
     });
