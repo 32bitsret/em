@@ -10,7 +10,7 @@ const AppConfig = require("../lib/AppConfig");
 
 module.exports = async function (req, res, proceed) {
   res.header("Content-Type",'text/x-markdown');
-  res.status(200);
+  res.status(200).send("received");
   let phone = req.body.results[0]["from"];
   let sms = req.body.results[0]["text"]; // || cleanText
 
