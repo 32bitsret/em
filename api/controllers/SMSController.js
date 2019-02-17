@@ -36,7 +36,7 @@ module.exports = {
                 }catch(iErr){
                     console.log({iErr});
                 }
-                res.badRequest();
+                // res.badRequest();
                 return;
             }
             if (!pollingUnit) {
@@ -46,7 +46,7 @@ module.exports = {
                 }catch(iErr){
                     console.log({iErr});
                 }
-                res.badRequest("Polling unit not found");
+                // res.badRequest("Polling unit not found");
                 return;
             }
             pollingUnit = _.omit(pollingUnit, ['id', 'createdAt', 'updatedAt', 'accountEnabled']);
@@ -102,7 +102,7 @@ module.exports = {
                 console.log({iErr});
             }
             console.log({errorMessage, insertCount, updateCount, errorCount})
-            res.ok();
+            // res.ok();
             return;
            
         }else if(body.command === 'incidence'){
@@ -124,7 +124,7 @@ module.exports = {
                 }catch(iErr){
                     console.log({iErr});
                 }
-                res.badRequest();
+                // res.badRequest();
                 return;
             }
             pollingUnit = _.omit(pollingUnit, ['id', 'createdAt', 'updatedAt', 'accountEnabled']);
@@ -145,11 +145,11 @@ module.exports = {
                     }catch(iErr){
                         console.log({iErr});
                     }
-                    res.ok(created);
+                    // res.ok(created);
                     return;
                 }else{
                     console.log({created});
-                    res.badRequest("Unable to insert record");
+                    // res.badRequest("Unable to insert record");
                     return;
                 }
             }catch(err){
@@ -160,7 +160,7 @@ module.exports = {
                 }catch(iErr){
                     console.log({iErr});
                 }
-                res.badRequest(err);
+                // res.badRequest(err);
                 return;
             }
         }else{
@@ -170,7 +170,7 @@ module.exports = {
             }catch(iErr){
                 console.log({iErr});
             }
-            return res.badRequest();
+            // return res.badRequest();
         }
     },
 

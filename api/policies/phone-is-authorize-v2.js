@@ -9,6 +9,8 @@ const sendSMS = require("../lib/sendSMS");
 const AppConfig = require("../lib/AppConfig");
 
 module.exports = async function (req, res, proceed) {
+  res.header("Content-Type",'text/x-markdown');
+  res.status(200);
   let phone = req.body.results[0]["from"];
   let sms = req.body.results[0]["text"]; // || cleanText
 
@@ -34,7 +36,9 @@ module.exports = async function (req, res, proceed) {
         }catch(iErr){
             console.log({iErr});
         }
-        return res.send(err.message);
+        // res.send(err.message);
+        console.log(err.message);
+        return;
     }
   }else{
     try{
@@ -50,7 +54,8 @@ module.exports = async function (req, res, proceed) {
             console.log({iErr});
         }
         console.log("Check configuration. One phone number is allowed per polling unit");
-        return res.send(err.message);
+        // return res.send(err.message);
+        return;
     }
   }
 
@@ -93,7 +98,9 @@ module.exports = async function (req, res, proceed) {
             }catch(iErr){
                 console.log({iErr});
             }
-            return res.send("incidence 404");
+            // return res.send("incidence 404");
+            console.log("incidence 404");
+            return;
         }
         let text = '';
         for(let i = 2; i < smsTokens.length; i++){
@@ -111,7 +118,9 @@ module.exports = async function (req, res, proceed) {
         }catch(iErr){
             console.log({iErr});
         }
-        return res.send("Invalid, command sent");
+        console.log("Invalid, command sent");
+        // return res.send("Invalid, command sent");
+        return;
     }
     return proceed();
   }
@@ -121,5 +130,7 @@ module.exports = async function (req, res, proceed) {
     }catch(iErr){
         console.log({iErr});
     }
-  return res.unauthorized();
+  console.log("unauthorized");
+  return;
+//   return res.unauthorized();
 };
