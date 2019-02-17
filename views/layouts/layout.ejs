@@ -5,7 +5,7 @@
 } %><!DOCTYPE html>
 <html>
   <head>
-    <title>Election Monitoring System</title>
+    <title>Real-Time Election Monitoring System</title>
 
     <% /* Viewport tag for sensible mobile support */ %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -47,7 +47,7 @@
   <body>
     <div id="page-wrap">
       <header id="page-header" class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between">
-        <a class="navbar-brand mr-0" href="/">Election Monitoring System</a>
+        <a class="navbar-brand mr-0" href="/">Real-Time Election Monitoring System <$ if(sails.config.environment !== 'production') { %><span class="badge">TEST</span><% } %></a>
         <div class="navbar-nav flex-row">
           <!-- LOGGED-IN NAVIGATION -->
           <% if(me) { %>
