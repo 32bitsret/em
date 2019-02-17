@@ -24,6 +24,12 @@ parasails.registerPage('welcome', {
     await this.getIncidenceResult();
     await this.getResultSummary();
     io.socket.on('message', function (data){
+      if(data.type === 'electionresult'){
+        await this.getElectionResult();
+        await this.getResultSummary();
+      }else if(data.type === 'incidencereport'){
+        await this.getResultSummary();
+      }
       console.log({data});
     });
   },
@@ -80,18 +86,6 @@ parasails.registerPage('welcome', {
       }
     },
 
-    probeResultSummary: function(){
-      io.socket.get('/api/query1', this.fillResultSummary);
-    },
-
-    probeElectionResult: function(){
-      io.socket.get('/ElectionResult', this.fillElectionResult);
-    },
-
-    probeIncidence: function(){
-      io.socket.get('/IncidenceReport', this.fillIncidenceResult);
-    },
-
     getElectionResult: async function(){
       let endpoint = '/electionresult';
       if(selectedLocalGovernment !== 'default'){
@@ -103,12 +97,8 @@ parasails.registerPage('welcome', {
           }
         }
       } 
-      console.log({getElectionResult: endpoint});
+      // console.log({getElectionResult: endpoint});
       io.socket.get(endpoint, this.fillElectionResult);
-      // setInterval(this.probeElectionResult, 1000);
-      io.socket.on('electionresult', function (data) {
-        console.log('ElectionResult alert!', data);
-      });
     },
 
     getResultSummary: async function(){
@@ -122,9 +112,8 @@ parasails.registerPage('welcome', {
           }
         }
       }
-      console.log({getResultSummary: endpoint});
+      // console.log({getResultSummary: endpoint});
       io.socket.get(endpoint, this.fillResultSummary);
-      // setInterval(this.probeResultSummary, 1000);
     },
 
     getIncidenceResult: async function(){
@@ -138,12 +127,8 @@ parasails.registerPage('welcome', {
           }
         }
       }
-      console.log({getIncidenceResult: endpoint});
+      // console.log({getIncidenceResult: endpoint});
       io.socket.get(endpoint, this.fillIncidenceResult);
-      // setInterval(this.probeIncidence, 1000);
-      io.socket.on('incidencereport', function (data) {
-        console.log('IncidenceReport alert!', data);
-      });
     },
 
   }
