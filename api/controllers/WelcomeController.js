@@ -71,6 +71,8 @@ module.exports = {
                 }
             }
         }
+
+        let selectedZone = false;
         // sails.models.electionresult.subscribe(req.socket);
         // sails.models.incidencereport.subscribe(req.socket);
         return res.view('pages/dashboard/welcome', {
@@ -83,6 +85,7 @@ module.exports = {
           AppConfig,
           pollingUnits,
           controlLevel,
+          selectedZone,
           selectedLocalGovernment: req.query["la"] || "default",
           selectedWard: req.query["ward"] || 'default',
           selectedPu: req.query["pu"] || 'default'

@@ -73,9 +73,7 @@
           </div> -->
           <form id="levelFilter" method="GET" class="form-inline">
           <script>
-          <% if (electionType === "senatorial" ) { %>
-            var selectedSenatorialZone= "<%= selectedZone %>";
-          <% } %>
+          var selectedSenatorialZone= "<%= selectedZone %>";
           var selectedLocalGovernment = "<%= selectedLocalGovernment %>";
           var selectedWard = "<%= selectedWard %>";
           var selectedPu = "<%= selectedPu %>";
@@ -103,7 +101,7 @@
               <% if (wards && wards.length) { %>
                 <select id="wardSelect" name="ward" class="form-control" style="margin-left:6px;">
                   <% if (selectedWard === "default" ) { %>
-                    <option value="default"><%= selectedLocalGovernment %></option>
+                    <option value="default">---------------------</option>
                   <% } %>
                 <% wards.forEach(function(item){ %>
                   <option <% if (selectedWard === item.ward ) { %>selected<% } %> value="<%= item.ward %>"><%= item.ward %></option>
@@ -112,7 +110,7 @@
                 <% if (pollingUnits && pollingUnits.length) { %>
                   <select id="puSelect" name="pu" class="form-control" style="margin-left:6px;">
                     <% if (selectedPu === "default" ) { %>
-                      <option value="default"><%= selectedWard %></option>
+                      <option value="default">------------------</option>
                     <% } %>
                   <% pollingUnits.forEach(function(item){ %>
                     <option <% if (selectedPu === item.pollingUnit ) { %>selected<% } %> value="<%= item.pollingUnit %>"><%= item.pollingUnitName + "(" +item.pollingUnit + ")" %></option>
