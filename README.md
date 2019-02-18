@@ -19,7 +19,7 @@ data type in postman must be set to raw
 ## CSV Format for Incident Type Import
 ```csv
 
-{SN}, {INCIDENCE CODE}, {INCIDENCE DESCRIPTION}
+{SN}, {INCIDENCE CODE}, {INCIDENCE DESCRIPTION}, {PRIORITY LEVEL}
 
 ``` 
 

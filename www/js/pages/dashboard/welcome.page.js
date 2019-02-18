@@ -64,6 +64,15 @@ parasails.registerPage('welcome', {
       }
     },
 
+    probeElectionResult: function(){
+      io.socket.get('/ElectionResult', this.fillElectionResult);
+    },
+
+    probeIncidence: function(){
+      io.socket.get('/IncidenceReport', this.fillIncidenceResult);
+    },
+
+
     fillIncidenceResult: function(body){
       if(body && body.length){
         this.incidencereports = body.map(function (currentValue, index, array) {
@@ -99,6 +108,7 @@ parasails.registerPage('welcome', {
       } 
       // console.log({getElectionResult: endpoint});
       io.socket.get(endpoint, this.fillElectionResult);
+      setInterval(this.probeElectionResult, 20000);
     },
 
     getResultSummary: async function(){
@@ -129,6 +139,7 @@ parasails.registerPage('welcome', {
       }
       // console.log({getIncidenceResult: endpoint});
       io.socket.get(endpoint, this.fillIncidenceResult);
+      setInterval(this.probeIncidence, 20000);
     },
 
   }
