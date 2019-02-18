@@ -250,6 +250,14 @@
           console.log("subscribing to data changes", res);
       });
 
+      if($("#zoneSelect")){
+        $("#zoneSelect").change(function(evt){
+          $("#laSelect").remove();
+          $("#wardSelect").remove();
+          $("#puSelect").remove();
+        });
+      }
+
       if($("#laSelect")){
         $("#laSelect").change(function(evt){
           $("#wardSelect").remove();
