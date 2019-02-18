@@ -73,40 +73,86 @@
           </div> -->
           <form id="levelFilter" method="GET" class="form-inline">
           <script>
+          <% if (electionType === "senatorial" ) { %>
+            var selectedSenatorialZone= "<%= selectedZone %>";
+          <% } %>
           var selectedLocalGovernment = "<%= selectedLocalGovernment %>";
           var selectedWard = "<%= selectedWard %>";
           var selectedPu = "<%= selectedPu %>";
           </script>
-          <select id="laSelect" name="la" class="form-control" >
-            <% if (selectedLocalGovernment === "default" ) { %>
-              <option value="default"><%= AppConfig.state + " " + AppConfig.electionYear %>  Poll</option>
-            <% } %>
-            <% localGovernments.forEach(function(la){ %>
-              <option <% if (selectedLocalGovernment === la.localGovernment ) { %>selected<% } %> value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
-            <% }); %>
-          </select>
-          <% if (wards && wards.length) { %>
-            <select id="wardSelect" name="ward" class="form-control" style="margin-left:6px;">
-              <% if (selectedWard === "default" ) { %>
-                <option value="default"><%= selectedLocalGovernment %></option>
+
+        <% if (electionType === "senatorial" ) { %>
+          <select id="zoneSelect" name="zone" class="form-control" >
+              <% if (selectedSenatorialZone === "default" ) { %>
+                <option value="default">--------</option>
               <% } %>
-            <% wards.forEach(function(item){ %>
-              <option <% if (selectedWard === item.ward ) { %>selected<% } %> value="<%= item.ward %>"><%= item.ward %></option>
-            <% }); %>
+              <% zones.forEach(function(z){ %>
+                <option <% if (selectedSenatorialZone === z.senatorialZone ) { %>selected<% } %> value="<%= z.senatorialZone %>"><%= z.senatorialZone %></option>
+              <% }); %>
             </select>
-            <% if (pollingUnits && pollingUnits.length) { %>
-              <select id="puSelect" name="pu" class="form-control" style="margin-left:6px;">
-                <% if (selectedPu === "default" ) { %>
-                  <option value="default"><%= selectedWard %></option>
+
+            <% if (localGovernments && localGovernments.length) { %>
+              <select id="laSelect" name="la" class="form-control" >
+                <% if (selectedLocalGovernment === "default" ) { %>
+                  <option value="default">--------------</option>
                 <% } %>
-              <% pollingUnits.forEach(function(item){ %>
-                <option <% if (selectedPu === item.pollingUnit ) { %>selected<% } %> value="<%= item.pollingUnit %>"><%= item.pollingUnitName + "(" +item.pollingUnit + ")" %></option>
+                <% localGovernments.forEach(function(la){ %>
+                  <option <% if (selectedLocalGovernment === la.localGovernment ) { %>selected<% } %> value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
+                <% }); %>
+              </select>
+              <% if (wards && wards.length) { %>
+                <select id="wardSelect" name="ward" class="form-control" style="margin-left:6px;">
+                  <% if (selectedWard === "default" ) { %>
+                    <option value="default"><%= selectedLocalGovernment %></option>
+                  <% } %>
+                <% wards.forEach(function(item){ %>
+                  <option <% if (selectedWard === item.ward ) { %>selected<% } %> value="<%= item.ward %>"><%= item.ward %></option>
+                <% }); %>
+                </select>
+                <% if (pollingUnits && pollingUnits.length) { %>
+                  <select id="puSelect" name="pu" class="form-control" style="margin-left:6px;">
+                    <% if (selectedPu === "default" ) { %>
+                      <option value="default"><%= selectedWard %></option>
+                    <% } %>
+                  <% pollingUnits.forEach(function(item){ %>
+                    <option <% if (selectedPu === item.pollingUnit ) { %>selected<% } %> value="<%= item.pollingUnit %>"><%= item.pollingUnitName + "(" +item.pollingUnit + ")" %></option>
+                  <% }); %>
+                  </select>
+                <% } %>
+              <% } %>
+              <% } %>
+        <% } else { %>
+            <select id="laSelect" name="la" class="form-control" >
+              <% if (selectedLocalGovernment === "default" ) { %>
+                <option value="default">--------------</option>
+              <% } %>
+              <% localGovernments.forEach(function(la){ %>
+                <option <% if (selectedLocalGovernment === la.localGovernment ) { %>selected<% } %> value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
+              <% }); %>
+            </select>
+            <% if (wards && wards.length) { %>
+              <select id="wardSelect" name="ward" class="form-control" style="margin-left:6px;">
+                <% if (selectedWard === "default" ) { %>
+                  <option value="default"><%= selectedLocalGovernment %></option>
+                <% } %>
+              <% wards.forEach(function(item){ %>
+                <option <% if (selectedWard === item.ward ) { %>selected<% } %> value="<%= item.ward %>"><%= item.ward %></option>
               <% }); %>
               </select>
+              <% if (pollingUnits && pollingUnits.length) { %>
+                <select id="puSelect" name="pu" class="form-control" style="margin-left:6px;">
+                  <% if (selectedPu === "default" ) { %>
+                    <option value="default"><%= selectedWard %></option>
+                  <% } %>
+                <% pollingUnits.forEach(function(item){ %>
+                  <option <% if (selectedPu === item.pollingUnit ) { %>selected<% } %> value="<%= item.pollingUnit %>"><%= item.pollingUnitName + "(" +item.pollingUnit + ")" %></option>
+                <% }); %>
+                </select>
+              <% } %>
             <% } %>
-          <% } %>
-          <button class="btn btn-outline-info" style="margin-left:6px;">GO</button>
-          </form>
+            <% } %>
+            <button class="btn btn-outline-info" style="margin-left:6px;">GO</button>
+            </form>
           <!-- Only in mobile nav -->
           <!-- <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup">Sign up</a> -->
           <% } %>

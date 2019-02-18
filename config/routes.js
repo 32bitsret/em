@@ -15,6 +15,7 @@ module.exports.routes = {
   //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
   'GET /':                   { action: 'view-homepage-or-redirect' },
   'GET /welcome':   'WelcomeController.getDashboard',
+  'GET /senatorial':   'WelcomeController.getSenatorialDashboard',
   'GET /dataChange': 'SMSController.subscribeToDataChanges',
 
   'GET /faq':                { view:   'pages/faq' },
