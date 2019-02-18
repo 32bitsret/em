@@ -86,23 +86,35 @@ module.exports = {
                     if(AppConfig.strictParty && AppConfig.parties.indexOf(data[i].party) < 0){
                         throw new Error(`stictParty is set, ${data[i].party} is not allowed in parties config`);
                     }
-                    let created = await sails.models.electionresult.findOne(_.omit(data[i], ['vote', 'raw']));
+                    if(body.resultType == 1){
+                        var created = await sails.models.electionresult.findOne(_.omit(data[i], ['vote', 'raw']));
+                    }else{
+                        created = await sails.models.electionsenateresult.findOne(_.omit(data[i], ['vote', 'raw']));
+                    }
                     if(!created){
-                        created = await sails.models.electionresult.create(data[i]).fetch();
+                        if(body.resultType == 1){
+                            created = await sails.models.electionresult.create(data[i]).fetch();
+                        }else{
+                            created = await sails.models.electionsenateresult.create(data[i]).fetch();
+                        }
                         try{
-                            // sails.models.electionresult.publish(created);
                             sails.sockets.broadcast('reload', {type: 'electionresult'});
+                            sails.sockets.broadcast('reload', {type: 'electionsenateresult'});
                         }catch(err){
                             console.log({errorCatcher: err});
                         }
                         insertCount++;
                     }else{
                         //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
-                        updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {oldVote: created.vote, updatedAt: Date.now(), vote: data[i].vote, raw: data[i].raw})).fetch();
+                        if(body.resultType == 1){
+                            updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {changeVote: data[i].vote, updatedAt: Date.now(), raw: data[i].raw})).fetch();
+                        }else{
+                            updated = await sails.models.electionsenateresult.update(created).set(Object.assign({}, created, {changeVote: data[i].vote, updatedAt: Date.now(), raw: data[i].raw})).fetch();
+                        }
                         console.log({updated});
                         try{
-                            // sails.models.electionresult.publish(updated);
                             sails.sockets.broadcast('reload', {type: 'electionresult'});
+                            sails.sockets.broadcast('reload', {type: 'electionsenateresult'});
                         }catch(err){
                             console.log({errorCatcher: err});
                         }
@@ -249,29 +261,42 @@ module.exports = {
                 if(AppConfig.strictParty && AppConfig.parties.indexOf(data.party) < 0){
                     throw new Error(`stictParty is set, ${data.party} is not allowed in parties config`);
                 }
-                let created = await sails.models.electionresult.findOne(_.omit(data, ['vote', 'raw']));
+
+                if(body.resultType == 1){
+                    var created = await sails.models.electionresult.findOne(_.omit(data, ['vote', 'raw']));
+                }else{
+                    created = await sails.models.electionsenateresult.findOne(_.omit(data, ['vote', 'raw']));
+                }
                 if(!created){
-                    created = await sails.models.electionresult.create(data).fetch();
+                    if(body.resultType == 1){
+                        created = await sails.models.electionresult.create(data).fetch();
+                    }else{
+                        created = await sails.models.electionsenateresult.create(data).fetch();
+                    }
                     try{
-                        // sails.models.electionresult.publish(created);
                         sails.sockets.broadcast('reload', {type: 'electionresult'});
+                        sails.sockets.broadcast('reload', {type: 'electionsenateresult'});
                     }catch(err){
                         console.log({errorCatcher: err});
                     }
                 }else{
                     //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
-                    updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {oldVote: created.vote, updatedAt: Date.now(), vote: data.vote, raw: data.raw})).fetch();
+                    if(body.resultType == 1){
+                        updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {changeVote: data.vote, updatedAt: Date.now(), raw: data.raw})).fetch();
+                    }else{
+                        updated = await sails.models.electionsenateresult.update(created).set(Object.assign({}, created, {changeVote: data.vote, updatedAt: Date.now(), raw: data.raw})).fetch();
+                    }
                     console.log({updated});
                     try{
-                        // sails.models.electionresult.publish(updated);
                         sails.sockets.broadcast('reload', {type: 'electionresult'});
+                        sails.sockets.broadcast('reload', {type: 'electionsenateresult'});
                     }catch(err){
                         console.log({errorCatcher: err});
                     }
                 }
                 if(created && created.id){
                     try{
-                        let sms = await sendSMS(data.phone, (updated ? "Your Election result has been updated" : "Your Election result has been submitted"));
+                        let sms = await sendSMS(data.phone, (updated ? "Your Election result has been updated for review" : "Your Election result has been submitted"));
                         console.log({sms})
                     }catch(iErr){
                         console.log({iErr});

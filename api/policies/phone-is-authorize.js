@@ -56,10 +56,11 @@ module.exports = async function (req, res, proceed) {
   }
   if (pollingUnit) {
     req.pollingUnit = _.omit(pollingUnit, ['id', 'createdAt', 'updatedAt', 'accountEnabled']);
-    if(smsTokens[1] == 1 || smsTokens[1] === 'result' || smsTokens[1] === 'r'){
+    if(smsTokens[1] == 1 /*|| smsTokens[1] === 'result' || smsTokens[1] === 'r'*/ || smsTokens[1] == 3){
         console.log({smsTokens});
         req.smsBody = req.smsBody || {};
         req.smsBody.command = 'result';
+        req.smsBody.resultType = smsTokens[0];
         req.smsBody.party = smsTokens[2].toUpperCase();
         req.smsBody.vote = smsTokens[3];
         req.smsBody.pu = smsTokens[4] || null;

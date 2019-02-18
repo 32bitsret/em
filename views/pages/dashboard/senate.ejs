@@ -1,6 +1,6 @@
-<div id="welcome">
+<div id="senate">
 
-  <template id="election-result-table-template">
+  <template id="election-result-senate-table-template">
     <div class="xcontainer">
         <section class="statistics text-center">
             <div class="data">
@@ -33,35 +33,35 @@
 
       <div class="row" style="margin: 0px; padding-top: 25px;">
         <div class="col-xs-12 col-sm-12 col-lg-6">
-            <% if (controlLevel === "WARD" ) { %>
-              <p>
-                <u>SMS Result Format To <em><b>07065644515</b></em></u><br/><em><b>1, APC-550, PDP-250, SDP-209, ANPP-89, 31/01/01/001</b></em>
-                <br/>
-                <em><b>3, APC-550, PDP-250, SDP-209, ANPP-89, 31/01/01/001</b></em>
-                <br/>
-                <span style="font-size: 10px;">Where 1 = Send presidential result, 3 for Senatorial; PARTY1-VOTE, PARTY2-VOTE,PARTYN-VOTE = Parties and votes; 31/01/01/001 = Polling Unit</span>
+          <% if (controlLevel === "WARD" ) { %>
+          <p>
+            <u>SMS Result Format To <em><b>07065644515</b></em></u><br/><em><b>1, APC-550, PDP-250, SDP-209, ANPP-89, 31/01/01/001</b></em>
+            <br/>
+            <em><b>2, APC-550, PDP-250, SDP-209, ANPP-89, 31/01/01/001</b></em>
+            <br/>
+            <span style="font-size: 10px;">Where 1 = Send presidential result, 2 for Senatorial; PARTY1-VOTE, PARTY2-VOTE,PARTYN-VOTE = Parties and votes; 31/01/01/001 = Polling Unit</span>
+          </p>
+          <% } else { %>
+            <p>
+                <u>SMS Result Format To <em><b>07065644515</b></em></u><br/><em><b>1, APC-550, PDP-250, SDP-209, ANPP-89</b></em>
+                <br/><em><b>3, APC-550, PDP-250, SDP-209, ANPP-89</b></em>
+                <br/><span style="font-size: 10px;">Where 1 = Send result, 3 for Senatorial; PARTY1-VOTE, PARTY2-VOTE,PARTYN-VOTE = Parties and votes</span>
               </p>
-              <% } else { %>
-                <p>
-                    <u>SMS Result Format To <em><b>07065644515</b></em></u><br/><em><b>1, APC-550, PDP-250, SDP-209, ANPP-89</b></em>
-                    <br/><em><b>3, APC-550, PDP-250, SDP-209, ANPP-89</b></em>
-                    <br/><span style="font-size: 10px;">Where 1 = Send result, 3 for Senatorial; PARTY1-VOTE, PARTY2-VOTE,PARTYN-VOTE = Parties and votes</span>
-                  </p>
-              <% } %>
-    
-              <% if (controlLevel === "WARD" ) { %>
-                <p>
-                  <u>SMS Result Format To <em><b>7447</b></em></u><br/><em><b>Check 1 APC 550 31/01/01/001</b></em>
-                  <br/><em><b>Check 3 APC 550 31/01/01/001</b></em>
-                  <br/><span style="font-size: 10px;">Check is compulsory; 1 = Send presidential result, 3 for Senatorial; APC as party followed by votes then Polling Unit 31/01/01/001</span>
+          <% } %>
+
+          <% if (controlLevel === "WARD" ) { %>
+            <p>
+              <u>SMS Result Format To <em><b>7447</b></em></u><br/><em><b>Check 1 APC 550 31/01/01/001</b></em>
+              <br/><em><b>Check 3 APC 550 31/01/01/001</b></em>
+              <br/><span style="font-size: 10px;">Check is compulsory; 1 = Send presidential result, 3 for Senatorial; APC as party followed by votes then Polling Unit 31/01/01/001</span>
+            </p>
+            <% } else { %>
+              <p>
+                  <u>SMS Result Format To <em><b>7447</b></em></u><br/><em><b>Check 1 APC 550</b></em>
+                  <br/><em><b>Check 3 APC 550</b></em>
+                  <br/><span style="font-size: 10px;">Check is compulsory; 1 = Send presidential result, 3 for Senatorial; APC as party followed by votes</span>
                 </p>
-                <% } else { %>
-                  <p>
-                      <u>SMS Result Format To <em><b>7447</b></em></u><br/><em><b>Check 1 APC 550</b></em>
-                      <br/><em><b>Check 3 APC 550</b></em>
-                      <br/><span style="font-size: 10px;">Check is compulsory; 1 = Send presidential result, 3 for Senatorial; APC as party followed by votes</span>
-                    </p>
-                <% } %>
+            <% } %>
           <h1 class="lead">Election Result Notification</h1>
           <table class="table table-striped table-responsive" style="font-size: 11px;">
             <thead>
@@ -107,7 +107,7 @@
 
         <% if (controlLevel === "WARD" ) { %>
           <p><u>SMS Incidence Format To <em><b>7447</b></em></u><br/><em><b>Check 2 224:31/01/01/001 your text follows</b></em>
-            <br/><span style="font-size: 10px;">Where 2 = Send Incidence; 224 = Incidence Code; 31/01/01/001 = Polling Unit,  Your comment e.g <i>"police violence"</i></span>
+            <br/><span style="font-size: 10px;">Where 2 = Send Incidence; 224 = Incidence Code; 31/01/01/001 = Polling Unit,  Your comment e.g <i>"police voilence"</i></span>
           </p>
           <% } else { %>
             <p><u>SMS Incidence Format To <em><b>7447</b></em></u><br/><em><b>Check 2 201 your text follows</b></em>
