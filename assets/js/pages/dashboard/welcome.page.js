@@ -65,11 +65,31 @@ parasails.registerPage('welcome', {
     },
 
     probeElectionResult: function(){
-      io.socket.get('/ElectionResult', this.fillElectionResult);
+      let endpoint = '/electionresult';
+      if(selectedLocalGovernment !== 'default'){
+        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        if(selectedWard !== 'default'){
+          endpoint += '&ward=' + selectedWard;
+          if(selectedPu !== 'default'){
+            endpoint += '&pollingUnit=' + selectedPu;
+          }
+        }
+      }
+      io.socket.get(endpoint, this.fillElectionResult);
     },
 
     probeIncidence: function(){
-      io.socket.get('/IncidenceReport', this.fillIncidenceResult);
+      let endpoint = '/incidencereport';
+      if(selectedLocalGovernment !== 'default'){
+        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        if(selectedWard !== 'default'){
+          endpoint += '&ward=' + selectedWard;
+          if(selectedPu !== 'default'){
+            endpoint += '&pollingUnit=' + selectedPu;
+          }
+        }
+      }
+      io.socket.get(endpoint, this.fillIncidenceResult);
     },
 
 
@@ -108,7 +128,7 @@ parasails.registerPage('welcome', {
       } 
       // console.log({getElectionResult: endpoint});
       io.socket.get(endpoint, this.fillElectionResult);
-      setInterval(this.probeElectionResult, 20000);
+      setInterval(this.probeElectionResult, 200000);
     },
 
     getResultSummary: async function(){
@@ -139,7 +159,7 @@ parasails.registerPage('welcome', {
       }
       // console.log({getIncidenceResult: endpoint});
       io.socket.get(endpoint, this.fillIncidenceResult);
-      setInterval(this.probeIncidence, 20000);
+      setInterval(this.probeIncidence, 200000);
     },
 
   }
