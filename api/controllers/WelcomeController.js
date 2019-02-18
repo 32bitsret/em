@@ -39,7 +39,7 @@ module.exports = {
         return res.view('pages/dashboard/senate', {
           description: 'Display the welcome page for authenticated users.',
           friendlyName: 'View welcome page',
-          electionType: 'senatorial',
+          electionType: 'Senatorial',
           zones,
           localGovernments,
           wards,

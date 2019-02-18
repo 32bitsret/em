@@ -79,13 +79,13 @@
           var selectedPu = "<%= selectedPu %>";
           </script>
 
-        <% if (electionType === "senatorial" ) { %>
+        <% if (electionType === "Senatorial" ) { %>
           <select id="zoneSelect" name="zone" class="form-control" >
               <% if (selectedZone === "default" ) { %>
-                <option value="default">--------</option>
+                <option value="default"><%= electionType + " " + AppConfig.electionYear %>  Poll</option>
               <% } %>
               <% zones.forEach(function(z){ %>
-                <option <% if (selectedSenatorialZone === z.senatorialZone ) { %>selected<% } %> value="<%= z.senatorialZone %>"><%= z.senatorialZone %></option>
+                <option <% if (selectedZone === z.senatorialZone ) { %>selected<% } %> value="<%= z.senatorialZone %>"><%= z.senatorialZone %></option>
               <% }); %>
             </select>
 
