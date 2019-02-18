@@ -128,7 +128,7 @@ parasails.registerPage('welcome', {
       } 
       // console.log({getElectionResult: endpoint});
       io.socket.get(endpoint, this.fillElectionResult);
-      setInterval(this.probeElectionResult, 200000);
+      setInterval(this.probeElectionResult, 1200000000);
     },
 
     getResultSummary: async function(){
@@ -159,7 +159,7 @@ parasails.registerPage('welcome', {
       }
       // console.log({getIncidenceResult: endpoint});
       io.socket.get(endpoint, this.fillIncidenceResult);
-      setInterval(this.probeIncidence, 200000);
+      setInterval(this.probeIncidence, 1200000000);
     },
 
   }
