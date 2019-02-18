@@ -81,7 +81,7 @@
 
         <% if (electionType === "senatorial" ) { %>
           <select id="zoneSelect" name="zone" class="form-control" >
-              <% if (selectedSenatorialZone === "default" ) { %>
+              <% if (selectedZone === "default" ) { %>
                 <option value="default">--------</option>
               <% } %>
               <% zones.forEach(function(z){ %>
