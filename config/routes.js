@@ -69,7 +69,6 @@ module.exports.routes = {
 
   'GET /api/query1': 'ElectionResultController.query1',
   'GET /api/query2': 'ElectionResultController.query2',
-  'GET /api/query3': 'ElectionResultController.query3',
 
   'POST /api/sms': 'SMSController.callback',
   'POST /api/smsV2': 'SMSController.callbackV2',

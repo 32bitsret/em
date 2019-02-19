@@ -20,6 +20,7 @@ parasails.registerPage('senate', {
     _.extend(this, SAILS_LOCALS);
   },
   mounted: async function() {
+      console.log("Mounting");
     await this.getElectionResult();
     await this.getIncidenceResult();
     await this.getResultSummary();
@@ -109,46 +110,52 @@ parasails.registerPage('senate', {
 
     getElectionResult: async function(){
       let endpoint = '/electionsenateresult';
-      if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
-        if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
-          if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
-          }
+      if(selectedSenatorialZone !== 'default'){
+            if(selectedLocalGovernment !== 'default'){
+                endpoint += '?localGovernment=' + selectedLocalGovernment;
+                if(selectedWard !== 'default'){
+                    endpoint += '&ward=' + selectedWard;
+                    if(selectedPu !== 'default'){
+                        endpoint += '&pollingUnit=' + selectedPu;
+                    }
+                }
+            }
+            io.socket.get(endpoint, this.fillElectionResult);
+            setInterval(this.probeElectionResult, 1200000000);       
         }
-        io.socket.get(endpoint, this.fillElectionResult);
-        setInterval(this.probeElectionResult, 1200000000);
-      }       
     },
 
     getResultSummary: async function(){
       let endpoint = '/api/query2';
-      if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
-        if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
-          if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
-          }
+      if(selectedSenatorialZone !== 'default'){
+            if(selectedLocalGovernment !== 'default'){
+                endpoint += '?localGovernment=' + selectedLocalGovernment;
+                if(selectedWard !== 'default'){
+                    endpoint += '&ward=' + selectedWard;
+                    if(selectedPu !== 'default'){
+                        endpoint += '&pollingUnit=' + selectedPu;
+                    }
+                }
+            }
+            io.socket.get(endpoint, this.fillResultSummary);
         }
-        io.socket.get(endpoint, this.fillResultSummary);
-      }
     },
 
     getIncidenceResult: async function(){
       let endpoint = '/incidencereport';
-      if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
-        if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
-          if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
-          }
+      if(selectedSenatorialZone !== 'default'){
+            if(selectedLocalGovernment !== 'default'){
+                endpoint += '?localGovernment=' + selectedLocalGovernment;
+                if(selectedWard !== 'default'){
+                    endpoint += '&ward=' + selectedWard;
+                    if(selectedPu !== 'default'){
+                        endpoint += '&pollingUnit=' + selectedPu;
+                    }
+                }
+            }
+            io.socket.get(endpoint, this.fillIncidenceResult);
+            setInterval(this.probeIncidence, 1200000000);
         }
-        io.socket.get(endpoint, this.fillIncidenceResult);
-        setInterval(this.probeIncidence, 1200000000);
-      }
     },
 
   }
