@@ -108,7 +108,7 @@ module.exports = async function (req, res, proceed) {
             });
         }catch(error){
             try{
-                let sms = await sendSMS(phone, "Error, acceptable format: 2,CODE:PU,Your Comment");
+                let sms = await sendSMS(phone, AppConfig.controlLevel === 'WARD' ? "Error, acceptable format: 2,CODE:PU,Your Comment" : "Error, acceptable format: 2,CODE,Your Comment");
                 console.log({sms});
             }catch(iErr){
                 console.log({iErr});
@@ -117,7 +117,7 @@ module.exports = async function (req, res, proceed) {
         }
         if(!incidence){
             try{
-                let sms = await sendSMS(phone, "incidence code does not exist. Acceptable format is: format: 2,CODE:PU,Your Comment");
+                let sms = await sendSMS(phone, "incidence code does not exist. Acceptable format is: format: " + (AppConfig.controlLevel === 'WARD' ?  "2,CODE:PU,Your Comment" : "2,CODE,Your Comment"));
                 console.log({sms});
             }catch(iErr){
                 console.log({iErr});
@@ -137,7 +137,7 @@ module.exports = async function (req, res, proceed) {
         req.smsBody.raw = JSON.stringify(sms);
     }else{
         try{
-            let sms = await sendSMS(phone, "Invalid, command sent: Acceptable format is: format: 2,CODE:PU,Your Comment");
+            let sms = await sendSMS(phone, "Invalid, command sent: Acceptable format is: Acceptable format is: format: " + (AppConfig.controlLevel === 'WARD' ?  "2,CODE:PU,Your Comment" : "2,CODE,Your Comment"));
             console.log({sms});
         }catch(iErr){
             console.log({iErr});
