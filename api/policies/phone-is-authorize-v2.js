@@ -32,9 +32,6 @@ module.exports = async function (req, res, proceed) {
   var pollingUnit;
   if(AppConfig.controlLevel === 'WARD'){
     try{
-        if(smsTokens.length != 3 || smsTokens[1].split(':').length != 2){
-            throw new Error("Invalid Message Format");
-        }
         pollingUnit = await sails.models.pollingunit.find({
                 phone, 
                 accountEnabled: true
@@ -103,6 +100,9 @@ module.exports = async function (req, res, proceed) {
         }
         console.log("PU", req.smsBody.pu, code);
         try{
+            if(!req.smsBody.pu || !code){
+                throw new Error("Invalid Message Format");
+            }
             var incidence = await sails.models.incidencetype.findOne({
                 incidenceCode: code, 
             });
