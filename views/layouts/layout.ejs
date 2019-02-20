@@ -48,6 +48,7 @@
     <div id="page-wrap">
       <header id="page-header" class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between">
         <a class="navbar-brand mr-0" href="/">Real-Time Election Monitoring System <% if(sails.config.environment !== 'production') { %><span style="color: yellowgreen;font-size: 11px;" class="label label-danger">TEST</span><% } %></a>
+        <a class="nav-item nav-link text-info ml-2 d-block" href="/senate">SENATE</a>
         <div class="navbar-nav flex-row">
           <!-- LOGGED-IN NAVIGATION -->
           <% if(me) { %>
@@ -92,7 +93,7 @@
             <% if (localGovernments && localGovernments.length) { %>
               <select id="laSelect" name="la" class="form-control" >
                 <% if (selectedLocalGovernment === "default" ) { %>
-                  <option value="default">--------------</option>
+                  <option value="default">Local Governments</option>
                 <% } %>
                 <% localGovernments.forEach(function(la){ %>
                   <option <% if (selectedLocalGovernment === la.localGovernment ) { %>selected<% } %> value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
@@ -101,7 +102,7 @@
               <% if (wards && wards.length) { %>
                 <select id="wardSelect" name="ward" class="form-control" style="margin-left:6px;">
                   <% if (selectedWard === "default" ) { %>
-                    <option value="default">---------------------</option>
+                    <option value="default">Wards</option>
                   <% } %>
                 <% wards.forEach(function(item){ %>
                   <option <% if (selectedWard === item.ward ) { %>selected<% } %> value="<%= item.ward %>"><%= item.ward %></option>
@@ -110,7 +111,7 @@
                 <% if (pollingUnits && pollingUnits.length) { %>
                   <select id="puSelect" name="pu" class="form-control" style="margin-left:6px;">
                     <% if (selectedPu === "default" ) { %>
-                      <option value="default">------------------</option>
+                      <option value="default">Polling Units</option>
                     <% } %>
                   <% pollingUnits.forEach(function(item){ %>
                     <option <% if (selectedPu === item.pollingUnit ) { %>selected<% } %> value="<%= item.pollingUnit %>"><%= item.pollingUnitName + "(" +item.pollingUnit + ")" %></option>
@@ -122,7 +123,7 @@
         <% } else { %>
             <select id="laSelect" name="la" class="form-control" >
               <% if (selectedLocalGovernment === "default" ) { %>
-                <option value="default">--------------</option>
+                <option value="default"><%= AppConfig.state + " " + AppConfig.electionYear %>  Poll</option>
               <% } %>
               <% localGovernments.forEach(function(la){ %>
                 <option <% if (selectedLocalGovernment === la.localGovernment ) { %>selected<% } %> value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
@@ -131,7 +132,7 @@
             <% if (wards && wards.length) { %>
               <select id="wardSelect" name="ward" class="form-control" style="margin-left:6px;">
                 <% if (selectedWard === "default" ) { %>
-                  <option value="default"><%= selectedLocalGovernment %></option>
+                  <option value="default">Wards</option>
                 <% } %>
               <% wards.forEach(function(item){ %>
                 <option <% if (selectedWard === item.ward ) { %>selected<% } %> value="<%= item.ward %>"><%= item.ward %></option>
@@ -140,7 +141,7 @@
               <% if (pollingUnits && pollingUnits.length) { %>
                 <select id="puSelect" name="pu" class="form-control" style="margin-left:6px;">
                   <% if (selectedPu === "default" ) { %>
-                    <option value="default"><%= selectedWard %></option>
+                    <option value="default">Polling Units</option>
                   <% } %>
                 <% pollingUnits.forEach(function(item){ %>
                   <option <% if (selectedPu === item.pollingUnit ) { %>selected<% } %> value="<%= item.pollingUnit %>"><%= item.pollingUnitName + "(" +item.pollingUnit + ")" %></option>
