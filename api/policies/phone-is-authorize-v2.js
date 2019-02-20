@@ -14,7 +14,7 @@ module.exports = async function (req, res, proceed) {
   let phone = req.body.results[0]["from"];
   let sms = req.body.results[0]["text"]; // || cleanText
 
-  if(sms.trim() === "help"){
+  if(sms.trim().toLowerCase() === "help"){
     try{
         let sms = await sendSMS(phone, "Presidential Result : 1,PARTY-VOTE,PARTY-VOTE, PU \nSenatorial Result: 3,PARTY-VOTE,PARTY-VOTE, PU \nIncidence: 2,CODE:PU,Your Comment");
         console.log({sms});
