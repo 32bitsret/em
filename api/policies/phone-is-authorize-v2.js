@@ -117,7 +117,7 @@ module.exports = async function (req, res, proceed) {
         }
         if(!incidence){
             try{
-                let sms = await sendSMS(phone, "incidence code does not exist. Acceptable format is: format: " + (AppConfig.controlLevel === 'WARD' ?  "2,CODE:PU,Your Comment" : "2,CODE,Your Comment"));
+                let sms = await sendSMS(phone, "incidence code does not exist. Acceptable format: " + (AppConfig.controlLevel === 'WARD' ?  "2,CODE:PU,Your Comment" : "2,CODE,Your Comment"));
                 console.log({sms});
             }catch(iErr){
                 console.log({iErr});

@@ -41,7 +41,7 @@ module.exports = {
                 });
             }catch(err){
                 try{
-                    let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone");
+                    let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone. \nAcceptable format is: 1,PARTY-VOTE,PARTY-VOTE" + (AppConfig.controlLevel === 'WARD' ? ", PU" : ""));
                     console.log({sms})
                 }catch(iErr){
                     console.log({iErr});
@@ -51,7 +51,7 @@ module.exports = {
             }
             if (!pollingUnit) {
                 try{
-                    let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone");
+                    let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone. \nAcceptable format is: 1,PARTY-VOTE,PARTY-VOTE" + (AppConfig.controlLevel === 'WARD' ? ", PU" : ""));
                     console.log({sms})
                 }catch(iErr){
                     console.log({iErr});
@@ -151,7 +151,7 @@ module.exports = {
             });
             if (!pollingUnit) {
                 try{
-                    let sms = await sendSMS(warderPhone, "Polling unit not found or assigned to your phone");
+                    let sms = await sendSMS(warderPhone, "Polling unit not found or assigned to your phone. Acceptable format: "+ (AppConfig.controlLevel === 'WARD' ?  "2,CODE:PU,Your Comment" : "2,CODE,Your Comment"));
                     console.log({sms})
                 }catch(iErr){
                     console.log({iErr});
