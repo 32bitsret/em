@@ -14,6 +14,16 @@ module.exports = async function (req, res, proceed) {
   let phone = req.body.results[0]["from"];
   let sms = req.body.results[0]["text"]; // || cleanText
 
+  if(sms.trim() === "help"){
+    try{
+        let sms = await sendSMS(phone, "Presidential Result : 1,PARTY-VOTE,PARTY-VOTE, PU \nSenatorial Result: 3,PARTY-VOTE,PARTY-VOTE, PU \nIncidence: 2,CODE:PU,Your Comment");
+        console.log({sms});
+    }catch(iErr){
+        console.log({iErr});
+    }
+    return;
+  }
+
   console.log({phone, sms});
 
   let smsTokens = sms.replace(/\s+/g, ' ').split(',');
@@ -22,6 +32,9 @@ module.exports = async function (req, res, proceed) {
   var pollingUnit;
   if(AppConfig.controlLevel === 'WARD'){
     try{
+        if(smsTokens.length != 3 || smsTokens[1].split(':').length != 2){
+            throw new Error("Invalid Message Format");
+        }
         pollingUnit = await sails.models.pollingunit.find({
                 phone, 
                 accountEnabled: true
@@ -31,7 +44,7 @@ module.exports = async function (req, res, proceed) {
         }
     }catch(err){
         try{
-            let sms = await sendSMS(phone, "An Error Occured");
+            let sms = await sendSMS(phone, "Error, acceptable format is: 1,PARTY-VOTE,PARTY-VOTE, PU");
             console.log({sms});
         }catch(iErr){
             console.log({iErr});
@@ -48,7 +61,7 @@ module.exports = async function (req, res, proceed) {
         });
     }catch(err){
         try{
-            let sms = await sendSMS(phone, "An Error Occured");
+            let sms = await sendSMS(phone, "Error, acceptable format: 1,PARTY-VOTE,PARTY-VOTE");
             console.log({sms});
         }catch(iErr){
             console.log({iErr});
@@ -89,12 +102,22 @@ module.exports = async function (req, res, proceed) {
             req.smsBody.pu = codePu.split(':')[1];
         }
         console.log("PU", req.smsBody.pu, code);
-        let incidence = await sails.models.incidencetype.findOne({
-            incidenceCode: code, 
-        });
+        try{
+            var incidence = await sails.models.incidencetype.findOne({
+                incidenceCode: code, 
+            });
+        }catch(error){
+            try{
+                let sms = await sendSMS(phone, "Error, acceptable format: 2,CODE:PU,Your Comment");
+                console.log({sms});
+            }catch(iErr){
+                console.log({iErr});
+                return;
+            }
+        }
         if(!incidence){
             try{
-                let sms = await sendSMS(phone, "incidence code does not exist.");
+                let sms = await sendSMS(phone, "incidence code does not exist. Acceptable format is: format: 2,CODE:PU,Your Comment");
                 console.log({sms});
             }catch(iErr){
                 console.log({iErr});
@@ -114,7 +137,7 @@ module.exports = async function (req, res, proceed) {
         req.smsBody.raw = JSON.stringify(sms);
     }else{
         try{
-            let sms = await sendSMS(phone, "Invalid, command sent");
+            let sms = await sendSMS(phone, "Invalid, command sent: Acceptable format is: format: 2,CODE:PU,Your Comment");
             console.log({sms});
         }catch(iErr){
             console.log({iErr});
