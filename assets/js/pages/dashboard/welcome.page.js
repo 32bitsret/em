@@ -97,7 +97,7 @@ parasails.registerPage('welcome', {
 
     getSMSErrors: async function(){
       if(!displayErrors) return;
-      let endpoint = '/smserrors?limit=6000';
+      let endpoint = '/smserror?limit=6000';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
