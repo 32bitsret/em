@@ -17,8 +17,6 @@ module.exports.routes = {
   'GET /welcome':   'WelcomeController.getDashboard',
   'GET /senate':   'WelcomeController.getSenatorialDashboard',
   'GET /dataChange': 'SMSController.subscribeToDataChanges',
-  'GET /errors': 'WelcomeController.errors',
-  'GET /smserrors': 'WelcomeController.smsErrors',
 
   'GET /faq':                { view:   'pages/faq' },
   'GET /legal/terms':        { view:   'pages/legal/terms' },

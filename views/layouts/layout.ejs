@@ -97,7 +97,7 @@
                   <option value="default">Local Governments</option>
                 <% } %>
                 <% localGovernments.forEach(function(la){ %>
-                  <option <% if (selectedLocalGovernment === la.localGovernment ) { %>selected<% } %> value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
+                  <option <% if (selectedLocalGovernment === la ) { %>selected<% } %> value="<%= la %>"><%= la %></option>
                 <% }); %>
               </select>
               <% if (wards && wards.length) { %>
@@ -127,7 +127,7 @@
                 <option value="default"><%= AppConfig.state + " " + AppConfig.electionYear %>  Poll</option>
               <% } %>
               <% localGovernments.forEach(function(la){ %>
-                <option <% if (selectedLocalGovernment === la.localGovernment ) { %>selected<% } %> value="<%= la.localGovernment %>"><%= la.localGovernment %></option>
+                <option <% if (selectedLocalGovernment === la ) { %>selected<% } %> value="<%= la %>"><%= la %></option>
               <% }); %>
             </select>
             <% if (wards && wards.length) { %>
