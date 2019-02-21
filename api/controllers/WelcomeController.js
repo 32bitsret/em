@@ -83,6 +83,7 @@ module.exports = {
         }
         let wards = [], pollingUnits = [], pageName = `${AppConfig.state} ${AppConfig.electionYear} Poll`;
         if(req.query["la"]){
+            console.log({localGovernment: req.query["la"]);
             electionResults = await sails.models.electionresult.find({localGovernment: req.query["la"]});
             wards = _.uniqBy(electionResults, 'ward');
             pageName = req.query["la"];
