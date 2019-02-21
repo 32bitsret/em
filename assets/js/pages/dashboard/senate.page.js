@@ -66,15 +66,15 @@ parasails.registerPage('senate', {
     },
 
     probeElectionResult: function(){
-        let endpoint = '/electionsenateresult';
+        let endpoint = '/electionsenateresult?limit=6000';
         if(selectedSenatorialZone !== 'default'){
-          endpoint += '?zone=' + selectedSenatorialZone;
+          endpoint += '&zone=' + encodeURIComponent(selectedSenatorialZone);
               if(selectedLocalGovernment !== 'default'){
-                  endpoint += '&localGovernment=' + selectedLocalGovernment;
+                  endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                   if(selectedWard !== 'default'){
-                      endpoint += '&ward=' + selectedWard;
+                      endpoint += '&ward=' + encodeURIComponent(selectedWard);
                       if(selectedPu !== 'default'){
-                          endpoint += '&pollingUnit=' + selectedPu;
+                          endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
                       }
                   }
               }
@@ -84,15 +84,15 @@ parasails.registerPage('senate', {
     },
 
     probeIncidence: function(){
-      let endpoint = '/incidencereport';
+      let endpoint = '/incidencereport?limit=6000';
       if(selectedSenatorialZone !== 'default'){
-          endpoint += '?zone=' + selectedSenatorialZone;
+          endpoint += '&zone=' + encodeURIComponent(selectedSenatorialZone);
             if(selectedLocalGovernment !== 'default'){
-                endpoint += '&localGovernment=' + selectedLocalGovernment;
+                endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                 if(selectedWard !== 'default'){
-                    endpoint += '&ward=' + selectedWard;
+                    endpoint += '&ward=' + encodeURIComponent(selectedWard);
                     if(selectedPu !== 'default'){
-                        endpoint += '&pollingUnit=' + selectedPu;
+                        endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
                     }
                 }
             }
@@ -119,15 +119,15 @@ parasails.registerPage('senate', {
     },
 
     getElectionResult: async function(){
-      let endpoint = '/electionsenateresult';
+      let endpoint = '/electionsenateresult?limit=6000';
       if(selectedSenatorialZone !== 'default'){
-        endpoint += '?zone=' + selectedSenatorialZone;
+        endpoint += '&zone=' + encodeURIComponent(selectedSenatorialZone);
             if(selectedLocalGovernment !== 'default'){
-                endpoint += '&localGovernment=' + selectedLocalGovernment;
+                endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                 if(selectedWard !== 'default'){
-                    endpoint += '&ward=' + selectedWard;
+                    endpoint += '&ward=' + encodeURIComponent(selectedWard);
                     if(selectedPu !== 'default'){
-                        endpoint += '&pollingUnit=' + selectedPu;
+                        endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
                     }
                 }
             }
@@ -140,13 +140,13 @@ parasails.registerPage('senate', {
     getResultSummary: async function(){
       let endpoint = '/api/query2';
       if(selectedSenatorialZone !== 'default'){
-        endpoint += '?zone=' + selectedSenatorialZone;
+        endpoint += '?zone=' + encodeURIComponent(selectedSenatorialZone);
             if(selectedLocalGovernment !== 'default'){
-                endpoint += '&localGovernment=' + selectedLocalGovernment;
+                endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                 if(selectedWard !== 'default'){
-                    endpoint += '&ward=' + selectedWard;
+                    endpoint += '&ward=' + encodeURIComponent(selectedWard);
                     if(selectedPu !== 'default'){
-                        endpoint += '&pollingUnit=' + selectedPu;
+                        endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
                     }
                 }
             }
@@ -156,15 +156,15 @@ parasails.registerPage('senate', {
     },
 
     getIncidenceResult: async function(){
-      let endpoint = '/incidencereport';
+      let endpoint = '/incidencereport?limit=6000';
       if(selectedSenatorialZone !== 'default'){
-          endpoint += '?zone=' + selectedSenatorialZone;
+          endpoint += '&zone=' + encodeURIComponent(selectedSenatorialZone);
             if(selectedLocalGovernment !== 'default'){
-                endpoint += '&localGovernment=' + selectedLocalGovernment;
+                endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                 if(selectedWard !== 'default'){
-                    endpoint += '&ward=' + selectedWard;
+                    endpoint += '&ward=' + encodeURIComponent(selectedWard);
                     if(selectedPu !== 'default'){
-                        endpoint += '&pollingUnit=' + selectedPu;
+                        endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
                     }
                 }
             }

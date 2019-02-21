@@ -70,11 +70,11 @@ parasails.registerPage('welcome', {
     probeElectionResult: function(){
       let endpoint = '/electionresult?limit=6000';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '&localGovernment=' + selectedLocalGovernment;
+        endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
+          endpoint += '&ward=' + encodeURIComponent(selectedWard);
           if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
+            endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
           }
         }
       }
@@ -84,11 +84,11 @@ parasails.registerPage('welcome', {
     probeIncidence: function(){
       let endpoint = '/incidencereport?limit=6000';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '&localGovernment=' + selectedLocalGovernment;
+        endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
+          endpoint += '&ward=' + encodeURIComponent(selectedWard);
           if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
+            endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
           }
         }
       }
@@ -99,11 +99,11 @@ parasails.registerPage('welcome', {
       if(!displayErrors) return;
       let endpoint = '/smserror?limit=6000';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '&localGovernment=' + selectedLocalGovernment;
+        endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
+          endpoint += '&ward=' + encodeURIComponent(selectedWard);
           if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
+            endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
           }
         }
       }
@@ -145,11 +145,11 @@ parasails.registerPage('welcome', {
     getElectionResult: async function(){
       let endpoint = '/electionresult?limit=6000';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '&localGovernment=' + selectedLocalGovernment;
+        endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
+          endpoint += '&ward=' + encodeURIComponent(selectedWard);
           if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
+            endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
           }
         }
       } 
@@ -161,11 +161,11 @@ parasails.registerPage('welcome', {
     getResultSummary: async function(){
       let endpoint = '/api/query1';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        endpoint += '?localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
+          endpoint += '&ward=' + encodeURIComponent(selectedWard);
           if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
+            endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
           }
         }
       }
@@ -176,11 +176,11 @@ parasails.registerPage('welcome', {
     getIncidenceResult: async function(){
       let endpoint = '/incidencereport?limit=6000';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '&localGovernment=' + selectedLocalGovernment;
+        endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
+          endpoint += '&ward=' + encodeURIComponent(selectedWard);
           if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
+            endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
           }
         }
       }
