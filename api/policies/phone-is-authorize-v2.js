@@ -48,7 +48,8 @@ module.exports = async function (req, res, proceed) {
                 state: pollingUnit.state,
                 senatorialZone: pollingUnit.senatorialZone,
                 localGovernment: pollingUnit.localGovernment,
-                ward: pollingUnit.ward
+                ward: pollingUnit.ward,
+                phoneUserName: pollingUnit.phoneUserName
             });
             console.log({qsms});
         }catch(iErr){
@@ -73,7 +74,8 @@ module.exports = async function (req, res, proceed) {
                 state: pollingUnit.state,
                 senatorialZone: pollingUnit.senatorialZone,
                 localGovernment: pollingUnit.localGovernment,
-                ward: pollingUnit.ward
+                ward: pollingUnit.ward,
+                phoneUserName: pollingUnit.phoneUserName
             });
             console.log({qsms});
         }catch(iErr){
@@ -127,11 +129,13 @@ module.exports = async function (req, res, proceed) {
                 let qsms = await sendSMS(phone, AppConfig.controlLevel === 'WARD' ? "Error, acceptable format: 2,CODE:PU,Your Comment" : "Error, acceptable format: 2,CODE,Your Comment");
                 await sails.models.smserror.create({
                     sms: sms,
+                    error: error.message || "",
                     phone,
                     state: pollingUnit.state,
                     senatorialZone: pollingUnit.senatorialZone,
                     localGovernment: pollingUnit.localGovernment,
-                    ward: pollingUnit.ward
+                    ward: pollingUnit.ward,
+                    phoneUserName: pollingUnit.phoneUserName
                 });
                 console.log({qsms});
             }catch(iErr){
@@ -145,10 +149,12 @@ module.exports = async function (req, res, proceed) {
                 await sails.models.smserror.create({
                     sms: sms,
                     phone,
+                    error: "incidence not found",
                     state: pollingUnit.state,
                     senatorialZone: pollingUnit.senatorialZone,
                     localGovernment: pollingUnit.localGovernment,
-                    ward: pollingUnit.ward
+                    ward: pollingUnit.ward,
+                    phoneUserName: pollingUnit.phoneUserName
                 });
                 console.log({qsms});
             }catch(iErr){
@@ -176,7 +182,8 @@ module.exports = async function (req, res, proceed) {
                 state: pollingUnit.state,
                 senatorialZone: pollingUnit.senatorialZone,
                 localGovernment: pollingUnit.localGovernment,
-                ward: pollingUnit.ward
+                ward: pollingUnit.ward,
+                phoneUserName: pollingUnit.phoneUserName
             });
             console.log({qsms});
         }catch(iErr){

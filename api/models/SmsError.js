@@ -13,6 +13,10 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
+    error: {
+      type: 'string',
+    },
+
     sms: {
         type: 'string',
       },
@@ -36,6 +40,10 @@ module.exports = {
     phone: {
       type: 'string',
     },
+
+    phoneUserName: {
+        type: 'string',
+      },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

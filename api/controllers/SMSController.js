@@ -45,10 +45,11 @@ module.exports = {
                     await sails.models.smserror.create({
                         sms: body.raw,
                         phone: warderPhone,
-                        state: pollingUnit.state,
-                        senatorialZone: pollingUnit.senatorialZone,
-                        localGovernment: pollingUnit.localGovernment,
-                        ward: pollingUnit.ward
+                        state: req.pollingUnit.state,
+                        senatorialZone: req.pollingUnit.senatorialZone,
+                        localGovernment: req.pollingUnit.localGovernment,
+                        ward: req.pollingUnit.ward,
+                        phoneUserName: req.pollingUnit.phoneUserName
                     });
                     console.log({qsms})
                 }catch(iErr){
@@ -63,10 +64,11 @@ module.exports = {
                     await sails.models.smserror.create({
                         sms: body.raw,
                         phone: warderPhone,
-                        state: pollingUnit.state,
-                        senatorialZone: pollingUnit.senatorialZone,
-                        localGovernment: pollingUnit.localGovernment,
-                        ward: pollingUnit.ward
+                        state: req.pollingUnit.state,
+                        senatorialZone: req.pollingUnit.senatorialZone,
+                        localGovernment: req.pollingUnit.localGovernment,
+                        ward: req.pollingUnit.ward,
+                        phoneUserName: req.pollingUnit.phoneUserName
                     });
                     console.log({sms})
                 }catch(iErr){
