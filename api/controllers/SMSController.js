@@ -115,7 +115,7 @@ module.exports = {
                     }else{
                         //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
                         if(body.resultType == 1){
-                            updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {vote: data[i].vote, changeVote: data[i].vote, updatedAt: Date.now(), raw: data[i].raw})).fetch();
+                            updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {/*vote: data[i].vote, */changeVote: data[i].vote, updatedAt: Date.now(), raw: data[i].raw})).fetch();
                         }else{
                             updated = await sails.models.electionsenateresult.update(created).set(Object.assign({}, created, {changeVote: data[i].vote, updatedAt: Date.now(), raw: data[i].raw})).fetch();
                         }
