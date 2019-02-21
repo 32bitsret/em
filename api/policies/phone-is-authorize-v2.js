@@ -27,7 +27,7 @@ module.exports = async function (req, res, proceed) {
 
   console.log({phone, sms});
 
-  let smsTokens = sms.replace(/\s+/g, ' ').split(',');
+  let smsTokens = sms.replace(/\s+/g, ' ').replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/['"]+/g, '').split(',');
   smsTokens = smsTokens.map((item, index) => item.trim());
 
   var pollingUnit;
