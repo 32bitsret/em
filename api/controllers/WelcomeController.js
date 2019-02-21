@@ -55,7 +55,7 @@ module.exports = {
           wards,
           pageName,
           AppConfig,
-          displayErrors: req.query['errors'] ? true : false,
+          displayErrors: true, //req.query['errors'] ? true : false,
           pollingUnits,
           controlLevel,
           selectedZone: req.query["zone"] || "default",
