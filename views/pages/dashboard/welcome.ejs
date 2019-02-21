@@ -158,6 +158,8 @@
           </thead>
           <tbody>
             <tr v-for="error in smserrors.slice().reverse()">
+              <td>{{error.localGovernment}}</td>
+              <td>{{error.ward}}</td>
               <td>{{error.phone}}</td>
               <td>{{error.sms}}</td>
               <td>{{error.timeAgo}}</td>
