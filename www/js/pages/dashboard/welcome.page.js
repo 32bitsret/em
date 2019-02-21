@@ -98,6 +98,15 @@ parasails.registerPage('welcome', {
     getSMSErrors: async function(){
       if(!displayErrors) return;
       let endpoint = '/smserrors?limit=6000';
+      if(selectedLocalGovernment !== 'default'){
+        endpoint += '&localGovernment=' + selectedLocalGovernment;
+        if(selectedWard !== 'default'){
+          endpoint += '&ward=' + selectedWard;
+          if(selectedPu !== 'default'){
+            endpoint += '&pollingUnit=' + selectedPu;
+          }
+        }
+      }
       console.log(endpoint);
       io.socket.get(endpoint, this.fillSMSErrors);
     },

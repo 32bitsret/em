@@ -14,14 +14,14 @@ let controlLevel = AppConfig.controlLevel;
 module.exports = {
 
     errors: (req, res) => {
-        req.redirect('/?errors=true');
+        req.redirect('/welcome?errors=true');
     },
 
     smsErrors: async (req, res)=> {
         let smserrors = await sails.models.smserror.find({});
         res.send(smserrors);
     },
-    
+
     getSenatorialDashboard: async(req, res) => {
         let electionResults = await sails.models.electionsenateresult.find({});
         let zones = _.uniqBy(electionResults, 'senatorialZone');
