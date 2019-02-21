@@ -120,6 +120,7 @@ parasails.registerPage('senate', {
                     }
                 }
             }
+            console.log(endpoint);
             io.socket.get(endpoint, this.fillElectionResult);
             setInterval(this.probeElectionResult, 1200000000);       
         }
@@ -137,6 +138,7 @@ parasails.registerPage('senate', {
                     }
                 }
             }
+            console.log(endpoint);
             io.socket.get(endpoint, this.fillResultSummary);
         }
     },
@@ -153,6 +155,7 @@ parasails.registerPage('senate', {
                     }
                 }
             }
+            console.log(endpoint);
             io.socket.get(endpoint, this.fillIncidenceResult);
             setInterval(this.probeIncidence, 1200000000);
         }
