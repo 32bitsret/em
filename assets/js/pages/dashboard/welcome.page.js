@@ -97,7 +97,7 @@ parasails.registerPage('welcome', {
 
     getSMSErrors: async function(){
       if(!displayErrors) return;
-      let endpoint = '/smserrors';
+      let endpoint = '/smserrors?limit=6000';
       console.log(endpoint);
       io.socket.get(endpoint, this.fillSMSErrors);
     },
