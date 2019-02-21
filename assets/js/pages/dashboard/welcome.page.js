@@ -11,6 +11,7 @@ parasails.registerPage('welcome', {
     electionresults: [], 
     incidencereports: [],
     resultSummary: [],
+    smserrors: [],
   },
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
@@ -23,6 +24,7 @@ parasails.registerPage('welcome', {
     await this.getElectionResult();
     await this.getIncidenceResult();
     await this.getResultSummary();
+    await this.getSMSErrors();
     let self = this;
     io.socket.on('message', function (data){
       if(data.type === 'electionresult'){
@@ -31,6 +33,7 @@ parasails.registerPage('welcome', {
       }else if(data.type === 'incidencereport'){
         self.getResultSummary();
       }
+      self.getSMSErrors();
     });
   },
 
@@ -90,6 +93,21 @@ parasails.registerPage('welcome', {
         }
       }
       io.socket.get(endpoint, this.fillIncidenceResult);
+    },
+
+    getSMSErrors: async function(){
+      if(!displayErrors) return;
+      let endpoint = '/smserrors';
+      console.log(endpoint);
+      io.socket.get(endpoint, this.fillSMSErrors);
+    },
+
+    fillSMSErrors: function(body){
+      if(body && body.length){
+        this.smserrors = body.map(function (currentValue, index, array) {
+          return Object.assign({}, currentValue, {timeAgo: moment(currentValue.updatedAt).fromNow()});
+        });
+      }
     },
 
 

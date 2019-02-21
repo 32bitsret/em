@@ -12,6 +12,16 @@
 let controlLevel = AppConfig.controlLevel;
 
 module.exports = {
+
+    errors: (req, res) => {
+        req.redirect('/?errors=true');
+    },
+
+    smsErrors: async (req, res)=> {
+        let smserrors = await sails.models.smserror.find({});
+        res.send(smserrors);
+    },
+    
     getSenatorialDashboard: async(req, res) => {
         let electionResults = await sails.models.electionsenateresult.find({});
         let zones = _.uniqBy(electionResults, 'senatorialZone');
@@ -45,6 +55,7 @@ module.exports = {
           wards,
           pageName,
           AppConfig,
+          displayErrors: req.query['errors'] ? true : false,
           pollingUnits,
           controlLevel,
           selectedZone: req.query["zone"] || "default",
@@ -84,6 +95,7 @@ module.exports = {
           pageName,
           AppConfig,
           pollingUnits,
+          displayErrors: req.query['errors'] ? true : false,
           controlLevel,
           selectedZone,
           selectedLocalGovernment: req.query["la"] || "default",

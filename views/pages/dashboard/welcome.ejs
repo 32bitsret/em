@@ -147,6 +147,24 @@
           </table>
       </div>
     </div>
+    <div id="row" v-if="smserrors.length > 0">
+      <h1>SMS Errors</h1>
+      <table class="table table-striped table-responsive" style="font-size: 14px;">
+          <thead>
+            <tr>
+              <th>Phone</th>
+              <th>SMS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="error in smserrors.slice().reverse()">
+              <td>{{error.phone}}</td>
+              <td>{{error.sms}}</td>
+              <td>{{error.timeAgo}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
     </div>
   </template>
   
