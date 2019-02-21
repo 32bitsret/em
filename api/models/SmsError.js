@@ -17,6 +17,22 @@ module.exports = {
         type: 'string',
       },
 
+      state: {
+        type: 'string',
+        },
+
+        senatorialZone: {
+            type: 'string',
+            },
+
+    localGovernment: {
+    type: 'string',
+    },
+
+    ward: {
+    type: 'string',
+    },
+
     phone: {
       type: 'string',
     },

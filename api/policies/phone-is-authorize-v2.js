@@ -44,7 +44,11 @@ module.exports = async function (req, res, proceed) {
             let qsms = await sendSMS(phone, "Error, acceptable format is: 1,PARTY-VOTE,PARTY-VOTE, PU");
             await sails.models.smserror.create({
                 sms: sms,
-                phone
+                phone,
+                state: pollingUnit.state,
+                senatorialZone: pollingUnit.senatorialZone,
+                localGovernment: pollingUnit.localGovernment,
+                ward: pollingUnit.ward
             });
             console.log({qsms});
         }catch(iErr){
@@ -65,7 +69,11 @@ module.exports = async function (req, res, proceed) {
             let qsms = await sendSMS(phone, "Error, acceptable format: 1,PARTY-VOTE,PARTY-VOTE");
             await sails.models.smserror.create({
                 sms: sms,
-                phone
+                phone,
+                state: pollingUnit.state,
+                senatorialZone: pollingUnit.senatorialZone,
+                localGovernment: pollingUnit.localGovernment,
+                ward: pollingUnit.ward
             });
             console.log({qsms});
         }catch(iErr){
@@ -119,7 +127,11 @@ module.exports = async function (req, res, proceed) {
                 let qsms = await sendSMS(phone, AppConfig.controlLevel === 'WARD' ? "Error, acceptable format: 2,CODE:PU,Your Comment" : "Error, acceptable format: 2,CODE,Your Comment");
                 await sails.models.smserror.create({
                     sms: sms,
-                    phone
+                    phone,
+                    state: pollingUnit.state,
+                    senatorialZone: pollingUnit.senatorialZone,
+                    localGovernment: pollingUnit.localGovernment,
+                    ward: pollingUnit.ward
                 });
                 console.log({qsms});
             }catch(iErr){
@@ -132,7 +144,11 @@ module.exports = async function (req, res, proceed) {
                 let qsms = await sendSMS(phone, "incidence code does not exist. Acceptable format: " + (AppConfig.controlLevel === 'WARD' ?  "2,CODE:PU,Your Comment" : "2,CODE,Your Comment"));
                 await sails.models.smserror.create({
                     sms: sms,
-                    phone
+                    phone,
+                    state: pollingUnit.state,
+                    senatorialZone: pollingUnit.senatorialZone,
+                    localGovernment: pollingUnit.localGovernment,
+                    ward: pollingUnit.ward
                 });
                 console.log({qsms});
             }catch(iErr){
@@ -156,7 +172,11 @@ module.exports = async function (req, res, proceed) {
             let qsms = await sendSMS(phone, "Invalid, command sent: Acceptable format is: " + (AppConfig.controlLevel === 'WARD' ?  "2,CODE:PU,Your Comment" : "2,CODE,Your Comment"));
             await sails.models.smserror.create({
                 sms: sms,
-                phone
+                phone,
+                state: pollingUnit.state,
+                senatorialZone: pollingUnit.senatorialZone,
+                localGovernment: pollingUnit.localGovernment,
+                ward: pollingUnit.ward
             });
             console.log({qsms});
         }catch(iErr){
