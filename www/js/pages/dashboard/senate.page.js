@@ -66,35 +66,44 @@ parasails.registerPage('senate', {
     },
 
     probeElectionResult: function(){
-      let endpoint = '/electionsenateresult';
-      if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
-        if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
-          if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
+        let endpoint = '/electionsenateresult';
+        if(selectedSenatorialZone !== 'default'){
+          endpoint += '?zone=' + selectedSenatorialZone;
+              if(selectedLocalGovernment !== 'default'){
+                  endpoint += '&localGovernment=' + selectedLocalGovernment;
+                  if(selectedWard !== 'default'){
+                      endpoint += '&ward=' + selectedWard;
+                      if(selectedPu !== 'default'){
+                          endpoint += '&pollingUnit=' + selectedPu;
+                      }
+                  }
+              }
+              console.log(endpoint);
+              io.socket.get(endpoint, this.fillElectionResult);
           }
-        }
-        io.socket.get(endpoint, this.fillElectionResult);
-      }
     },
 
     probeIncidence: function(){
       let endpoint = '/incidencereport';
-      if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
-        if(selectedWard !== 'default'){
-          endpoint += '&ward=' + selectedWard;
-          if(selectedPu !== 'default'){
-            endpoint += '&pollingUnit=' + selectedPu;
-          }
+      if(selectedSenatorialZone !== 'default'){
+          endpoint += '?zone=' + selectedSenatorialZone;
+            if(selectedLocalGovernment !== 'default'){
+                endpoint += '&localGovernment=' + selectedLocalGovernment;
+                if(selectedWard !== 'default'){
+                    endpoint += '&ward=' + selectedWard;
+                    if(selectedPu !== 'default'){
+                        endpoint += '&pollingUnit=' + selectedPu;
+                    }
+                }
+            }
+            console.log(endpoint);
+            io.socket.get(endpoint, this.fillIncidenceResult);
         }
-        io.socket.get(endpoint, this.fillIncidenceResult);
-      }
     },
 
 
     fillIncidenceResult: function(body){
+    console.log({fillIncidenceResult: body});
       if(body && body.length){
         this.incidencereports = body.map(function (currentValue, index, array) {
           return Object.assign({}, currentValue, {timeAgo: moment(currentValue.updatedAt).fromNow()});
@@ -103,6 +112,7 @@ parasails.registerPage('senate', {
     },
 
     fillResultSummary: function(body){
+      console.log({fillResultSummary: body});
       if(body && body.length){
         this.resultSummary = body;
       }
