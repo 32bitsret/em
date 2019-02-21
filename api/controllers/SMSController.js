@@ -41,8 +41,12 @@ module.exports = {
                 });
             }catch(err){
                 try{
-                    let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone. \nAcceptable format is: 1,PARTY-VOTE,PARTY-VOTE" + (AppConfig.controlLevel === 'WARD' ? ", PU" : ""));
-                    console.log({sms})
+                    let qsms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone. \nAcceptable format is: 1,PARTY-VOTE,PARTY-VOTE" + (AppConfig.controlLevel === 'WARD' ? ", PU" : ""));
+                    await sails.models.smserror.create({
+                        sms: body.raw,
+                        phone
+                    });
+                    console.log({qsms})
                 }catch(iErr){
                     console.log({iErr});
                 }
@@ -52,6 +56,10 @@ module.exports = {
             if (!pollingUnit) {
                 try{
                     let sms = await sendSMS(warderPhone, "Polling unit not found or not assigned to your phone. \nAcceptable format is: 1,PARTY-VOTE,PARTY-VOTE" + (AppConfig.controlLevel === 'WARD' ? ", PU" : ""));
+                    await sails.models.smserror.create({
+                        sms: body.raw,
+                        phone
+                    });
                     console.log({sms})
                 }catch(iErr){
                     console.log({iErr});
