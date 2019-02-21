@@ -68,9 +68,9 @@ parasails.registerPage('welcome', {
     },
 
     probeElectionResult: function(){
-      let endpoint = '/electionresult';
+      let endpoint = '/electionresult?limit=6000';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        endpoint += '&localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
           if(selectedPu !== 'default'){
@@ -82,9 +82,9 @@ parasails.registerPage('welcome', {
     },
 
     probeIncidence: function(){
-      let endpoint = '/incidencereport';
+      let endpoint = '/incidencereport?limit=6000';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        endpoint += '&localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
           if(selectedPu !== 'default'){
@@ -143,9 +143,9 @@ parasails.registerPage('welcome', {
     },
 
     getElectionResult: async function(){
-      let endpoint = '/electionresult';
+      let endpoint = '/electionresult?limit=6000';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        endpoint += '&localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
           if(selectedPu !== 'default'){
@@ -174,9 +174,9 @@ parasails.registerPage('welcome', {
     },
 
     getIncidenceResult: async function(){
-      let endpoint = '/incidencereport';
+      let endpoint = '/incidencereport?limit=6000';
       if(selectedLocalGovernment !== 'default'){
-        endpoint += '?localGovernment=' + selectedLocalGovernment;
+        endpoint += '&localGovernment=' + selectedLocalGovernment;
         if(selectedWard !== 'default'){
           endpoint += '&ward=' + selectedWard;
           if(selectedPu !== 'default'){
