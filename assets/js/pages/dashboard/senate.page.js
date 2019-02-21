@@ -110,6 +110,10 @@ parasails.registerPage('senate', {
 
     getElectionResult: async function(){
       let endpoint = '/electionsenateresult';
+      console.log({selectedSenatorialZone});
+      console.log({selectedLocalGovernment});
+      console.log({selectedWard});
+      console.log({selectedPu});
       if(selectedSenatorialZone !== 'default'){
             if(selectedLocalGovernment !== 'default'){
                 endpoint += '?localGovernment=' + selectedLocalGovernment;
@@ -128,6 +132,10 @@ parasails.registerPage('senate', {
 
     getResultSummary: async function(){
       let endpoint = '/api/query2';
+      console.log({selectedSenatorialZone});
+      console.log({selectedLocalGovernment});
+      console.log({selectedWard});
+      console.log({selectedPu});
       if(selectedSenatorialZone !== 'default'){
             if(selectedLocalGovernment !== 'default'){
                 endpoint += '?localGovernment=' + selectedLocalGovernment;
@@ -145,6 +153,10 @@ parasails.registerPage('senate', {
 
     getIncidenceResult: async function(){
       let endpoint = '/incidencereport';
+      console.log({selectedSenatorialZone});
+      console.log({selectedLocalGovernment});
+      console.log({selectedWard});
+      console.log({selectedPu});
       if(selectedSenatorialZone !== 'default'){
             if(selectedLocalGovernment !== 'default'){
                 endpoint += '?localGovernment=' + selectedLocalGovernment;
