@@ -196,8 +196,18 @@ module.exports = async function (req, res, proceed) {
     return proceed();
   }
   try{
-    let sms = await sendSMS(phone, "Your phone number is not authorize to perform this operation");
-        console.log({sms});
+    let qsms = await sendSMS(phone, "Your phone number is not authorize to perform this operation");
+        await sails.models.smserror.create({
+            sms: sms,
+            phone,
+            error: "Unauthorized Phone",
+            state: "",
+            senatorialZone: "",
+            localGovernment: "",
+            ward: "",
+            phoneUserName: "Unknown User"
+        });
+        console.log({qsms});
     }catch(iErr){
         console.log({iErr});
     }
