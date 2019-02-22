@@ -60,6 +60,16 @@ parasails.registerPage('welcome', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
 
+    getClass(electionresult) {
+      if (electionresult.changeVote ) {
+        return "changeVote";
+      }
+      if (electionresult.adminPhone) {
+        return "updatedVote";
+      }
+      return "normal";
+    },
+
     fillElectionResult: function(body){
       if(body && body.length){
         this.electionresults = body.map(function (currentValue, index, array) {
