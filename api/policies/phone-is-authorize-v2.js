@@ -52,6 +52,7 @@ module.exports = async function (req, res, proceed) {
                 ward: pollingUnit.ward,
                 phoneUserName: pollingUnit.phoneUserName
             });
+            sails.sockets.broadcast('reload', {type: 'smserros'});
             console.log({qsms});
         }catch(iErr){
             console.log({iErr});
@@ -78,6 +79,7 @@ module.exports = async function (req, res, proceed) {
                 ward: pollingUnit.ward,
                 phoneUserName: pollingUnit.phoneUserName
             });
+            sails.sockets.broadcast('reload', {type: 'smserros'});
             console.log({qsms});
         }catch(iErr){
             console.log({iErr});
@@ -138,6 +140,7 @@ module.exports = async function (req, res, proceed) {
                     ward: pollingUnit.ward,
                     phoneUserName: pollingUnit.phoneUserName
                 });
+                sails.sockets.broadcast('reload', {type: 'smserros'});
                 console.log({qsms});
             }catch(iErr){
                 console.log({iErr});
@@ -157,6 +160,7 @@ module.exports = async function (req, res, proceed) {
                     ward: pollingUnit.ward,
                     phoneUserName: pollingUnit.phoneUserName
                 });
+                sails.sockets.broadcast('reload', {type: 'smserros'});
                 console.log({qsms});
             }catch(iErr){
                 console.log({iErr});
@@ -186,6 +190,7 @@ module.exports = async function (req, res, proceed) {
                 ward: pollingUnit.ward,
                 phoneUserName: pollingUnit.phoneUserName
             });
+            sails.sockets.broadcast('reload', {type: 'smserros'});
             console.log({qsms});
         }catch(iErr){
             console.log({iErr});
@@ -208,6 +213,7 @@ module.exports = async function (req, res, proceed) {
             ward: "",
             phoneUserName: "Unknown User"
         });
+        sails.sockets.broadcast('reload', {type: 'smserros'});
         console.log({qsms});
     }catch(iErr){
         console.log({iErr});

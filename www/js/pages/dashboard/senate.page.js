@@ -68,7 +68,7 @@ parasails.registerPage('senate', {
     probeElectionResult: function(){
         let endpoint = '/electionsenateresult?limit=6000';
         if(selectedSenatorialZone !== 'default'){
-          endpoint += '&zone=' + encodeURIComponent(selectedSenatorialZone);
+          endpoint += '&senatorialZone=' + encodeURIComponent(selectedSenatorialZone);
               if(selectedLocalGovernment !== 'default'){
                   endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                   if(selectedWard !== 'default'){
@@ -86,7 +86,7 @@ parasails.registerPage('senate', {
     probeIncidence: function(){
       let endpoint = '/incidencereport?limit=6000';
       if(selectedSenatorialZone !== 'default'){
-          endpoint += '&zone=' + encodeURIComponent(selectedSenatorialZone);
+          endpoint += '&senatorialZone=' + encodeURIComponent(selectedSenatorialZone);
             if(selectedLocalGovernment !== 'default'){
                 endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                 if(selectedWard !== 'default'){
@@ -121,7 +121,7 @@ parasails.registerPage('senate', {
     getElectionResult: async function(){
       let endpoint = '/electionsenateresult?limit=6000';
       if(selectedSenatorialZone !== 'default'){
-        endpoint += '&zone=' + encodeURIComponent(selectedSenatorialZone);
+        endpoint += '&senatorialZone=' + encodeURIComponent(selectedSenatorialZone);
             if(selectedLocalGovernment !== 'default'){
                 endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                 if(selectedWard !== 'default'){
@@ -157,8 +157,8 @@ parasails.registerPage('senate', {
 
     getIncidenceResult: async function(){
       let endpoint = '/incidencereport?limit=6000';
-      if(selectedSenatorialZone !== 'default'){
-          endpoint += '&zone=' + encodeURIComponent(selectedSenatorialZone);
+      if(selectedSenatorialZone !== 'default'){ 
+          endpoint += '&senatorialZone=' + encodeURIComponent(selectedSenatorialZone);
             if(selectedLocalGovernment !== 'default'){
                 endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                 if(selectedWard !== 'default'){

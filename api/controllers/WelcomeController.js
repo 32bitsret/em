@@ -23,11 +23,11 @@ module.exports = {
                 let incidencereport = await sails.models.incidencereport.find({});
                 let lgs = _.uniqBy(incidencereport, 'localGovernment');
                 for(let i = 0; i < localGovernments.length; i++){
-                    filterLgas.push(localGovernments[i].localGovernment);
+                    filterLgas.push(localGovernments[i].localGovernment.trim());
                 }
                 for(let i = 0; i < lgs.length; i++){
-                    if(filterLgas.indexOf(lgs[i]) === -1){
-                        filterLgas.push(lgs[i].localGovernment);
+                    if(filterLgas.indexOf(lgs[i].localGovernment.trim()) == -1){
+                        filterLgas.push(lgs[i].localGovernment.trim());
                     }
                 }
 
@@ -74,11 +74,11 @@ module.exports = {
         let lgs = _.uniqBy(incidencereport, 'localGovernment');
         let filterLgas = [];
         for(let i = 0; i < localGovernments.length; i++){
-            filterLgas.push(localGovernments[i].localGovernment);
+            filterLgas.push(localGovernments[i].localGovernment.trim());
         }
         for(let i = 0; i < lgs.length; i++){
-            if(filterLgas.indexOf(lgs[i]) === -1){
-                filterLgas.push(lgs[i].localGovernment);
+            if(filterLgas.indexOf(lgs[i].localGovernment.trim()) === -1){
+                filterLgas.push(lgs[i].localGovernment.trim());
             }
         }
         let wards = [], pollingUnits = [], pageName = `${AppConfig.state} ${AppConfig.electionYear} Poll`;
