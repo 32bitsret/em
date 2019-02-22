@@ -31,7 +31,7 @@ grunt build && git add . && git commit -m "debug" && git push heroku master && h
 
 ## ENVs
 ```sh
-export APP_URL=https://mighty-waters-53866.herokuapp.com
+export APP_URL=https://mighty-waters-live.herokuapp.com
 export EBULK_APIKEY="" # Default is available
 export EBULK_CUSTOMER_ID="" # Default is available
 export MONGODB_URI=""

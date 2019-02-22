@@ -251,8 +251,8 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     onlyAllowOrigins: [
-      'https://mighty-waters-53866.herokuapp.com',
-      'http://mighty-waters-53866.herokuapp.com',
+      'https://mighty-waters-live.herokuapp.com',
+      'http://mighty-waters-live.herokuapp.com',
     ],
 
 
