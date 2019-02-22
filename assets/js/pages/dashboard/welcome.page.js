@@ -61,7 +61,7 @@ parasails.registerPage('welcome', {
   methods: {
 
     getClass(electionresult) {
-      console.log({electionresult});
+      console.log(electionresult);
       if (electionresult.changeVote > 0) {
         return "changeVote";
       }

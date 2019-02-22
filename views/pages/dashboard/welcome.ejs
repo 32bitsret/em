@@ -79,7 +79,7 @@
               </tr>
             </thead>
             <tbody v-for="(electionresult, i) in electionresults.slice().reverse()" :key="i">
-              <tr :class="getClass(`${electionresult}`)">
+              <tr :class="getClass(electionresult)">
                 <td>{{electionresult.pollingUnit}}</td>
                 <td>{{electionresult.pollingUnitName}}</td>
                 <td>{{electionresult.phoneUserName}}</td>
