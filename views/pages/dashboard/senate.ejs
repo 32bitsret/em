@@ -130,8 +130,8 @@
                 <th>Time</th>
               </tr>
             </thead>
-            <tbody>
-              <tr v-for="incidencereport in incidencereports.slice().reverse()">
+            <tbody v-for="(incidencereport, i) in incidencereports.slice().reverse()" :key="i">
+                <tr :class="getIncidenceClass(incidencereport)">
                 <td>{{incidencereport.pollingUnit}}</td>
                 <td>{{incidencereport.pollingUnitName}}</td>
                 <td>{{incidencereport.phoneUserName}}</td>

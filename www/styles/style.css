@@ -41,3 +41,11 @@
   .updatedVote{
     background-color: greenyellow !important;
   }
+
+  .midLevelIncidence{
+    background-color: pink !important;
+  }
+
+  .highLevelIncidence{
+    background-color: red !important;
+  }

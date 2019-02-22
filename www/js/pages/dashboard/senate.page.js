@@ -69,6 +69,19 @@ parasails.registerPage('senate', {
       return "normal";
     },
 
+    getIncidenceClass(incidence) {
+      if(incidence.priorityLevel == 0){
+        return "normal";
+      }
+      if(incidence.priorityLevel == 5){
+        return "midLevelIncidence";
+      }
+      if(incidence.priorityLevel == 5){
+        return "highLevelIncidence";
+      }
+      return "normal";
+    },
+
     fillElectionResult: function(body){
       if(body && body.length){
         this.electionresults = body.map(function (currentValue, index, array) {
