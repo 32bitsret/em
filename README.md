@@ -41,3 +41,9 @@ export CONTROL_LEVEL="" # {WARD, PU} Default: WARD
 export STATE="Plateau State" # Default: Plateau State
 export ELECTION_YEAR="2019" # Default: 2019
 ```
+
+
+## DB LIVE
+```sh mongo localhost:27017/election_monitoring -u election_monitoring -p election_m0nitar
+
+```
