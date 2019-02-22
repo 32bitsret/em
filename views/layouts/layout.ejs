@@ -247,7 +247,7 @@
 
     <script>
     $( document ).ready(function() {
-      io.sails.reconnection = true;
+      // io.sails.reconnection = true;
       io.socket.get('/dataChange', function(res) {
           console.log("subscribing to data changes", res);
       });
