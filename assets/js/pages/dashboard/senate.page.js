@@ -140,7 +140,7 @@ parasails.registerPage('senate', {
     getResultSummary: async function(){
       let endpoint = '/api/query2';
       if(selectedSenatorialZone !== 'default'){
-        endpoint += '?zone=' + encodeURIComponent(selectedSenatorialZone);
+        endpoint += '?senatorialZone=' + encodeURIComponent(selectedSenatorialZone);
             if(selectedLocalGovernment !== 'default'){
                 endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
                 if(selectedWard !== 'default'){

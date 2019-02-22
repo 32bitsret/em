@@ -64,12 +64,15 @@ module.exports = {
         let ballot = [];
         var db = sails.getDatastore().manager;
         let match = {};
-        if(req.query['localGovernment']){
-            match["localGovernment"] = req.query['localGovernment'];
-            if(req.query['ward']){
-                match["ward"] = req.query['ward'];
-                if(req.query['pollingUnit']){
-                    match["pollingUnit"] = req.query['pollingUnit'];
+        if(req.query['senatorialZone']){
+            match["senatorialZone"] = req.query['senatorialZone'];
+            if(req.query['localGovernment']){
+                match["localGovernment"] = req.query['localGovernment'];
+                if(req.query['ward']){
+                    match["ward"] = req.query['ward'];
+                    if(req.query['pollingUnit']){
+                        match["pollingUnit"] = req.query['pollingUnit'];
+                    }
                 }
             }
         }
