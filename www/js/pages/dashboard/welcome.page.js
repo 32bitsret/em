@@ -61,10 +61,11 @@ parasails.registerPage('welcome', {
   methods: {
 
     getClass(electionresult) {
-      if (electionresult.changeVote ) {
+      console.log({electionresult});
+      if (electionresult.changeVote > 0) {
         return "changeVote";
       }
-      if (electionresult.adminPhone) {
+      if (electionresult.adminPhone && electionresult.adminPhone.length) {
         return "updatedVote";
       }
       return "normal";
