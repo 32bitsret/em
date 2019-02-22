@@ -168,7 +168,9 @@ module.exports = {
                         textMessage += `${errorCount} errors occured`;
                     }
                     let qsms = await sendSMS(body.adminPhone, textMessage);
-                    let vsms = await sendSMS(warderPhone, 'Your previous update has been accepted by the admin.');
+                    if(!insertCount){
+                        var vsms = await sendSMS(warderPhone, 'Your previous update has been accepted by the admin.');
+                    }
                     console.log({qsms, vsms})
                 }else{
                     if(updateCount){
