@@ -167,6 +167,7 @@ module.exports = {
                     if(errorCount){
                         textMessage += `${errorCount} errors occured`;
                     }
+                    textMessage += " Thank you."
                     let qsms = await sendSMS(body.adminPhone, textMessage);
                     if(!insertCount){
                         var vsms = await sendSMS(warderPhone, 'Your previous update has been accepted by the admin.');
@@ -180,8 +181,9 @@ module.exports = {
                         textMessage += `${insertCount} records have been inserted. `
                     }
                     if(errorCount){
-                        textMessage += `${errorCount} errors occured`;
+                        textMessage += `${errorCount} errors occured `;
                     }
+                    textMessage += "Thank you. ;-)"
                     let sms = await sendSMS(warderPhone, textMessage);
                     console.log({sms})
                 }
@@ -232,7 +234,7 @@ module.exports = {
                 if(created && created.id){
                     //Send SMS
                     try{
-                        let sms = await sendSMS(warderPhone, "Your Incidence report have been submitted");
+                        let sms = await sendSMS(warderPhone, "Your Incidence report have been submitted. Thank you. ;-)");
                         console.log({sms});
                     }catch(iErr){
                         console.log({iErr});
