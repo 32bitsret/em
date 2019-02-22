@@ -39,5 +39,5 @@
   }
 
   .updatedVote{
-    background-color: greenyellow
+    background-color: greenyellow !important;
   }
