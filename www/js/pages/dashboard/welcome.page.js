@@ -65,9 +65,11 @@ parasails.registerPage('welcome', {
         return "normal";
       }
       if (electionresult.adminPhone && electionresult.adminPhone.length) {
+        console.log({electionresult});
         return "updatedVote";
       }
       if (electionresult.changeVote > 0) {
+        console.log({electionresult});
         return "changeVote";
       }
       return "normal";
