@@ -57,6 +57,25 @@ module.exports = async function (req, res, proceed) {
   if (pollingUnit) {
     req.pollingUnit = _.omit(pollingUnit, ['id', 'createdAt', 'updatedAt', 'accountEnabled']);
     if(smsTokens[1] == 1 /*|| smsTokens[1] === 'result' || smsTokens[1] === 'r'*/ || smsTokens[1] == 3){
+        if(!AppConfig.allowResult){
+            try{
+                await sails.models.smserror.create({
+                    sms: sms,
+                    error: "Result not allowed at the moment",
+                    phone,
+                    state: pollingUnit.state,
+                    senatorialZone: pollingUnit.senatorialZone,
+                    localGovernment: pollingUnit.localGovernment,
+                    ward: pollingUnit.ward,
+                    phoneUserName: pollingUnit.phoneUserName
+                });
+                sails.sockets.broadcast('reload', {type: 'smserrors'});
+                return;
+            }catch(iErr){
+                console.log({iErr});
+                return;
+            }
+        }
         console.log({smsTokens});
         req.smsBody = req.smsBody || {};
         req.smsBody.command = 'result';

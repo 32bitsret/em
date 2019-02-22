@@ -56,6 +56,19 @@ parasails.registerPage('senate', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
 
+    getClass(electionresult) {
+      if(electionresult.changeVote === electionresult.vote){
+        return "normal";
+      }
+      if (electionresult.adminPhone && electionresult.adminPhone.length) {
+        return "updatedVote";
+      }
+      if (electionresult.changeVote > 0) {
+        return "changeVote";
+      }
+      return "normal";
+    },
+
     fillElectionResult: function(body){
       if(body && body.length){
         this.electionresults = body.map(function (currentValue, index, array) {
