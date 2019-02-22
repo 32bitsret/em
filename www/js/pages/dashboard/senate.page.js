@@ -20,7 +20,6 @@ parasails.registerPage('senate', {
     _.extend(this, SAILS_LOCALS);
   },
   mounted: async function() {
-      console.log("Mounting");
     await this.getElectionResult();
     await this.getIncidenceResult();
     await this.getResultSummary();

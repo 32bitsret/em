@@ -79,6 +79,11 @@ module.exports = {
     type: 'string',
     description: 'Name of the person who owns the phone'
   },
+
+  adminPhone: {
+    type: 'string',
+    description: 'The person who updates this record'
+  }
   
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

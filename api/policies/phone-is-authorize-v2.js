@@ -7,6 +7,7 @@
  */
 const sendSMS = require("../lib/sendSMS");
 const AppConfig = require("../lib/AppConfig");
+const ADMIN_PHONES = AppConfig.admins;
 
 module.exports = async function (req, res, proceed) {
   res.header("Content-Type",'text/x-markdown');
@@ -14,20 +15,66 @@ module.exports = async function (req, res, proceed) {
   let phone = req.body.results[0]["from"];
   let sms = req.body.results[0]["text"]; // || cleanText
   console.log({text: sms, cleanText: req.body.results[0]["cleanText"]});
+  let formatedText = sms.replace(/\s+/g, ' ').replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/['"]+/g, '');
 
-  if(sms.trim().toLowerCase() === "help"){
+  if(formatedText.trim().toLowerCase() === "help"){
     try{
-        let sms = await sendSMS(phone, "Presidential Result : 1,PARTY-VOTE,PARTY-VOTE, PU \nSenatorial Result: 3,PARTY-VOTE,PARTY-VOTE, PU \nIncidence: 2,CODE:PU,Your Comment");
-        console.log({sms});
+        let qsms = await sendSMS(phone, "Presidential Result : 1,PARTY-VOTE,PARTY-VOTE, PU \nSenatorial Result: 3,PARTY-VOTE,PARTY-VOTE, PU \nIncidence: 2,CODE:PU,Your Comment");
+        console.log({qsms});
     }catch(iErr){
         console.log({iErr});
     }
     return;
   }
 
-  console.log({phone, sms});
+  if(formatedText.split(',')[0] === 'admin' && ADMIN_PHONES.indexOf(phone) >= 0){
+    let splitedText = formatedText.split(',');
+    try{
+        let pu;
+        if(splitedText[1] == 1 || splitedText[1] == 3){
+            pu = splitedText[splitedText.length - 1];
+        }else if(splitedText[1] == 2){
+            let codePu = splitedText[2]; 
+            if(codePu.split(':').length === 2){
+                pu = codePu.split(':')[1];
+            }
+        }
+        let pollingUnit = await sails.models.pollingunit.findOne({
+                pollingUnit: pu, 
+                accountEnabled: true
+        });
+        if(pollingUnit){
+            req.smsBody = req.smsBody || {};
+            req.smsBody.adminUpdate = true;
+            req.smsBody.adminPhone = phone;
+            phone = pollingUnit.phone;
+        }else{
+            throw new Error("Polling Unit Not Found");
+        }
+    }catch(err){
+        try{
+            let qsms = await sendSMS(phone, "Error, Check your input");
+            await sails.models.smserror.create({
+                sms: sms,
+                phone,
+                error: "Admin Error: " + err.message
+            });
+            sails.sockets.broadcast('reload', {type: 'smserrors'});
+            console.log({qsms});
+        }catch(iErr){
+            console.log({iErr});
+        }
+        // res.send(err.message);
+        console.log(err.message);
+        return;
+    };
 
-  let smsTokens = sms.replace(/\s+/g, ' ').replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/['"]+/g, '').split(',');
+  }
+
+  console.log({phone, sms});
+  console.log({phone, formatedText});
+
+  let smsTokens = formatedText.split(',');
   smsTokens = smsTokens.map((item, index) => item.trim());
 
   var pollingUnit;
@@ -52,7 +99,7 @@ module.exports = async function (req, res, proceed) {
                 ward: pollingUnit.ward,
                 phoneUserName: pollingUnit.phoneUserName
             });
-            sails.sockets.broadcast('reload', {type: 'smserros'});
+            sails.sockets.broadcast('reload', {type: 'smserrors'});
             console.log({qsms});
         }catch(iErr){
             console.log({iErr});
@@ -79,7 +126,7 @@ module.exports = async function (req, res, proceed) {
                 ward: pollingUnit.ward,
                 phoneUserName: pollingUnit.phoneUserName
             });
-            sails.sockets.broadcast('reload', {type: 'smserros'});
+            sails.sockets.broadcast('reload', {type: 'smserrors'});
             console.log({qsms});
         }catch(iErr){
             console.log({iErr});
@@ -140,7 +187,7 @@ module.exports = async function (req, res, proceed) {
                     ward: pollingUnit.ward,
                     phoneUserName: pollingUnit.phoneUserName
                 });
-                sails.sockets.broadcast('reload', {type: 'smserros'});
+                sails.sockets.broadcast('reload', {type: 'smserrors'});
                 console.log({qsms});
             }catch(iErr){
                 console.log({iErr});
@@ -160,7 +207,7 @@ module.exports = async function (req, res, proceed) {
                     ward: pollingUnit.ward,
                     phoneUserName: pollingUnit.phoneUserName
                 });
-                sails.sockets.broadcast('reload', {type: 'smserros'});
+                sails.sockets.broadcast('reload', {type: 'smserrors'});
                 console.log({qsms});
             }catch(iErr){
                 console.log({iErr});
@@ -190,7 +237,7 @@ module.exports = async function (req, res, proceed) {
                 ward: pollingUnit.ward,
                 phoneUserName: pollingUnit.phoneUserName
             });
-            sails.sockets.broadcast('reload', {type: 'smserros'});
+            sails.sockets.broadcast('reload', {type: 'smserrors'});
             console.log({qsms});
         }catch(iErr){
             console.log({iErr});
@@ -213,7 +260,7 @@ module.exports = async function (req, res, proceed) {
             ward: "",
             phoneUserName: "Unknown User"
         });
-        sails.sockets.broadcast('reload', {type: 'smserros'});
+        sails.sockets.broadcast('reload', {type: 'smserrors'});
         console.log({qsms});
     }catch(iErr){
         console.log({iErr});

@@ -51,6 +51,7 @@ module.exports = {
                         ward: req.pollingUnit.ward,
                         phoneUserName: req.pollingUnit.phoneUserName
                     });
+                    sails.sockets.broadcast('reload', {type: 'smserrors'});
                     console.log({qsms})
                 }catch(iErr){
                     console.log({iErr});
@@ -70,6 +71,7 @@ module.exports = {
                         ward: req.pollingUnit.ward,
                         phoneUserName: req.pollingUnit.phoneUserName
                     });
+                    sails.sockets.broadcast('reload', {type: 'smserrors'});
                     console.log({sms})
                 }catch(iErr){
                     console.log({iErr});
@@ -125,9 +127,17 @@ module.exports = {
                     }else{
                         //UPDATE THE LAST VOTE - One Agent Per Polling Unit Per Vote Per Party
                         if(body.resultType == 1){
-                            updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {/*vote: data[i].vote, */changeVote: data[i].vote, updatedAt: Date.now(), raw: data[i].raw})).fetch();
+                            if(body.adminUpdate){
+                                updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {vote: created.changeVote, oldVote: created.vote, adminPhone: body.adminPhone, updatedAt: Date.now(), raw: data[i].raw})).fetch();
+                            }else{
+                                updated = await sails.models.electionresult.update(created).set(Object.assign({}, created, {/*vote: data[i].vote, */changeVote: data[i].vote, updatedAt: Date.now(), raw: data[i].raw})).fetch();
+                            }
                         }else{
-                            updated = await sails.models.electionsenateresult.update(created).set(Object.assign({}, created, {/*vote: data[i].vote, */changeVote: data[i].vote, updatedAt: Date.now(), raw: data[i].raw})).fetch();
+                            if(body.adminUpdate){
+                                updated = await sails.models.electionsenateresult.update(created).set(Object.assign({}, created, {vote: created.changeVote, oldVote: created.vote, adminPhone: body.adminPhone, updatedAt: Date.now(), raw: data[i].raw})).fetch();
+                            }else{
+                                updated = await sails.models.electionsenateresult.update(created).set(Object.assign({}, created, {/*vote: data[i].vote, */changeVote: data[i].vote, updatedAt: Date.now(), raw: data[i].raw})).fetch();
+                            }
                         }
                         console.log({updated});
                         try{
@@ -146,8 +156,33 @@ module.exports = {
             }
 
             try{
-                let sms = await sendSMS(warderPhone, `Insert Count: ${insertCount}, Update Count: ${updateCount}, Error count: ${errorCount}`);
-                console.log({sms})
+                var textMessage = "";
+                if(body.adminUpdate){
+                    if(updateCount){
+                        textMessage += `${updateCount} records have been updated. `
+                    }
+                    if(insertCount){
+                        textMessage += `${insertCount} records have been inserted. `
+                    }
+                    if(errorCount){
+                        textMessage += `${errorCount} errors occured`;
+                    }
+                    let qsms = await sendSMS(body.adminPhone, textMessage);
+                    let vsms = await sendSMS(warderPhone, 'Your previous update has been accepted by the admin.');
+                    console.log({qsms, vsms})
+                }else{
+                    if(updateCount){
+                        textMessage += `${updateCount} records have been submitted for review. `
+                    }
+                    if(insertCount){
+                        textMessage += `${insertCount} records have been inserted. `
+                    }
+                    if(errorCount){
+                        textMessage += `${errorCount} errors occured`;
+                    }
+                    let sms = await sendSMS(warderPhone, textMessage);
+                    console.log({sms})
+                }
             }catch(iErr){
                 console.log({iErr});
             }

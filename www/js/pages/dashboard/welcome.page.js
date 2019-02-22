@@ -32,8 +32,9 @@ parasails.registerPage('welcome', {
         self.getResultSummary();
       }else if(data.type === 'incidencereport'){
         self.getResultSummary();
+      }else{
+        self.getSMSErrors();
       }
-      self.getSMSErrors();
     });
   },
 
