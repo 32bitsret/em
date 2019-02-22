@@ -33,3 +33,11 @@
   .statistics span {
     font-size: 15px;
   }
+
+  .changeVote{
+    background-color: goldenrod;
+  }
+
+  .updatedVote{
+    background-color: greenyellow
+  }
