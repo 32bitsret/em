@@ -39,9 +39,9 @@ module.exports = async function (req, res, proceed) {
                 pu = codePu.split(':')[1];
             }
         }
-        console.log({adminPu: pu, splitedText});
+        console.log({adminPu: pu.trim(), splitedText});
         let pollingUnit = await sails.models.pollingunit.findOne({
-                pollingUnit: pu, 
+                pollingUnit: pu.trim(), 
                 accountEnabled: true
         });
         if(pollingUnit){
