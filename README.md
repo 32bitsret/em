@@ -46,4 +46,5 @@ export ELECTION_YEAR="2019" # Default: 2019
 ## DB LIVE
 ```sh mongo localhost:27017/election_monitoring -u election_monitoring -p election_m0nitar
 
+mongodump -u election_monitoring -p "election_m0nitar" --archive=election_monitoring.201902231730.archive --db election_monitoring --authenticationDatabase election_monitoring
 ```
