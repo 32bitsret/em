@@ -27,6 +27,7 @@ module.exports = async function (req, res, proceed) {
     return;
   }
 
+  console.log({ADMIN_PHONES});
   if(formatedText.split(',')[0] === 'admin' && ADMIN_PHONES.indexOf(phone) >= 0){
     let splitedText = formatedText.split(',');
     try{
