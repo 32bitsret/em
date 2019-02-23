@@ -49,6 +49,7 @@ module.exports = async function (req, res, proceed) {
             req.smsBody.adminUpdate = true;
             req.smsBody.adminPhone = phone;
             phone = pollingUnit.phone;
+            formatedText = formatedText.substring(6).trim();
         }else{
             throw new Error("Polling Unit Not Found");
         }
