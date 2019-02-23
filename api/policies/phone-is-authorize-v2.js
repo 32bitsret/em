@@ -7,7 +7,7 @@
  */
 const sendSMS = require("../lib/sendSMS");
 const AppConfig = require("../lib/AppConfig");
-const ADMIN_PHONES = AppConfig.admins;
+const ADMIN_PHONES = AppConfig.admins.map((item, index) => item.trim());
 
 module.exports = async function (req, res, proceed) {
   res.header("Content-Type",'text/x-markdown');
