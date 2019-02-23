@@ -88,7 +88,7 @@
                 <td>{{electionresult.localGovernment}}</td>
                 <td>{{electionresult.ward}}</td>
                 <td>{{electionresult.party}}</td>
-                <td :data="electionresult.changeVote">{{electionresult.vote.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (getClass(electionresult) === "changeVote" ? ", " + electionresult.changeVote.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ? "")}}</td>
+                <td :data="electionresult.changeVote">{{electionresult.vote.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
                 <td>{{electionresult.timeAgo}}</td>
               </tr>
             </tbody>
