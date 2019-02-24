@@ -281,6 +281,13 @@
       }
 
       $('#levelFilter').submit(function(evt){
+
+        if($("#zoneSelect")){
+          if($("#zoneSelect").val() === 'default'){
+            evt.preventDefault();
+          }
+        }
+
         if($("#laSelect")){
           if($("#laSelect").val() === 'default'){
             evt.preventDefault();
