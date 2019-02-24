@@ -124,11 +124,12 @@ module.exports = {
             }
             refined.push(Object.assign({}, 
                 _.omit(pus[result][0], ['id', 'createdAt', 'updatedAt','oldVote', 
-                'changeVote', 'raw', 'phoneUserName', 'adminPhone']), {diff: pdpVote - apcVote}));
+                'changeVote', 'raw', 'phoneUserName', 'adminPhone']), {factor: pdpVote - apcVote}));
         };
         let headers = Object.keys(refined[0]).map( (item, index, array) => {
             return item;
         });
+        refined = _.sortByOrder(refined, ['factor'], ['desc']);
         const json2csvParser = new Json2csvParser({headers});
         const csv = json2csvParser.parse(refined);
         const options = {
@@ -139,7 +140,7 @@ module.exports = {
         res.setHeader('Content-Type', `text/csv`);
         res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
         return res.status(200).send(csv);
-        return res.status(200).send(pus);
+        // return res.status(200).send(pus);
     },
 
     top10apc: async(req, res) => {
