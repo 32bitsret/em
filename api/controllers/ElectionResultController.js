@@ -185,7 +185,7 @@ module.exports = {
         });
 
         let updateIncidenceReportCounter = 0, totalIncidenceReportWithNorth = incidenceReportResults.length;
-        for(let i = 0; i < incidenceReportResults; i++){
+        for(let i = 0; i < totalIncidenceReportWithNorth; i++){
             await sails.models.incidencereport.update(incidenceReportResults[i]).set(Object.assign({}, incidenceReportResults[i], {senatorialZone: 'NORTHERN'}));
             updateIncidenceReportCounter++;
         }
