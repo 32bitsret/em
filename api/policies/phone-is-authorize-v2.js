@@ -140,7 +140,7 @@ module.exports = async function (req, res, proceed) {
     }
   }
 
-  if (pollingUnit) {
+  if (pollingUnit && pollingUnit.id) {
     req.pollingUnit = _.omit(pollingUnit, ['id', 'createdAt', 'updatedAt', 'accountEnabled']);
     console.log({smsTokens}, smsTokens[0] == 1, smsTokens[0] === 'result', smsTokens[0] === 'r');
     if(smsTokens[0] == 1 /*|| smsTokens[0] === 'result' || smsTokens[0] === 'r'*/ || smsTokens[0] == 3){
