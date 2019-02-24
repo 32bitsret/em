@@ -192,7 +192,7 @@ module.exports = {
 
         res.send({totalElectionResultWithNorth, 
             totalElectionSenateWithNorth,
-            updateSenateCounter, updateCount, electionsenateresult, totalIncidenceReportWithNorth,
+            updateSenateCounter, updateCount, updateIncidenceReportCounter, totalIncidenceReportWithNorth,
         });
     },
 
