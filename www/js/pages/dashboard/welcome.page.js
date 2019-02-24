@@ -109,6 +109,7 @@ parasails.registerPage('welcome', {
           }
         }
       }
+      console.log({endpoint})
       io.socket.get(endpoint, this.fillElectionResult);
     },
 
