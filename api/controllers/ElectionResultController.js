@@ -180,9 +180,19 @@ module.exports = {
             updateSenateCounter++;
         }
 
-        res.send({totalElectionResultWithNorth: electionResults.length, 
-            totalElectionSenateWithNorth: electionSenateResults.length,
-            updateSenateCounter, updateCount,
+        let incidenceReportResults = await sails.models.incidencereport.find({
+            senatorialZone: 'NORTH'
+        });
+
+        let updateIncidenceReportCounter = 0, totalIncidenceReportWithNorth = incidenceReportResults.length;
+        for(let i = 0; i < incidenceReportResults; i++){
+            await sails.models.incidencereport.update(incidenceReportResults[i]).set(Object.assign({}, incidenceReportResults[i], {senatorialZone: 'NORTHERN'}));
+            updateIncidenceReportCounter++;
+        }
+
+        res.send({totalElectionResultWithNorth, 
+            totalElectionSenateWithNorth,
+            updateSenateCounter, updateCount, electionsenateresult, totalIncidenceReportWithNorth,
         });
     },
 
