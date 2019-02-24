@@ -99,7 +99,7 @@ parasails.registerPage('welcome', {
     },
 
     probeElectionResult: function(){
-      let endpoint = '/electionresult?limit=400&sort='+encodeURIComponent('createdAt DESC');
+      let endpoint = '/electionresult?limit=400&sort='+encodeURIComponent('createdAt ASC');
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
@@ -114,7 +114,7 @@ parasails.registerPage('welcome', {
     },
 
     probeIncidence: function(){
-      let endpoint = '/incidencereport?limit=400&sort='+encodeURIComponent('createdAt DESC');
+      let endpoint = '/incidencereport?limit=400&sort='+encodeURIComponent('createdAt ASC');
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
@@ -129,7 +129,7 @@ parasails.registerPage('welcome', {
 
     getSMSErrors: async function(){
       if(!displayErrors) return;
-      let endpoint = '/smserror?limit=400&sort='+encodeURIComponent('createdAt DESC');
+      let endpoint = '/smserror?limit=400&sort='+encodeURIComponent('createdAt ASC');
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
@@ -199,7 +199,7 @@ parasails.registerPage('welcome', {
     },
 
     getElectionResult: async function(){
-      let endpoint = '/electionresult?limit=400&sort='+encodeURIComponent('createdAt DESC');
+      let endpoint = '/electionresult?limit=400&sort='+encodeURIComponent('createdAt ASC');
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
@@ -230,7 +230,7 @@ parasails.registerPage('welcome', {
     },
 
     getIncidenceResult: async function(){
-      let endpoint = '/incidencereport?limit=400&sort='+encodeURIComponent('createdAt DESC');
+      let endpoint = '/incidencereport?limit=400&sort='+encodeURIComponent('createdAt ASC');
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
