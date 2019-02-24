@@ -58,6 +58,7 @@ module.exports = {
           pageName,
           AppConfig,
           displayErrors: true, //req.query['errors'] ? true : false,
+          displayPUsWithoutResult: req.query['withoutresult'] ? true : false,
           pollingUnits,
           controlLevel,
           selectedZone: req.query["zone"] || "default",

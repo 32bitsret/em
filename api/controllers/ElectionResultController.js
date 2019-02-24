@@ -107,7 +107,7 @@ module.exports = {
 
 
     query3: async(req, res) => {
-        let db = sails.getDatastore().manager;
+        // let db = sails.getDatastore().manager;
         let match = {};
         if(req.query['localGovernment']){
             match["localGovernment"] = req.query['localGovernment'];
@@ -119,9 +119,8 @@ module.exports = {
             }
         }
         // let pollingUnits = await sails.models.pollingunit.find(match);
-
-        let pollingUnitsWithRes = await db.collection('electionresult')
-            .find(match).distinct('pollingUnit').toArray();
+        let pollingUnitsWithRes = await sails.models.electionresult.find({});
+        pollingUnitsWithRes = _.uniqBy(pollingUnitsWithRes, 'pollingUnit');
         res.send({pollingUnitsWithRes});
     },
    
