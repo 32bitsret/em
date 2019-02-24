@@ -155,7 +155,7 @@ parasails.registerPage('welcome', {
 
     getPusWithoutResult: async function(){
       if(!displayPUsWithoutResult) return;
-      let endpoint = '/api/puswithoutresult';
+      let endpoint = '/api/puswithoutresult?';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
