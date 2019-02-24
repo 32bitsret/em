@@ -107,7 +107,7 @@ module.exports = {
         // res.send([{party: 'APC', totalVotes: 87000}, {party: 'PDP', totalVotes: 4999}, {party: 'SDP', totalVotes: 599}])
     },
 
-    top10acp: async(req, res) => {
+    top10apc: async(req, res) => {
         let results = await sails.models.electionresult.find({party: 'APC'}).sort([{vote: 'DESC'}]).limit(50);
         let headers = Object.keys(results[0]).map( (item, index, array) => {
             return item;
