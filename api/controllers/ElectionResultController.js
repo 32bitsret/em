@@ -107,6 +107,26 @@ module.exports = {
         // res.send([{party: 'APC', totalVotes: 87000}, {party: 'PDP', totalVotes: 4999}, {party: 'SDP', totalVotes: 599}])
     },
 
+    top10apcpdp: async(req, res) => {
+        let results = await sails.models.electionresult.find({where: { or: [{party: 'APC'}, {party: 'PDP'}] }});
+        let pus = _.groupBy(results, function(result) { return result.pollingUnit});
+        // let headers = Object.keys(results[0]).map( (item, index, array) => {
+        //     return item;
+        // });
+        // const json2csvParser = new Json2csvParser({headers});
+        // const csv = json2csvParser.parse(results);
+        // const options = {
+        //     fileName  : 'topAPC-reports', // String value for assigning a name for the Excel file created.
+        //     // path : __dirname + '/storage' // String value to define your own storage path where the excel file will be saved.
+        // }
+        // res.setHeader('Content-Disposition', `attachment;filename=${options.fileName}.csv`);
+        // res.setHeader('Content-Type', `text/csv`);
+        // res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
+        // return res.status(200).send(csv);
+        return res.status(200).send(pus);
+
+    },
+
     top10apc: async(req, res) => {
         let results = await sails.models.electionresult.find({party: 'APC'}).sort([{vote: 'DESC'}]).limit(50);
         let headers = Object.keys(results[0]).map( (item, index, array) => {

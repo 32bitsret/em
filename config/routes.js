@@ -76,6 +76,7 @@ module.exports.routes = {
   'GET /api/dumppus': 'ElectionResultController.dumpPusWithoutResult',
   'GET /api/top10apc': 'ElectionResultController.top10apc',
   'GET /api/top10pdp': 'ElectionResultController.top10pdp',
+  'GET /api/top10apcpdp': 'ElectionResultController.top10apcpdp',
   'GET /api/puswithoutresult': 'ElectionResultController.query3'
 
 };
