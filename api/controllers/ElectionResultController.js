@@ -106,7 +106,7 @@ module.exports = {
     },
 
 
-    query2: async(req, res) => {
+    query3: async(req, res) => {
         let db = sails.getDatastore().manager;
         let match = {};
         if(req.query['localGovernment']){
