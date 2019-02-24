@@ -110,8 +110,8 @@ module.exports = {
     top10apcpdp: async(req, res) => {
         let results = await sails.models.electionresult.find({where: { or: [{party: 'APC'}, {party: 'PDP'}] }, 
             /*select: ['party', 'vote', '']*/});
-        let pus = _.groupBy(results, function(result) { return result.pollingUnit});
-        pust = pus.map( (result, index, array) => {
+        let pus = _.groupBy(results, (result) => { return result.pollingUnit});
+        var refined = pus.map( (result, index, array) => {
             let newItem = {}, apcVote = 0, pdpVote;
             for(let i = 0; i < result.length; i++){
                 if(result[i].party === 'PDP'){
@@ -120,18 +120,17 @@ module.exports = {
                 if(result[i].party === 'APC'){
                     apcVote = result[i].vote;
                 }
-
             }
             newItem = Object.assign(newItem, 
                 _.omit(result[0], ['id', 'createdAt', 'updatedAt','oldVote', 
                 'changeVote', 'raw', 'phoneUserName', 'adminPhone']), {diff: pdpVote - apcVote});
             return newItem;
         });
-        let headers = Object.keys(pust[0]).map( (item, index, array) => {
+        let headers = Object.keys(refined[0]).map( (item, index, array) => {
             return item;
         });
         const json2csvParser = new Json2csvParser({headers});
-        const csv = json2csvParser.parse(pust);
+        const csv = json2csvParser.parse(refined);
         const options = {
             fileName  : 'PartyDiff-reports', // String value for assigning a name for the Excel file created.
             // path : __dirname + '/storage' // String value to define your own storage path where the excel file will be saved.
