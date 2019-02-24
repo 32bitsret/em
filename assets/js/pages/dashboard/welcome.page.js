@@ -99,7 +99,7 @@ parasails.registerPage('welcome', {
     },
 
     probeElectionResult: function(){
-      let endpoint = '/electionresult?limit=6000';
+      let endpoint = '/electionresult?limit=400&sort=createdAt desc';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
@@ -113,7 +113,7 @@ parasails.registerPage('welcome', {
     },
 
     probeIncidence: function(){
-      let endpoint = '/incidencereport?limit=6000';
+      let endpoint = '/incidencereport?limit=400&sort=createdAt desc';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
@@ -128,7 +128,7 @@ parasails.registerPage('welcome', {
 
     getSMSErrors: async function(){
       if(!displayErrors) return;
-      let endpoint = '/smserror?limit=6000';
+      let endpoint = '/smserror?limit=400&sort=createdAt desc';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
@@ -154,7 +154,7 @@ parasails.registerPage('welcome', {
 
     getPusWithoutResult: async function(){
       if(!displayPUsWithoutResult) return;
-      let endpoint = '/api/puswithoutresult?limit=6000';
+      let endpoint = '/api/puswithoutresult';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
@@ -198,7 +198,7 @@ parasails.registerPage('welcome', {
     },
 
     getElectionResult: async function(){
-      let endpoint = '/electionresult?limit=6000';
+      let endpoint = '/electionresult?limit=400&sort=createdAt desc';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
@@ -229,7 +229,7 @@ parasails.registerPage('welcome', {
     },
 
     getIncidenceResult: async function(){
-      let endpoint = '/incidencereport?limit=6000';
+      let endpoint = '/incidencereport?limit=400&sort=createdAt desc';
       if(selectedLocalGovernment !== 'default'){
         endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
         if(selectedWard !== 'default'){
