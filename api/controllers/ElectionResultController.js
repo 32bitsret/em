@@ -118,10 +118,29 @@ module.exports = {
                 }
             }
         }
-        // let pollingUnits = await sails.models.pollingunit.find(match);
-        let pollingUnitsWithRes = await sails.models.electionresult.find({});
+        let pollingUnits = await sails.models.pollingunit.find(match);
+        if(req.query['collection'] === 'senate'){
+            var pollingUnitsWithRes = await sails.models.electionsenateresult.find({});
+        }else{
+            pollingUnitsWithRes = await sails.models.electionresult.find({});
+        }
+        let pollingUnitWithoutRes = [];
+        let pollingUnitCount =  pollingUnits.length;
+        let pollingUnitsWithResCount = pollingUnitsWithRes.length;
+        for(let i = 0; i < pollingUnitCount; i++){
+            let found = false;
+            for(let j = 0; j < pollingUnitsWithResCount; j++){
+                if(pollingUnits[i].pollingUnit === pollingUnitsWithRes[j].pollingUnit){
+                    found = true;
+                    break;
+                }
+            }
+            if(!found){
+                pollingUnitWithoutRes.push(pollingUnits[i]);
+            }
+        }
         pollingUnitsWithRes = _.uniqBy(pollingUnitsWithRes, 'pollingUnit');
-        res.send({pollingUnitsWithRes});
+        res.send({data: pollingUnitWithoutRes, pollingUnitsWithResCount: pollingUnitsWithRes.length, pollingUnitCount});
     },
    
 };
