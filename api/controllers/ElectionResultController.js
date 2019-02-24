@@ -121,7 +121,7 @@ module.exports = {
         // let pollingUnits = await sails.models.pollingunit.find(match);
 
         let pollingUnitsWithRes = await db.collection('electionresult')
-            .find(match).distinct('pollingUnit');
+            .find(match).distinct('pollingUnit').toArray();
         res.send({pollingUnitsWithRes});
     },
    
