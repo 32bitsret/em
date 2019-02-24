@@ -73,7 +73,7 @@ module.exports.routes = {
   'POST /api/sms': 'SMSController.callback',
   'POST /api/smsV2': 'SMSController.callbackV2',
   'POST /api/test': 'ElectionResultController.test',
-  'POST /api/dumppus': 'ElectionResultController.dumpPusWithoutResult',
+  'GET /api/dumppus': 'ElectionResultController.dumpPusWithoutResult',
   'GET /api/puswithoutresult': 'ElectionResultController.query3'
 
 };
