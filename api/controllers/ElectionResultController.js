@@ -1,3 +1,4 @@
+"use strict";
 /**
  * ElectionResultController
  *
@@ -6,6 +7,7 @@
  */
 
  const _ = require('lodash');
+ const Json2csvParser = require('json2csv').Parser;
 
 module.exports = {
     // Presidential or Gubernatorial
@@ -105,6 +107,58 @@ module.exports = {
         // res.send([{party: 'APC', totalVotes: 87000}, {party: 'PDP', totalVotes: 4999}, {party: 'SDP', totalVotes: 599}])
     },
 
+    dumpPusWithoutResult: async(req, res) => {
+        let match = {};
+        if(req.query['localGovernment']){
+            match["localGovernment"] = req.query['localGovernment'];
+            if(req.query['ward']){
+                match["ward"] = req.query['ward'];
+                if(req.query['pollingUnit']){
+                    match["pollingUnit"] = req.query['pollingUnit'];
+                }
+            }
+        }
+        let pollingUnits = await sails.models.pollingunit.find(match);
+        if(req.query['collection'] === 'senate'){
+            var pollingUnitsWithRes = await sails.models.electionsenateresult.find({});
+        }else{
+            pollingUnitsWithRes = await sails.models.electionresult.find({});
+        }
+        let pollingUnitWithoutRes = [];
+        let pollingUnitCount =  pollingUnits.length;
+        let pollingUnitsWithResCount = pollingUnitsWithRes.length;
+        for(let i = 0; i < pollingUnitCount; i++){
+            let found = false;
+            for(let j = 0; j < pollingUnitsWithResCount; j++){
+                if(pollingUnits[i].pollingUnit === pollingUnitsWithRes[j].pollingUnit){
+                    found = true;
+                    break;
+                }
+            }
+            if(!found){
+                pollingUnitWithoutRes.push(pollingUnits[i]);
+            }
+        }
+
+        if(pollingUnitWithoutRes.length === 0){
+            return res.send("All results have been submitted");
+        }
+
+        let headers = Object.keys(pollingUnitWithoutRes[0]).map( (item, index, array) => {
+            return item;
+        });
+        const json2csvParser = new Json2csvParser({headers});
+        const csv = json2csvParser.parse(pollingUnitWithoutRes);
+        const options = {
+            fileName  : 'em-reports', // String value for assigning a name for the Excel file created.
+            // path : __dirname + '/storage' // String value to define your own storage path where the excel file will be saved.
+        }
+        res.setHeader('Content-Disposition', `attachment;filename=${options.fileName}.csv`);
+        res.setHeader('Content-Type', `text/csv`);
+        res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
+        return res.status(200).send(csv);
+    },
+
     test: async(req, res) => {
         // let electionResults = await sails.models.electionresult.find({
         //     senatorialZone: 'NORTH'
@@ -168,6 +222,7 @@ module.exports = {
         }
         pollingUnitsWithRes = _.uniqBy(pollingUnitsWithRes, 'pollingUnit');
         res.send({data: pollingUnitWithoutRes, pollingUnitsWithResCount: pollingUnitsWithRes.length, pollingUnitCount});
+        
     },
    
 };
