@@ -111,34 +111,35 @@ module.exports = {
         let results = await sails.models.electionresult.find({where: { or: [{party: 'APC'}, {party: 'PDP'}] }, 
             /*select: ['party', 'vote', '']*/});
         let pus = _.groupBy(results, (result) => { return result.pollingUnit});
-        var refined = pus.map( (result, index, array) => {
-            let newItem = {}, apcVote = 0, pdpVote;
-            for(let i = 0; i < result.length; i++){
-                if(result[i].party === 'PDP'){
-                    pdpVote = result[i].vote;
-                }
-                if(result[i].party === 'APC'){
-                    apcVote = result[i].vote;
-                }
-            }
-            newItem = Object.assign(newItem, 
-                _.omit(result[0], ['id', 'createdAt', 'updatedAt','oldVote', 
-                'changeVote', 'raw', 'phoneUserName', 'adminPhone']), {diff: pdpVote - apcVote});
-            return newItem;
-        });
-        let headers = Object.keys(refined[0]).map( (item, index, array) => {
-            return item;
-        });
-        const json2csvParser = new Json2csvParser({headers});
-        const csv = json2csvParser.parse(refined);
-        const options = {
-            fileName  : 'PartyDiff-reports', // String value for assigning a name for the Excel file created.
-            // path : __dirname + '/storage' // String value to define your own storage path where the excel file will be saved.
-        }
-        res.setHeader('Content-Disposition', `attachment;filename=${options.fileName}.csv`);
-        res.setHeader('Content-Type', `text/csv`);
-        res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
-        return res.status(200).send(csv);
+        // var refined = pus.map( (result, index, array) => {
+        //     let newItem = {}, apcVote = 0, pdpVote;
+        //     for(let i = 0; i < result.length; i++){
+        //         if(result[i].party === 'PDP'){
+        //             pdpVote = result[i].vote;
+        //         }
+        //         if(result[i].party === 'APC'){
+        //             apcVote = result[i].vote;
+        //         }
+        //     }
+        //     newItem = Object.assign(newItem, 
+        //         _.omit(result[0], ['id', 'createdAt', 'updatedAt','oldVote', 
+        //         'changeVote', 'raw', 'phoneUserName', 'adminPhone']), {diff: pdpVote - apcVote});
+        //     return newItem;
+        // });
+        // let headers = Object.keys(refined[0]).map( (item, index, array) => {
+        //     return item;
+        // });
+        // const json2csvParser = new Json2csvParser({headers});
+        // const csv = json2csvParser.parse(refined);
+        // const options = {
+        //     fileName  : 'PartyDiff-reports', // String value for assigning a name for the Excel file created.
+        //     // path : __dirname + '/storage' // String value to define your own storage path where the excel file will be saved.
+        // }
+        // res.setHeader('Content-Disposition', `attachment;filename=${options.fileName}.csv`);
+        // res.setHeader('Content-Type', `text/csv`);
+        // res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
+        // return res.status(200).send(csv);
+        return res.status(200).send(pus);
     },
 
     top10apc: async(req, res) => {
