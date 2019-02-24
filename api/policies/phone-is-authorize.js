@@ -54,7 +54,7 @@ module.exports = async function (req, res, proceed) {
         return res.send(err.message);
     }
   }
-  if (pollingUnit) {
+  if (pollingUnit && pollingUnit.id) {
     req.pollingUnit = _.omit(pollingUnit, ['id', 'createdAt', 'updatedAt', 'accountEnabled']);
     if(smsTokens[1] == 1 /*|| smsTokens[1] === 'result' || smsTokens[1] === 'r'*/ || smsTokens[1] == 3){
         if(!AppConfig.allowResult){

@@ -106,30 +106,30 @@ module.exports = {
     },
 
     test: async(req, res) => {
-        let electionResults = await sails.models.electionresult.find({
-            senatorialZone: 'NORTH'
-        });
+        // let electionResults = await sails.models.electionresult.find({
+        //     senatorialZone: 'NORTH'
+        // });
 
-        let updateCount = 0, totalElectionResultWithNorth = electionResults.length;
-        for(let i = 0; i < totalElectionResultWithNorth; i++){
-            await sails.models.electionresult.update(electionResults[i]).set(Object.assign({}, electionResults[i], {senatorialZone: 'NORTHERN'}));
-            updateCount++;
-        }
+        // let updateCount = 0, totalElectionResultWithNorth = electionResults.length;
+        // for(let i = 0; i < totalElectionResultWithNorth; i++){
+        //     await sails.models.electionresult.update(electionResults[i]).set(Object.assign({}, electionResults[i], {senatorialZone: 'NORTHERN'}));
+        //     updateCount++;
+        // }
 
-        let electionSenateResults = await sails.models.electionsenateresult.find({
-            senatorialZone: 'NORTH'
-        });
+        // let electionSenateResults = await sails.models.electionsenateresult.find({
+        //     senatorialZone: 'NORTH'
+        // });
 
-        let updateSenateCounter = 0, totalElectionSenateWithNorth = electionSenateResults.length;
-        for(let i = 0; i < totalElectionSenateWithNorth; i++){
-            await sails.models.electionsenateresult.update(electionSenateResults[i]).set(Object.assign({}, electionSenateResults[i], {senatorialZone: 'NORTHERN'}));
-            updateSenateCounter++;
-        }
+        // let updateSenateCounter = 0, totalElectionSenateWithNorth = electionSenateResults.length;
+        // for(let i = 0; i < totalElectionSenateWithNorth; i++){
+        //     await sails.models.electionsenateresult.update(electionSenateResults[i]).set(Object.assign({}, electionSenateResults[i], {senatorialZone: 'NORTHERN'}));
+        //     updateSenateCounter++;
+        // }
 
-        res.send({totalElectionResultWithNorth: electionResults.length, 
-            totalElectionSenateWithNorth: electionSenateResults.length,
-            updateSenateCounter, updateCount,
-        });
+        // res.send({totalElectionResultWithNorth: electionResults.length, 
+        //     totalElectionSenateWithNorth: electionSenateResults.length,
+        //     updateSenateCounter, updateCount,
+        // });
     },
 
 
