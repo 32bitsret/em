@@ -112,18 +112,18 @@ module.exports = {
             /*select: ['party', 'vote', '']*/});
         let pus = _.groupBy(results, (result) => { return result.pollingUnit});
         let refined = [];
-        for(result in pus){
+        for(let result in pus){
             let apcVote = 0, pdpVote;
-            for(let i = 0; i < result.length; i++){
-                if(result[i].party === 'PDP'){
-                    pdpVote = result[i].vote;
+            for(let i = 0; i < pus[result].length; i++){
+                if(pus[result][i].party === 'PDP'){
+                    pdpVote = pus[result][i].vote;
                 }
-                if(result[i].party === 'APC'){
-                    apcVote = result[i].vote;
+                if(pus[result][i].party === 'APC'){
+                    apcVote = pus[result][i].vote;
                 }
             }
             refined.push(Object.assign({}, 
-                _.omit(result[0], ['id', 'createdAt', 'updatedAt','oldVote', 
+                _.omit(pus[result][0], ['id', 'createdAt', 'updatedAt','oldVote', 
                 'changeVote', 'raw', 'phoneUserName', 'adminPhone']), {diff: pdpVote - apcVote}));
         };
         let headers = Object.keys(refined[0]).map( (item, index, array) => {
