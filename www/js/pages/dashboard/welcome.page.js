@@ -169,8 +169,8 @@ parasails.registerPage('welcome', {
     },
 
     fillPusWithoutResult: function(body){
-      if(body && body.length){
-        this.puswithoutresult = body;
+      if(body && body.data && body.data.length){
+        this.puswithoutresult = body.data;
       }
     },
 
