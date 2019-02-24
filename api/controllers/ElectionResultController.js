@@ -129,7 +129,7 @@ module.exports = {
         let headers = Object.keys(refined[0]).map( (item, index, array) => {
             return item;
         });
-        refined = _.sortByOrder(refined, ['factor'], ['desc']);
+        refined = _.sortBy(refined, ['factor'], ['desc']);
         const json2csvParser = new Json2csvParser({headers});
         const csv = json2csvParser.parse(refined);
         const options = {
