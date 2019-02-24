@@ -72,5 +72,6 @@ module.exports.routes = {
 
   'POST /api/sms': 'SMSController.callback',
   'POST /api/smsV2': 'SMSController.callbackV2',
+  'GET /api/puswithoutresult': 'ElectionResultController.query3'
 
 };

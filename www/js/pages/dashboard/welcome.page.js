@@ -12,6 +12,7 @@ parasails.registerPage('welcome', {
     incidencereports: [],
     resultSummary: [],
     smserrors: [],
+    puswithoutresult: [],
   },
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
@@ -25,6 +26,7 @@ parasails.registerPage('welcome', {
     await this.getIncidenceResult();
     await this.getResultSummary();
     await this.getSMSErrors();
+    await this.getPusWithoutResult();
     let self = this;
     io.socket.on('message', function (data){
       if(data.type === 'electionresult'){
@@ -140,11 +142,35 @@ parasails.registerPage('welcome', {
       io.socket.get(endpoint, this.fillSMSErrors);
     },
 
+
+
     fillSMSErrors: function(body){
       if(body && body.length){
         this.smserrors = body.map(function (currentValue, index, array) {
           return Object.assign({}, currentValue, {timeAgo: moment(currentValue.updatedAt).fromNow()});
         });
+      }
+    },
+
+    getPusWithoutResult: async function(){
+      if(!displayPUsWithoutResult) return;
+      let endpoint = '/api/puswithoutresult?limit=6000';
+      if(selectedLocalGovernment !== 'default'){
+        endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
+        if(selectedWard !== 'default'){
+          endpoint += '&ward=' + encodeURIComponent(selectedWard);
+          if(selectedPu !== 'default'){
+            endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
+          }
+        }
+      }
+      console.log(endpoint);
+      io.socket.get(endpoint, this.fillPusWithoutResult);
+    },
+
+    fillPusWithoutResult: function(body){
+      if(body && body.length){
+        this.puswithoutresult = body;
       }
     },
 

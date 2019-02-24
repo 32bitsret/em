@@ -105,6 +105,25 @@ module.exports = {
         // res.send([{party: 'APC', totalVotes: 87000}, {party: 'PDP', totalVotes: 4999}, {party: 'SDP', totalVotes: 599}])
     },
 
+
+    query2: async(req, res) => {
+        let db = sails.getDatastore().manager;
+        let match = {};
+        if(req.query['localGovernment']){
+            match["localGovernment"] = req.query['localGovernment'];
+            if(req.query['ward']){
+                match["ward"] = req.query['ward'];
+                if(req.query['pollingUnit']){
+                    match["pollingUnit"] = req.query['pollingUnit'];
+                }
+            }
+        }
+        // let pollingUnits = await sails.models.pollingunit.find(match);
+
+        let pollingUnitsWithRes = await db.collection('electionresult')
+            .find(match).distinct('pollingUnit');
+        res.send({pollingUnitsWithRes});
+    },
    
 };
 
