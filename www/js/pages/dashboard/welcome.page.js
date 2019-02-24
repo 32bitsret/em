@@ -71,7 +71,7 @@ parasails.registerPage('welcome', {
         return "updatedVote";
       }
       if (electionresult.changeVote > 0) {
-        console.log({electionresult});
+        // console.log({electionresult});
         return "changeVote";
       }
       return "normal";
