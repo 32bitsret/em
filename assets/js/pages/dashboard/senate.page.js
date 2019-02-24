@@ -11,6 +11,7 @@ parasails.registerPage('senate', {
     electionresults: [], 
     incidencereports: [],
     resultSummary: [],
+    puswithoutresult: [],
   },
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
@@ -23,6 +24,7 @@ parasails.registerPage('senate', {
     await this.getElectionResult();
     await this.getIncidenceResult();
     await this.getResultSummary();
+    await this.getPusWithoutResult();
     let self = this;
     io.socket.on('message', function (data){
       if(data.type === 'electionsenateresult'){
@@ -67,6 +69,28 @@ parasails.registerPage('senate', {
         return "changeVote";
       }
       return "normal";
+    },
+
+    getPusWithoutResult: async function(){
+      if(!displayPUsWithoutResult) return;
+      let endpoint = '/api/puswithoutresult?collection=senate&limit=6000';
+      if(selectedLocalGovernment !== 'default'){
+        endpoint += '&localGovernment=' + encodeURIComponent(selectedLocalGovernment);
+        if(selectedWard !== 'default'){
+          endpoint += '&ward=' + encodeURIComponent(selectedWard);
+          if(selectedPu !== 'default'){
+            endpoint += '&pollingUnit=' + encodeURIComponent(selectedPu);
+          }
+        }
+      }
+      console.log(endpoint);
+      io.socket.get(endpoint, this.fillPusWithoutResult);
+    },
+
+    fillPusWithoutResult: function(body){
+      if(body && body.data && body.data.length){
+        this.puswithoutresult = body.data;
+      }
     },
 
     getIncidenceClass(incidence) {
