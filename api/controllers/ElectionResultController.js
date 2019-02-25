@@ -113,7 +113,7 @@ module.exports = {
         let pus = _.groupBy(results, (result) => { return result.pollingUnit});
         let refined = [];
         for(let result in pus){
-            let apcVote = 0, pdpVote;
+            let apcVote = 0, pdpVote = 0;
             for(let i = 0; i < pus[result].length; i++){
                 if(pus[result][i].party === 'PDP'){
                     pdpVote = pus[result][i].vote;
@@ -123,15 +123,15 @@ module.exports = {
                 }
             }
             refined.push(Object.assign({}, 
-                _.omit(pus[result][0], ['id', 'createdAt', 'updatedAt','oldVote', 
-                'changeVote', 'raw', 'phoneUserName', 'adminPhone']), {factor: pdpVote - apcVote}));
+                _.omit(pus[result][0], ['id', 'createdAt', 'updatedAt','oldVote', 'party', 'vote', 'phone', 
+                'changeVote', 'raw', 'phoneUserName', 'state', 'adminPhone']), {factor: pdpVote - apcVote}));
         };
         let headers = Object.keys(refined[0]).map( (item, index, array) => {
             return item;
         });
-        refined = _.sortBy(refined, ['factor'], ['desc']);
+        refined = _.sortBy(refined, ['factor']);
         const json2csvParser = new Json2csvParser({headers});
-        const csv = json2csvParser.parse(refined);
+        const csv = json2csvParser.parse(refined.reverse());
         const options = {
             fileName  : 'PartyDiff-reports', // String value for assigning a name for the Excel file created.
             // path : __dirname + '/storage' // String value to define your own storage path where the excel file will be saved.
