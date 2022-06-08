@@ -2,6 +2,14 @@
 
 a [Sails v1](https://sailsjs.com) application
 
+
+# Development
+```sh
+cp .env.example .env
+# Import database and update .env
+npm start
+```
+
 ## Loading the DB
 ```sh
 ~/Downloads/mongodb-database-tools-macos-x86_64-100.5.2/bin/mongorestore --archive="/Users/retnan/Downloads/election_monitoring_presidential.2019030701341.archive"
@@ -48,7 +56,6 @@ export ELECTION_YEAR="2019" # Default: 2019
 
 
 ## DB LIVE
-```sh mongo localhost:27017/election_monitoring -u election_monitoring -p election_m0nitar
-
+```
 mongodump -u election_monitoring -p "election_m0nitar" --archive=election_monitoring.201902231730.archive --db election_monitoring --authenticationDatabase election_monitoring
 ```
