@@ -2,6 +2,10 @@
 
 a [Sails v1](https://sailsjs.com) application
 
+## Loading the DB
+```sh
+~/Downloads/mongodb-database-tools-macos-x86_64-100.5.2/bin/mongorestore --archive="/Users/retnan/Downloads/election_monitoring_presidential.2019030701341.archive"
+```
 
 ## Import Guide
 
