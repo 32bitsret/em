@@ -5,6 +5,8 @@ a [Sails v1](https://sailsjs.com) application
 
 # Development
 ```sh
+# start up mongo server
+sudo mongod --dbpath ../data/db
 cp .env.example .env
 # Import database and update .env
 npm start
